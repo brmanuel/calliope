@@ -390,6 +390,15 @@ def get_clusters(
             )
         clustered_data = sk_cluster.KMeans(k).fit(X)
 
+    if func == 'minibatchkmeans':
+        if not k:
+            k = hartigan_n_clusters(X, minibatch=True)
+            exceptions.warn(
+                'Used Hartigan\'s rule to determine that'
+                'a good number of clusters is {}.'.format(k)
+            )
+        clustered_data = sk_cluster.MiniBatchKMeans(k).fit(X)
+
     elif func == 'hierarchical':
         if not k:
             raise exceptions.ModelError(
@@ -398,20 +407,30 @@ def get_clusters(
             )
         clustered_data = sk_cluster.AgglomerativeClustering(k).fit(X)
 
+    elif func == 'birch':
+        if not k:
+            raise exceptions.ModelError(
+                'Cannot undertake Birch clustering without a predefined '
+                'number of clusters (k)'
+            )
+        clustered_data = sk_cluster.Birch(n_clusters=k).fit(X)
+
     # Determine the cluster membership of each day
     day_clusters = clustered_data.labels_
 
     # Create mapping of timesteps to clusters
     clusters = pd.Series(day_clusters, index=timesteps[::timesteps_per_day])
 
+    # save the clusters to file, if requested:
+
     return clusters, clustered_data
 
 
-def hartigan_n_clusters(X, threshold=10):
+def hartigan_n_clusters(X, threshold=10, minibatch=False):
     """
-    Try clustering using sklearn.cluster.kmeans, for several cluster sizes.
-    Using Hartigan's rule, we will return the number of clusters after which
-    the benefit of clustering is low.
+    Try clustering using sklearn.cluster.Kmeans (or MiniBatchKmeans), for
+    several cluster sizes. Using Hartigan's rule, we will return the number of
+    clusters after which the benefit of clustering is low.
     """
     def _H_rule(inertia, inertia_plus_one, n_clusters, len_input):
         # see http://www.dcs.bbk.ac.uk/~mirkin/papers/00357_07-216RR_mirkin.pdf
@@ -421,10 +440,15 @@ def hartigan_n_clusters(X, threshold=10):
     n_clusters = 1
     HK = threshold + 1
 
+    if minibatch is True:
+        KMeans = sk_cluster.MiniBatchKMeans
+    else:
+        KMeans = sk_cluster.KMeans
+
     while n_clusters <= len_input and HK > threshold:
 
-        kmeans = sk_cluster.KMeans(n_clusters=n_clusters).fit(X)
-        kmeans_plus_one = sk_cluster.KMeans(n_clusters=n_clusters + 1).fit(X)
+        kmeans = KMeans(n_clusters=n_clusters).fit(X)
+        kmeans_plus_one = KMeans(n_clusters=n_clusters + 1).fit(X)
 
         inertia = kmeans.inertia_
         inertia_plus_one = kmeans_plus_one.inertia_
