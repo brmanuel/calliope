@@ -581,6 +581,11 @@ def generate_model_run(config, debug_comments, applied_overrides, scenario):
     model_run['sets'] = all_sets
     model_run['constraint_sets'] = constraint_sets.generate_constraint_sets(model_run)
 
+    # 7.5) get scaling factors if available
+    if "scale" in config:
+        model_run['scale'] = config['scale']
+    
+
     # 8) Final sense-checking
     final_check_comments, warning_messages, errors = checks.check_final(model_run)
     debug_comments.union(final_check_comments)

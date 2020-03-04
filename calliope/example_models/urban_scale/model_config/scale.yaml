@@ -1,0 +1,7 @@
+scale:
+    monetary: 0.000001
+    co2: 10
+    power: 0.001
+    energy: 0.001
+    distance: 1
+    area: 0.001

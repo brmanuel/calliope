@@ -160,6 +160,27 @@ def generate_model(model_data):
                           backend_model.__calliope_run_config['objective'])
     load_function(objective_function)(backend_model)
 
+    """
+    assert(False)
+    
+    with open("out.txt", "w+") as f:
+        for parmobject in backend_model.component_objects(po.Param, active=True):
+            nametoprint = str(str(parmobject.name))
+            f.write("Parameter " + nametoprint + "\n")  # doctest: +SKIP
+            for index in parmobject:
+                try:
+                    vtoprint = po.value(parmobject[index])
+                except:
+                    vtoprint = "-"
+                f.write("   " + str(index) + "  ---  " + str(vtoprint) + "\n")
+
+    """
+
+    ''' iterate through constraints
+    for con in backend_model.component_map(po.Constraint).itervalues():
+        con.pprint()
+    '''
+                
     return backend_model
 
 

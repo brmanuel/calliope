@@ -20,7 +20,7 @@ import pandas as pd
 from calliope.core.attrdict import AttrDict
 from calliope._version import __version__
 from calliope.core.preprocess import checks
-from calliope.core.preprocess.util import split_loc_techs_transmission, concat_iterable
+from calliope.core.preprocess.util import split_loc_techs_transmission, concat_iterable, get_constraint_scaling_factor, get_cost_scaling_factor, scale
 from calliope.core.preprocess.time import add_time_dimension
 from calliope.core.preprocess.lookup import add_lookup_arrays
 
@@ -77,6 +77,19 @@ def build_model_data(model_run, debug=False):
 
     data = add_time_dimension(data, model_run)
 
+
+    # apply predefined scaling to all variables with a unit with specified scalin
+
+    # add scaling-relevant attributes to data 
+    if 'scale' in model_run:
+        data.attrs['scale'] = True
+        #import pdb; pdb.set_trace()
+        data['scale'] = xr.DataArray([v for k,v in model_run['scale'].items()], [('unit', [k for k,v in model_run['scale'].items()])])
+        scale(data)
+    else:
+        data.attrs['scale'] = False
+                    
+    
     # Carrier information uses DataArray indexing in the function, so we merge
     # these directly into the main xarray Dataset
 
