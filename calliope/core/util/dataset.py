@@ -144,3 +144,105 @@ def split_loc_techs(data_var, return_as='DataArray'):
     else:
         raise ValueError('`return_as` must be `DataArray`, `Series`, or '
                          '`MultiIndex DataArray`, but `{}` given'.format(return_as))
+
+
+
+
+
+
+def scale(data, transform=lambda x: x):
+
+    # extract scaling factors from data for easier accessing
+    factors = {data.scale.unit.values[i] : data.scale.values[i] for i in range(0, len(data.scale))}
+    
+    # TODO: need a better way to distinguish between costs and non-costs!
+    for key, val in data.data_vars.items():
+        if 'cost' in key.split('_'): # scale cost in all cost classes (also group constraints with costs)
+            for i in range(0, len(data.costs)):
+                costclass = data.costs[i].values.item(0)
+                factor = get_cost_scaling_factor(key, costclass, factors)
+                if not factor is None:
+                    data[key].loc[dict(costs=costclass)] *= transform(factor)
+
+        else: # scale constraint
+            factor = get_constraint_scaling_factor(key, factors)
+            if not factor is None:
+                data[key] = transform(factor) * val
+
+    if 'loc_techs_finite_resource' in data:
+        # scale all resources according to respective unit
+        for res in data.loc_techs_finite_resource:
+            resource_unit = data.resource_unit.sel(loc_techs_finite_resource=res).values.item(0)
+            factor = 1
+            if resource_unit == 'energy':
+                factor = factors.get('energy', 1)
+            elif resource_unit == 'energy_per_area':
+                factor = factors.get('energy', 1)/factors.get('area', 1)
+            #is this what kWh/kW is called?
+            elif resource_unit == 'energy_per_power':
+                factor = factors.get('energy', 1)/factors.get('power',1)
+            #assert(False)
+            data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor)
+    return data
+
+
+
+def get_cost_scaling_factor(cost_name, cost_class, scaling_factors):
+    # COSTS
+    if cost_name in ["cost_energy_cap", "cost_resource_cap", "cost_om_annual"]:     # kW^-1
+        return scaling_factors.get(cost_class, 1)/scaling_factors.get("power", 1)
+    elif cost_name in ["cost_export", "cost_om_con", "cost_om_prod", "cost_storage_cap"]:    # kWh^-1
+        return scaling_factors.get(cost_class, 1)/scaling_factors.get("energy", 1)
+    elif cost_name in ["cost_energy_cap_per_distance"]:    # kW^-1/distance
+        return scaling_factors.get(cost_class, 1)/(scaling_factors.get("power", 1) * scaling_factors.get("distance", 1))
+    elif cost_name in ["cost_resource_area"]:    # m^-2
+        return scaling_factors.get(cost_class, 1)/scaling_factors.get("area", 1)
+    elif cost_name in ["group_cost_max", "group_cost_min", "group_cost_equals", "group_cost_var_max", "group_cost_var_min", "group_cost_var_equals", "group_cost_investment_max", "group_cost_investment_min", "group_cost_investment_equals"]: 
+        return scaling_factors.get(cost_class, 1)
+    else:
+        print("returning none for ", cost_name, cost_class)
+        return None
+    
+
+def get_constraint_scaling_factor(variable_name, scaling_factors):
+    """
+    - in order to scale time we also would need to modify the timeseries data
+
+    # hour^-1
+    if variable_name in ["charge_rate", "energy_cap_per_storage_cap_min", "energy_cap_per_storage_cap_max", "storage_loss"]:
+        return units["per_hour"]
+    # fraction/hour
+    elif variable_name in ["energy_ramping"]:
+        return units["fraction_per_hour"]
+    # years
+    elif variable_name in ["lifetime"]:
+        return units["time"]
+
+    - scaling integers, floats and fractions doesn't make sense 
+    - is energy_cap_min/max/equals really kWh?
+    """
+
+    #CONSTRAINTS
+    # kW
+    if variable_name in ["energy_cap_equals", "energy_cap_equals_systemwide", "energy_cap_max", "energy_cap_max_systemwide", "energy_cap_min", "export_cap", "resource_cap_equals", "resource_cap_max", "resource_cap_min", "units_max_systemwide", "units_equals_systemwide"]:
+        return scaling_factors.get("power", 1)
+    elif variable_name in ["energy_cap_per_unit", "storage_cap_per_unit"]:     # kWh/unit
+        return scaling_factors.get("energy", 1)
+    elif variable_name in ["energy_eff_per_distance"]:     # distance^-1
+        return 1/scaling_factors.get("distance", 1)
+    elif variable_name in ["resource_area_equals", "resource_area_max", "resource_area_min"]:    # m^2
+        return scaling_factors.get("area", 1)
+    elif variable_name in ["storage_cap_equals", "storage_cap_max", "storage_cap_min"]:    # kWh
+        return scaling_factors.get("energy", 1)
+    elif variable_name in ["resource_area_per_energy_cap"]:
+        return scaling_factors.get("area", 1) / scaling_factors.get("energy", 1)
+
+
+    # GROUP CONSTRAINTS
+    if variable_name in ["resource_area_min", "resource_area_max", "resource_area_equals", "available_area"]: # area
+        return scaling_factors.get("area", 1)
+    elif variable_name in ["energy_cap_min", "energy_cap_max", "energy_cap_equals", "carrier_prod_min", "carrier_prod_max", "carrier_prod_equals"]: #energy
+        return scaling_factors.get("energy", 1)
+    else:
+        print("returning none for ", variable_name)
+        return None

@@ -20,9 +20,10 @@ import pandas as pd
 from calliope.core.attrdict import AttrDict
 from calliope._version import __version__
 from calliope.core.preprocess import checks
-from calliope.core.preprocess.util import split_loc_techs_transmission, concat_iterable, get_constraint_scaling_factor, get_cost_scaling_factor, scale
+from calliope.core.preprocess.util import split_loc_techs_transmission, concat_iterable, get_constraint_scaling_factor, get_cost_scaling_factor
 from calliope.core.preprocess.time import add_time_dimension
 from calliope.core.preprocess.lookup import add_lookup_arrays
+from calliope.core.util.dataset import scale
 
 
 def build_model_data(model_run, debug=False):
