@@ -53,7 +53,7 @@ def postprocess_model_results(results, model_data, timings):
         results['scale'] = model_data['scale']
         scale(results, lambda x: 1/x)
 
-        run_config = AttrDict.from_yaml_string(model_data.attrs["run_config"])
+    run_config = AttrDict.from_yaml_string(model_data.attrs["run_config"])
     results["capacity_factor"] = capacity_factor(results, model_data)
     results["systemwide_capacity_factor"] = systemwide_capacity_factor(
         results, model_data
