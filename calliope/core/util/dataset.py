@@ -155,10 +155,13 @@ def split_loc_techs(data_var, return_as="DataArray"):
 
 def scale(data, transform=lambda x: x):
 
+    print("START SCALING")
+    
     # will hold max and min value information for each unit 
     data_ranges_per_unit = {}
     def update_ranges(tag, val):
-        minval = maxval = val
+        minval = val.min().values
+        maxval = val.max().values
         if tag in data_ranges_per_unit:
             minval = min(minval, data_ranges_per_unit[tag]["min"])
             maxval = max(maxval, data_ranges_per_unit[tag]["max"])
@@ -199,12 +202,15 @@ def scale(data, transform=lambda x: x):
             elif resource_unit == 'energy_per_power':
                 factor = factors.get('energy', 1)/factors.get('power',1)
             #assert(False)
-            data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor[0])
-            update_ranges(factor[1], data["resource"].loc[dict(loc_techs_finite_resource=res)])
+            data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor)
+            update_ranges("resource", data["resource"].loc[dict(loc_techs_finite_resource=res)])
 
     # print data ranges for inspection purposes
-    for k,v in data_ranges_per_unit:
+    for k,v in data_ranges_per_unit.items():
         print(k, "min: ", v["min"], "max: ", v["max"])
+
+        
+    print("SCALING DONE")
     return data
 
 
@@ -320,7 +326,6 @@ def get_scaling_factor(variable_name, scaling_factors):
         "storage_cap_equals",
         "storage_cap_min",
         "storage_cap_max",
-        "max_demand_timesteps",
         "carrier_prod_min",
         "carrier_prod_max",
         "carrier_prod_equals",
@@ -381,6 +386,7 @@ def get_scaling_factor(variable_name, scaling_factors):
         "purchased", # boolean
         "units", #integer
         "operating_units", # integer
+        "max_demand_timesteps", # timestamps
         "resource_unit", # N/A
         "objective_cost_class", # N/A
         "lookup_loc_techs_export",# N/A

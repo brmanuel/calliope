@@ -23,7 +23,7 @@ from calliope.preprocess import checks
 from calliope.preprocess.util import split_loc_techs_transmission, concat_iterable
 from calliope.preprocess.time import add_time_dimension
 from calliope.preprocess.lookup import add_lookup_arrays
-from calliope.core.util.dataset import scale, get_constraint_scaling_factor, get_cost_scaling_factor
+from calliope.core.util.dataset import scale
 
 
 def build_model_data(model_run, debug=False):
