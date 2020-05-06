@@ -1,0 +1,3 @@
+[console_scripts]
+calliope = calliope.cli:cli
+
