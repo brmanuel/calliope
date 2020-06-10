@@ -161,8 +161,8 @@ def scale(data, transform=lambda x: x):
     data_ranges_per_unit = {}
     def update_ranges(tag, val):
         v = val.where(xr.ufuncs.isfinite(val))
-        minval = v.min().values
-        maxval = v.max().values
+        minval = xr.ufuncs.fabs(v).min().values
+        maxval = xr.ufuncs.fabs(v).max().values
         if tag in data_ranges_per_unit:
             minval = min(minval, data_ranges_per_unit[tag]["min"])
             maxval = max(maxval, data_ranges_per_unit[tag]["max"])
