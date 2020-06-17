@@ -1,0 +1,1548 @@
+Sender: LSF System <lsfadmin@eu-g1-024-3>
+Subject: Job 124306219: <calliope run model_scaled/national_long_gurobiscaled/model.yaml --save_netcdf=results/10_6_20_crossover_halflong_gurobiscaled.nc --scenario=baseline> in cluster <euler> Done
+
+Job <calliope run model_scaled/national_long_gurobiscaled/model.yaml --save_netcdf=results/10_6_20_crossover_halflong_gurobiscaled.nc --scenario=baseline> was submitted from host <eu-login-33> by user <brmanuel> in cluster <euler> at Thu Jun 11 09:17:13 2020
+Job was executed on host(s) <eu-g1-024-3>, in queue <bigmem.24h>, as user <brmanuel> in cluster <euler> at Thu Jun 11 09:17:27 2020
+</cluster/home/brmanuel> was used as the home directory.
+</cluster/home/brmanuel> was used as the working directory.
+Started at Thu Jun 11 09:17:27 2020
+Terminated at Thu Jun 11 11:58:35 2020
+Results reported at Thu Jun 11 11:58:35 2020
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+calliope run model_scaled/national_long_gurobiscaled/model.yaml --save_netcdf=results/10_6_20_crossover_halflong_gurobiscaled.nc --scenario=baseline
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   9635.08 sec.
+    Max Memory :                                 44730 MB
+    Average Memory :                             31725.82 MB
+    Total Requested Memory :                     102400.00 MB
+    Delta Memory :                               57670.00 MB
+    Max Swap :                                   -
+    Max Processes :                              3
+    Max Threads :                                8
+    Run time :                                   9682 sec.
+    Turnaround time :                            9682 sec.
+
+The output (if any) follows:
+
+Calliope 0.6.5 starting at 2020-06-11 09:17:34
+
+[2020-06-11 09:17:34] INFO     Model: initialising
+[2020-06-11 09:17:35] INFO     Using scenario `baseline` leading to the application of overrides `['diw_assumptions', 'ose_capacity', 'diw_battery_baseline_cost', 'jrc_etri_2014_renewable_costs', 'equal_interest_rate', 'no_hydrogen']`.
+[2020-06-11 09:17:43] INFO     `locations.ALB.techs.biomass.constraints.energy_cap_equals`:0.0 applied from override as new configuration
+`locations.ALB.techs.ccgt.constraints.energy_cap_max`:0.7000000000000001 applied from override as new configuration
+`locations.ALB.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.ALB.techs.hydro_reservoir.constraints.energy_cap_equals: 1.6185 -> 2.402
+Override applied to locations.ALB.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.3851019999999999 -> 0.468
+`locations.ALB.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.ALB.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.ALB.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.ALB.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.ALB.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.ALB.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.ALB.techs.roof_mounted_pv.constraints.energy_cap_min`:0.08 applied from override as new configuration
+`locations.ALB.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.ALB.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.15 applied from override as new configuration
+`locations.AUT.techs.biomass.constraints.energy_cap_equals`:0.5308219178082192 applied from override as new configuration
+`locations.AUT.techs.ccgt.constraints.energy_cap_max`:5.148 applied from override as new configuration
+`locations.AUT.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.AUT.techs.hydro_reservoir.constraints.energy_cap_equals: 5.121404076433121 -> 4.7875179999999995
+Override applied to locations.AUT.techs.hydro_run_of_river.constraints.energy_cap_equals: 4.509601531122705 -> 4.6718997700000005
+`locations.AUT.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.AUT.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.AUT.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.AUT.techs.oils.constraints.energy_cap_max`:0.17400000000000002 applied from override as new configuration
+Override applied to locations.AUT.techs.pumped_hydro.constraints.energy_cap_equals: 3.8403 -> 6.055333
+Override applied to locations.AUT.techs.pumped_hydro.constraints.storage_cap_equals: 574.3354551608794 -> 247.00759166050523
+`locations.AUT.techs.roof_mounted_pv.constraints.energy_cap_min`:4.5 applied from override as new configuration
+`locations.AUT.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.AUT.techs.wind_onshore_monopoly.constraints.energy_cap_min`:5.0 applied from override as new configuration
+`locations.BEL.techs.biomass.constraints.energy_cap_equals`:1.1186643835616437 applied from override as new configuration
+`locations.BEL.techs.ccgt.constraints.energy_cap_max`:7.509 applied from override as new configuration
+`locations.BEL.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.BEL.techs.hydro_reservoir.constraints.energy_cap_equals: 0.01273566878980889 -> 0.158
+Override applied to locations.BEL.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.05901533974257918 -> 0.117
+`locations.BEL.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.BEL.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.BEL.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.BEL.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.BEL.techs.pumped_hydro.constraints.energy_cap_equals: 1.3075 -> 1.1500000000000001
+Override applied to locations.BEL.techs.pumped_hydro.constraints.storage_cap_equals: 5.616408934707904 -> 5.490384615384617
+`locations.BEL.techs.roof_mounted_pv.constraints.energy_cap_min`:5.0505 applied from override as new configuration
+`locations.BEL.techs.wind_offshore.constraints.energy_cap_min`:2.31 applied from override as new configuration
+`locations.BEL.techs.wind_onshore_monopoly.constraints.energy_cap_min`:3.298 applied from override as new configuration
+`locations.BGR.techs.biomass.constraints.energy_cap_equals`:0.2996575342465753 applied from override as new configuration
+`locations.BGR.techs.ccgt.constraints.energy_cap_max`:2.297 applied from override as new configuration
+`locations.BGR.techs.coal.constraints.energy_cap_max`:0.168 applied from override as new configuration
+Override applied to locations.BGR.techs.hydro_reservoir.constraints.energy_cap_equals: 1.4844992356687896 -> 1.867
+Override applied to locations.BGR.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0224 -> 0.6
+`locations.BGR.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.BGR.techs.lignite.constraints.energy_cap_max`:3.895 applied from override as new configuration
+`locations.BGR.techs.nuclear.constraints.energy_cap_max`:2.2 applied from override as new configuration
+`locations.BGR.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.BGR.techs.pumped_hydro.constraints.energy_cap_equals: 1.399 -> 0.933
+Override applied to locations.BGR.techs.pumped_hydro.constraints.storage_cap_equals: 10.757865105426895 -> 11.165903225806453
+`locations.BGR.techs.roof_mounted_pv.constraints.energy_cap_min`:2.0 applied from override as new configuration
+`locations.BGR.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.BGR.techs.wind_onshore_monopoly.constraints.energy_cap_min`:1.25 applied from override as new configuration
+`locations.BIH.techs.biomass.constraints.energy_cap_equals`:0.0 applied from override as new configuration
+`locations.BIH.techs.ccgt.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.BIH.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.BIH.techs.hydro_reservoir.constraints.energy_cap_equals: 1.5695000000000001 -> 0.68
+Override applied to locations.BIH.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.096 -> 1.1440000000000001
+`locations.BIH.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.BIH.techs.lignite.constraints.energy_cap_max`:2.536 applied from override as new configuration
+`locations.BIH.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.BIH.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.BIH.techs.pumped_hydro.constraints.energy_cap_equals: 0.43 -> 0.44
+Override applied to locations.BIH.techs.pumped_hydro.constraints.storage_cap_equals: 0.0034 -> 2.9752380952380952
+`locations.BIH.techs.roof_mounted_pv.constraints.energy_cap_min`:0.1 applied from override as new configuration
+`locations.BIH.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.BIH.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.64 applied from override as new configuration
+`locations.CHE.techs.biomass.constraints.energy_cap_equals`:1.113013698630137 applied from override as new configuration
+`locations.CHE.techs.ccgt.constraints.energy_cap_max`:0.985 applied from override as new configuration
+`locations.CHE.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.CHE.techs.hydro_reservoir.constraints.energy_cap_equals: 8.697470000000001 -> 8.987
+Override applied to locations.CHE.techs.hydro_run_of_river.constraints.energy_cap_equals: 4.673239800000004 -> 4.139
+`locations.CHE.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.CHE.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.CHE.techs.nuclear.constraints.energy_cap_max`:1.19 applied from override as new configuration
+`locations.CHE.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.CHE.techs.pumped_hydro.constraints.energy_cap_equals: 3.9218899999999994 -> 4.593
+Override applied to locations.CHE.techs.pumped_hydro.constraints.storage_cap_equals: 3.3481856747891285 -> 946.1823015873016
+`locations.CHE.techs.roof_mounted_pv.constraints.energy_cap_min`:5.6000000000000005 applied from override as new configuration
+`locations.CHE.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.CHE.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.37 applied from override as new configuration
+`locations.CYP.techs.biomass.constraints.energy_cap_equals`:0.03424657534246575 applied from override as new configuration
+`locations.CYP.techs.ccgt.constraints.energy_cap_max`:0.66 applied from override as new configuration
+`locations.CYP.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.CYP.techs.hydro_reservoir.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.CYP.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.0
+`locations.CYP.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.CYP.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.CYP.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.CYP.techs.oils.constraints.energy_cap_max`:1.0045 applied from override as new configuration
+Override applied to locations.CYP.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.CYP.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.CYP.techs.roof_mounted_pv.constraints.energy_cap_min`:0.6880000000000001 applied from override as new configuration
+`locations.CYP.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.CYP.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.275 applied from override as new configuration
+`locations.CZE.techs.biomass.constraints.energy_cap_equals`:0.9991438356164384 applied from override as new configuration
+`locations.CZE.techs.ccgt.constraints.energy_cap_max`:2.884 applied from override as new configuration
+`locations.CZE.techs.coal.constraints.energy_cap_max`:0.251 applied from override as new configuration
+Override applied to locations.CZE.techs.hydro_reservoir.constraints.energy_cap_equals: 0.7114839022845104 -> 0.05
+Override applied to locations.CZE.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.040226382271496004 -> 0.365
+`locations.CZE.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.CZE.techs.lignite.constraints.energy_cap_max`:4.76 applied from override as new configuration
+`locations.CZE.techs.nuclear.constraints.energy_cap_max`:4.055 applied from override as new configuration
+`locations.CZE.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.CZE.techs.pumped_hydro.constraints.energy_cap_equals: 1.1725095516678392 -> 1.0
+Override applied to locations.CZE.techs.pumped_hydro.constraints.storage_cap_equals: 9.016225583750662 -> 4.995633187772926
+`locations.CZE.techs.roof_mounted_pv.constraints.energy_cap_min`:3.54 applied from override as new configuration
+`locations.CZE.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.CZE.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.9500000000000001 applied from override as new configuration
+`locations.DEU.techs.biomass.constraints.energy_cap_equals`:6.25 applied from override as new configuration
+`locations.DEU.techs.ccgt.constraints.energy_cap_max`:39.300000000000004 applied from override as new configuration
+`locations.DEU.techs.coal.constraints.energy_cap_max`:9.8 applied from override as new configuration
+Override applied to locations.DEU.techs.hydro_reservoir.constraints.energy_cap_equals: 0.2028 -> 0.0
+Override applied to locations.DEU.techs.hydro_run_of_river.constraints.energy_cap_equals: 3.7374115043751477 -> 5.6000000000000005
+`locations.DEU.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.DEU.techs.lignite.constraints.energy_cap_max`:9.3 applied from override as new configuration
+`locations.DEU.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.DEU.techs.oils.constraints.energy_cap_max`:3.2 applied from override as new configuration
+Override applied to locations.DEU.techs.pumped_hydro.constraints.energy_cap_equals: 7.158620000000001 -> 9.5
+Override applied to locations.DEU.techs.pumped_hydro.constraints.storage_cap_equals: 43.425157317073165 -> 66.5
+`locations.DEU.techs.roof_mounted_pv.constraints.energy_cap_min`:91.3 applied from override as new configuration
+`locations.DEU.techs.wind_offshore.constraints.energy_cap_min`:17.0 applied from override as new configuration
+`locations.DEU.techs.wind_onshore_monopoly.constraints.energy_cap_min`:81.5 applied from override as new configuration
+`locations.DNK.techs.biomass.constraints.energy_cap_equals`:1.6142123287671235 applied from override as new configuration
+`locations.DNK.techs.ccgt.constraints.energy_cap_max`:0.5291 applied from override as new configuration
+`locations.DNK.techs.coal.constraints.energy_cap_max`:0.41000000000000003 applied from override as new configuration
+Override applied to locations.DNK.techs.hydro_reservoir.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.DNK.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.0066082
+`locations.DNK.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.DNK.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.DNK.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.DNK.techs.oils.constraints.energy_cap_max`:0.8170000000000001 applied from override as new configuration
+Override applied to locations.DNK.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.DNK.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.DNK.techs.roof_mounted_pv.constraints.energy_cap_min`:2.939 applied from override as new configuration
+`locations.DNK.techs.wind_offshore.constraints.energy_cap_min`:2.9050000000000002 applied from override as new configuration
+`locations.DNK.techs.wind_onshore_monopoly.constraints.energy_cap_min`:5.596 applied from override as new configuration
+`locations.ESP.techs.biomass.constraints.energy_cap_equals`:2.183219178082192 applied from override as new configuration
+`locations.ESP.techs.ccgt.constraints.energy_cap_max`:33.06 applied from override as new configuration
+`locations.ESP.techs.coal.constraints.energy_cap_max`:4.66 applied from override as new configuration
+Override applied to locations.ESP.techs.hydro_reservoir.constraints.energy_cap_equals: 8.72354 -> 10.92
+Override applied to locations.ESP.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 3.85
+`locations.ESP.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.ESP.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.ESP.techs.nuclear.constraints.energy_cap_max`:7.117 applied from override as new configuration
+`locations.ESP.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.ESP.techs.pumped_hydro.constraints.energy_cap_equals: 8.007172000000002 -> 8.28
+Override applied to locations.ESP.techs.pumped_hydro.constraints.storage_cap_equals: 4330.539930428923 -> 98.92473118279568
+`locations.ESP.techs.roof_mounted_pv.constraints.energy_cap_min`:40.0 applied from override as new configuration
+`locations.ESP.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.ESP.techs.wind_onshore_monopoly.constraints.energy_cap_min`:31.0 applied from override as new configuration
+`locations.EST.techs.biomass.constraints.energy_cap_equals`:0.1084332191780822 applied from override as new configuration
+`locations.EST.techs.ccgt.constraints.energy_cap_max`:0.15 applied from override as new configuration
+`locations.EST.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.EST.techs.hydro_reservoir.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.EST.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.01
+`locations.EST.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.EST.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.EST.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.EST.techs.oils.constraints.energy_cap_max`:0.656 applied from override as new configuration
+Override applied to locations.EST.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.EST.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.EST.techs.roof_mounted_pv.constraints.energy_cap_min`:0.1 applied from override as new configuration
+`locations.EST.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.EST.techs.wind_onshore_monopoly.constraints.energy_cap_min`:1.5 applied from override as new configuration
+`locations.FIN.techs.biomass.constraints.energy_cap_equals`:2.4700342465753424 applied from override as new configuration
+`locations.FIN.techs.ccgt.constraints.energy_cap_max`:1.924 applied from override as new configuration
+`locations.FIN.techs.coal.constraints.energy_cap_max`:0.714 applied from override as new configuration
+Override applied to locations.FIN.techs.hydro_reservoir.constraints.energy_cap_equals: 1.345 -> 3.2
+Override applied to locations.FIN.techs.hydro_run_of_river.constraints.energy_cap_equals: 1.26765 -> 0.0
+`locations.FIN.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.FIN.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.FIN.techs.nuclear.constraints.energy_cap_max`:4.5600000000000005 applied from override as new configuration
+`locations.FIN.techs.oils.constraints.energy_cap_max`:1.3 applied from override as new configuration
+Override applied to locations.FIN.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.FIN.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.FIN.techs.roof_mounted_pv.constraints.energy_cap_min`:1.2 applied from override as new configuration
+`locations.FIN.techs.wind_offshore.constraints.energy_cap_min`:0.7000000000000001 applied from override as new configuration
+`locations.FIN.techs.wind_onshore_monopoly.constraints.energy_cap_min`:2.3000000000000003 applied from override as new configuration
+`locations.FRA.techs.biomass.constraints.energy_cap_equals`:3.11472602739726 applied from override as new configuration
+`locations.FRA.techs.ccgt.constraints.energy_cap_max`:11.496 applied from override as new configuration
+`locations.FRA.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.FRA.techs.hydro_reservoir.constraints.energy_cap_equals: 9.292473949044586 -> 8.197000000000001
+Override applied to locations.FRA.techs.hydro_run_of_river.constraints.energy_cap_equals: 5.929142562490508 -> 13.797
+`locations.FRA.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.FRA.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.FRA.techs.nuclear.constraints.energy_cap_max`:37.64 applied from override as new configuration
+`locations.FRA.techs.oils.constraints.energy_cap_max`:1.479 applied from override as new configuration
+Override applied to locations.FRA.techs.pumped_hydro.constraints.energy_cap_equals: 5.049 -> 5.5
+Override applied to locations.FRA.techs.pumped_hydro.constraints.storage_cap_equals: 89.13409430854634 -> 106.21612230715775
+`locations.FRA.techs.roof_mounted_pv.constraints.energy_cap_min`:31.515 applied from override as new configuration
+`locations.FRA.techs.wind_offshore.constraints.energy_cap_min`:7.0 applied from override as new configuration
+`locations.FRA.techs.wind_onshore_monopoly.constraints.energy_cap_min`:36.336 applied from override as new configuration
+`locations.GBR.techs.biomass.constraints.energy_cap_equals`:7.05359589041096 applied from override as new configuration
+`locations.GBR.techs.ccgt.constraints.energy_cap_max`:38.039 applied from override as new configuration
+`locations.GBR.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.GBR.techs.hydro_reservoir.constraints.energy_cap_equals: 0.459 -> 1.553
+Override applied to locations.GBR.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.6852 -> 0.14200000000000002
+`locations.GBR.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.GBR.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.GBR.techs.nuclear.constraints.energy_cap_max`:5.686 applied from override as new configuration
+`locations.GBR.techs.oils.constraints.energy_cap_max`:0.34500000000000003 applied from override as new configuration
+Override applied to locations.GBR.techs.pumped_hydro.constraints.energy_cap_equals: 2.833 -> 0.1
+Override applied to locations.GBR.techs.pumped_hydro.constraints.storage_cap_equals: 26.7 -> 1.007547169811321
+`locations.GBR.techs.roof_mounted_pv.constraints.energy_cap_min`:24.894000000000002 applied from override as new configuration
+`locations.GBR.techs.wind_offshore.constraints.energy_cap_min`:22.182000000000002 applied from override as new configuration
+`locations.GBR.techs.wind_onshore_monopoly.constraints.energy_cap_min`:17.665 applied from override as new configuration
+`locations.GRC.techs.biomass.constraints.energy_cap_equals`:0.3852739726027397 applied from override as new configuration
+`locations.GRC.techs.ccgt.constraints.energy_cap_max`:6.26 applied from override as new configuration
+`locations.GRC.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.GRC.techs.hydro_reservoir.constraints.energy_cap_equals: 2.5862 -> 2.72
+Override applied to locations.GRC.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.110315 -> 0.275
+`locations.GRC.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.GRC.techs.lignite.constraints.energy_cap_max`:2.251 applied from override as new configuration
+`locations.GRC.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.GRC.techs.oils.constraints.energy_cap_max`:0.228 applied from override as new configuration
+Override applied to locations.GRC.techs.pumped_hydro.constraints.energy_cap_equals: 0.6990000000000001 -> 1.289
+Override applied to locations.GRC.techs.pumped_hydro.constraints.storage_cap_equals: 5.375087711717941 -> 8.716095238095237
+`locations.GRC.techs.roof_mounted_pv.constraints.energy_cap_min`:4.0 applied from override as new configuration
+`locations.GRC.techs.wind_offshore.constraints.energy_cap_min`:0.3 applied from override as new configuration
+`locations.GRC.techs.wind_onshore_monopoly.constraints.energy_cap_min`:5.9 applied from override as new configuration
+`locations.HRV.techs.biomass.constraints.energy_cap_equals`:0.3424657534246575 applied from override as new configuration
+`locations.HRV.techs.ccgt.constraints.energy_cap_max`:1.5 applied from override as new configuration
+`locations.HRV.techs.coal.constraints.energy_cap_max`:0.7000000000000001 applied from override as new configuration
+Override applied to locations.HRV.techs.hydro_reservoir.constraints.energy_cap_equals: 1.322404458598726 -> 2.0
+Override applied to locations.HRV.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.27866773029167685 -> 0.5
+`locations.HRV.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.HRV.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.HRV.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.HRV.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.HRV.techs.pumped_hydro.constraints.energy_cap_equals: 0.5187 -> 0.3
+Override applied to locations.HRV.techs.pumped_hydro.constraints.storage_cap_equals: 27.814347826086955 -> 2.8536585365853657
+`locations.HRV.techs.roof_mounted_pv.constraints.energy_cap_min`:0.2 applied from override as new configuration
+`locations.HRV.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.HRV.techs.wind_onshore_monopoly.constraints.energy_cap_min`:1.5 applied from override as new configuration
+`locations.HUN.techs.biomass.constraints.energy_cap_equals`:0.351027397260274 applied from override as new configuration
+`locations.HUN.techs.ccgt.constraints.energy_cap_max`:3.5340000000000003 applied from override as new configuration
+`locations.HUN.techs.coal.constraints.energy_cap_max`:0.108 applied from override as new configuration
+Override applied to locations.HUN.techs.hydro_reservoir.constraints.energy_cap_equals: 0.028 -> 0.0
+Override applied to locations.HUN.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0197 -> 0.06
+`locations.HUN.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.HUN.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.HUN.techs.nuclear.constraints.energy_cap_max`:4.248 applied from override as new configuration
+`locations.HUN.techs.oils.constraints.energy_cap_max`:0.41000000000000003 applied from override as new configuration
+Override applied to locations.HUN.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.HUN.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.HUN.techs.roof_mounted_pv.constraints.energy_cap_min`:2.0 applied from override as new configuration
+`locations.HUN.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.HUN.techs.wind_onshore_monopoly.constraints.energy_cap_min`:1.0 applied from override as new configuration
+`locations.IRL.techs.biomass.constraints.energy_cap_equals`:0.2996575342465753 applied from override as new configuration
+`locations.IRL.techs.ccgt.constraints.energy_cap_max`:3.9410000000000003 applied from override as new configuration
+`locations.IRL.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.IRL.techs.hydro_reservoir.constraints.energy_cap_equals: 0.001 -> 0.0
+Override applied to locations.IRL.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.216 -> 0.216
+`locations.IRL.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.IRL.techs.lignite.constraints.energy_cap_max`:0.08 applied from override as new configuration
+`locations.IRL.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.IRL.techs.oils.constraints.energy_cap_max`:0.5 applied from override as new configuration
+Override applied to locations.IRL.techs.pumped_hydro.constraints.energy_cap_equals: 0.342 -> 0.442
+Override applied to locations.IRL.techs.pumped_hydro.constraints.storage_cap_equals: 2.6298712409263745 -> 2.7246575342465755
+`locations.IRL.techs.roof_mounted_pv.constraints.energy_cap_min`:0.5 applied from override as new configuration
+`locations.IRL.techs.wind_offshore.constraints.energy_cap_min`:0.7000000000000001 applied from override as new configuration
+`locations.IRL.techs.wind_onshore_monopoly.constraints.energy_cap_min`:5.5 applied from override as new configuration
+`locations.ITA.techs.biomass.constraints.energy_cap_equals`:4.497306421232875 applied from override as new configuration
+`locations.ITA.techs.ccgt.constraints.energy_cap_max`:38.489564 applied from override as new configuration
+`locations.ITA.techs.coal.constraints.energy_cap_max`:5.186 applied from override as new configuration
+Override applied to locations.ITA.techs.hydro_reservoir.constraints.energy_cap_equals: 4.65247 -> 10.724072718355469
+Override applied to locations.ITA.techs.hydro_run_of_river.constraints.energy_cap_equals: 6.949100000000001 -> 5.637334087977147
+`locations.ITA.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.ITA.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.ITA.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.ITA.techs.oils.constraints.energy_cap_max`:0.354 applied from override as new configuration
+Override applied to locations.ITA.techs.pumped_hydro.constraints.energy_cap_equals: 7.2954 -> 5.731796969696971
+Override applied to locations.ITA.techs.pumped_hydro.constraints.storage_cap_equals: 410.77955 -> 51.218557476598455
+`locations.ITA.techs.roof_mounted_pv.constraints.energy_cap_min`:25.19 applied from override as new configuration
+`locations.ITA.techs.wind_offshore.constraints.energy_cap_min`:0.6545 applied from override as new configuration
+`locations.ITA.techs.wind_onshore_monopoly.constraints.energy_cap_min`:15.575000000000001 applied from override as new configuration
+`locations.LTU.techs.biomass.constraints.energy_cap_equals`:0.17037671232876714 applied from override as new configuration
+`locations.LTU.techs.ccgt.constraints.energy_cap_max`:0.6910000000000001 applied from override as new configuration
+`locations.LTU.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.LTU.techs.hydro_reservoir.constraints.energy_cap_equals: 0.101 -> 0.0
+Override applied to locations.LTU.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.138
+`locations.LTU.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.LTU.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.LTU.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.LTU.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.LTU.techs.pumped_hydro.constraints.energy_cap_equals: 0.9 -> 1.125
+Override applied to locations.LTU.techs.pumped_hydro.constraints.storage_cap_equals: 6.920713791911512 -> 13.806818181818183
+`locations.LTU.techs.roof_mounted_pv.constraints.energy_cap_min`:0.08 applied from override as new configuration
+`locations.LTU.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.LTU.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.75 applied from override as new configuration
+`locations.LUX.techs.biomass.constraints.energy_cap_equals`:0.043921232876712325 applied from override as new configuration
+`locations.LUX.techs.ccgt.constraints.energy_cap_max`:0.09 applied from override as new configuration
+`locations.LUX.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.LUX.techs.hydro_reservoir.constraints.energy_cap_equals: 0.0 -> 0.28400000000000003
+Override applied to locations.LUX.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.034
+`locations.LUX.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.LUX.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.LUX.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.LUX.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.LUX.techs.pumped_hydro.constraints.energy_cap_equals: 1.291 -> 1.026
+Override applied to locations.LUX.techs.pumped_hydro.constraints.storage_cap_equals: 4.478 -> 4.807542857142857
+`locations.LUX.techs.roof_mounted_pv.constraints.energy_cap_min`:0.2 applied from override as new configuration
+`locations.LUX.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.LUX.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.2 applied from override as new configuration
+`locations.LVA.techs.biomass.constraints.energy_cap_equals`:0.2525684931506849 applied from override as new configuration
+`locations.LVA.techs.ccgt.constraints.energy_cap_max`:1.181 applied from override as new configuration
+`locations.LVA.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.LVA.techs.hydro_reservoir.constraints.energy_cap_equals: 0.869 -> 1.619
+Override applied to locations.LVA.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.6421 -> 0.0
+`locations.LVA.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.LVA.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.LVA.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.LVA.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.LVA.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.LVA.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.LVA.techs.roof_mounted_pv.constraints.energy_cap_min`:0.01 applied from override as new configuration
+`locations.LVA.techs.wind_offshore.constraints.energy_cap_min`:0.15 applied from override as new configuration
+`locations.LVA.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.3 applied from override as new configuration
+`locations.MKD.techs.biomass.constraints.energy_cap_equals`:0.02226027397260274 applied from override as new configuration
+`locations.MKD.techs.ccgt.constraints.energy_cap_max`:0.29 applied from override as new configuration
+`locations.MKD.techs.coal.constraints.energy_cap_max`:0.12 applied from override as new configuration
+Override applied to locations.MKD.techs.hydro_reservoir.constraints.energy_cap_equals: 0.449 -> 0.647
+Override applied to locations.MKD.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.041600000000000005 -> 0.151
+`locations.MKD.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.MKD.techs.lignite.constraints.energy_cap_max`:0.915 applied from override as new configuration
+`locations.MKD.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.MKD.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.MKD.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.MKD.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.MKD.techs.roof_mounted_pv.constraints.energy_cap_min`:0.032 applied from override as new configuration
+`locations.MKD.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.MKD.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.1 applied from override as new configuration
+`locations.MNE.techs.biomass.constraints.energy_cap_equals`:0.033390410958904104 applied from override as new configuration
+`locations.MNE.techs.ccgt.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.MNE.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.MNE.techs.hydro_reservoir.constraints.energy_cap_equals: 0.36296100000000003 -> 1.139
+Override applied to locations.MNE.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.31236 -> 0.132
+`locations.MNE.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.MNE.techs.lignite.constraints.energy_cap_max`:0.45 applied from override as new configuration
+`locations.MNE.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.MNE.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.MNE.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.MNE.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.MNE.techs.roof_mounted_pv.constraints.energy_cap_min`:0.03 applied from override as new configuration
+`locations.MNE.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.MNE.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.25 applied from override as new configuration
+`locations.NLD.techs.biomass.constraints.energy_cap_equals`:0.4340753424657534 applied from override as new configuration
+`locations.NLD.techs.ccgt.constraints.energy_cap_max`:11.1318 applied from override as new configuration
+`locations.NLD.techs.coal.constraints.energy_cap_max`:4.6080000000000005 applied from override as new configuration
+Override applied to locations.NLD.techs.hydro_reservoir.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.NLD.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.038
+`locations.NLD.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.NLD.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.NLD.techs.nuclear.constraints.energy_cap_max`:0.486 applied from override as new configuration
+`locations.NLD.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.NLD.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.NLD.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.NLD.techs.roof_mounted_pv.constraints.energy_cap_min`:11.439 applied from override as new configuration
+`locations.NLD.techs.wind_offshore.constraints.energy_cap_min`:11.5 applied from override as new configuration
+`locations.NLD.techs.wind_onshore_monopoly.constraints.energy_cap_min`:6.72298 applied from override as new configuration
+`locations.NOR.techs.biomass.constraints.energy_cap_equals`:0.06532791095890411 applied from override as new configuration
+`locations.NOR.techs.ccgt.constraints.energy_cap_max`:0.435 applied from override as new configuration
+`locations.NOR.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.NOR.techs.hydro_reservoir.constraints.energy_cap_equals: 31.69442000000006 -> 34.702192
+Override applied to locations.NOR.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.0 -> 0.0
+`locations.NOR.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.NOR.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.NOR.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.NOR.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.NOR.techs.pumped_hydro.constraints.energy_cap_equals: 1.3443 -> 1.114708
+Override applied to locations.NOR.techs.pumped_hydro.constraints.storage_cap_equals: 4952.9217 -> 499.10675798206273
+`locations.NOR.techs.roof_mounted_pv.constraints.energy_cap_min`:0.4 applied from override as new configuration
+`locations.NOR.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.NOR.techs.wind_onshore_monopoly.constraints.energy_cap_min`:3.3303000000000003 applied from override as new configuration
+`locations.POL.techs.biomass.constraints.energy_cap_equals`:1.5034246575342465 applied from override as new configuration
+`locations.POL.techs.ccgt.constraints.energy_cap_max`:13.017 applied from override as new configuration
+`locations.POL.techs.coal.constraints.energy_cap_max`:13.771 applied from override as new configuration
+Override applied to locations.POL.techs.hydro_reservoir.constraints.energy_cap_equals: 0.3204554140127386 -> 0.0
+Override applied to locations.POL.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.014400368779543971 -> 1.033
+`locations.POL.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.POL.techs.lignite.constraints.energy_cap_max`:7.405 applied from override as new configuration
+`locations.POL.techs.nuclear.constraints.energy_cap_max`:3.0 applied from override as new configuration
+`locations.POL.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.POL.techs.pumped_hydro.constraints.energy_cap_equals: 1.7808 -> 1.488
+Override applied to locations.POL.techs.pumped_hydro.constraints.storage_cap_equals: 7.96 -> 7.191548269581057
+`locations.POL.techs.roof_mounted_pv.constraints.energy_cap_min`:2.43 applied from override as new configuration
+`locations.POL.techs.wind_offshore.constraints.energy_cap_min`:2.25 applied from override as new configuration
+`locations.POL.techs.wind_onshore_monopoly.constraints.energy_cap_min`:9.200000000000001 applied from override as new configuration
+`locations.PRT.techs.biomass.constraints.energy_cap_equals`:0.7217465753424657 applied from override as new configuration
+`locations.PRT.techs.ccgt.constraints.energy_cap_max`:4.779 applied from override as new configuration
+`locations.PRT.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.PRT.techs.hydro_reservoir.constraints.energy_cap_equals: 1.9654 -> 4.346300000000001
+Override applied to locations.PRT.techs.hydro_run_of_river.constraints.energy_cap_equals: 1.6155 -> 0.7347
+`locations.PRT.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.PRT.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.PRT.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.PRT.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.PRT.techs.pumped_hydro.constraints.energy_cap_equals: 2.9315 -> 4.1198999999999995
+Override applied to locations.PRT.techs.pumped_hydro.constraints.storage_cap_equals: 193.66705836575875 -> 131.32785222830336
+`locations.PRT.techs.roof_mounted_pv.constraints.energy_cap_min`:1.816 applied from override as new configuration
+`locations.PRT.techs.wind_offshore.constraints.energy_cap_min`:0.06 applied from override as new configuration
+`locations.PRT.techs.wind_onshore_monopoly.constraints.energy_cap_min`:5.554 applied from override as new configuration
+`locations.ROU.techs.biomass.constraints.energy_cap_equals`:0.4280821917808219 applied from override as new configuration
+`locations.ROU.techs.ccgt.constraints.energy_cap_max`:3.2410959999999998 applied from override as new configuration
+`locations.ROU.techs.coal.constraints.energy_cap_max`:0.085 applied from override as new configuration
+Override applied to locations.ROU.techs.hydro_reservoir.constraints.energy_cap_equals: 5.2734801273885346 -> 3.3099157
+Override applied to locations.ROU.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.87045 -> 3.2905620671690805
+`locations.ROU.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.ROU.techs.lignite.constraints.energy_cap_max`:3.4405 applied from override as new configuration
+`locations.ROU.techs.nuclear.constraints.energy_cap_max`:2.63 applied from override as new configuration
+`locations.ROU.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.ROU.techs.pumped_hydro.constraints.energy_cap_equals: 0.0 -> 0.0
+Override applied to locations.ROU.techs.pumped_hydro.constraints.storage_cap_equals: 0.0 -> 0.0
+`locations.ROU.techs.roof_mounted_pv.constraints.energy_cap_min`:2.0 applied from override as new configuration
+`locations.ROU.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.ROU.techs.wind_onshore_monopoly.constraints.energy_cap_min`:4.2 applied from override as new configuration
+`locations.SRB.techs.biomass.constraints.energy_cap_equals`:0.10102739726027397 applied from override as new configuration
+`locations.SRB.techs.ccgt.constraints.energy_cap_max`:0.58 applied from override as new configuration
+`locations.SRB.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.SRB.techs.hydro_reservoir.constraints.energy_cap_equals: 1.8753 -> 0.503
+Override applied to locations.SRB.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.215 -> 2.025
+`locations.SRB.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.SRB.techs.lignite.constraints.energy_cap_max`:5.306 applied from override as new configuration
+`locations.SRB.techs.nuclear.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.SRB.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.SRB.techs.pumped_hydro.constraints.energy_cap_equals: 0.614 -> 1.26
+Override applied to locations.SRB.techs.pumped_hydro.constraints.storage_cap_equals: 4.721464742481853 -> 8.52
+`locations.SRB.techs.roof_mounted_pv.constraints.energy_cap_min`:0.2 applied from override as new configuration
+`locations.SRB.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.SRB.techs.wind_onshore_monopoly.constraints.energy_cap_min`:1.068 applied from override as new configuration
+`locations.SVK.techs.biomass.constraints.energy_cap_equals`:0.43253159246575346 applied from override as new configuration
+`locations.SVK.techs.ccgt.constraints.energy_cap_max`:1.1400160000000001 applied from override as new configuration
+`locations.SVK.techs.coal.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.SVK.techs.hydro_reservoir.constraints.energy_cap_equals: 0.792 -> 0.806
+Override applied to locations.SVK.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.6413299999999998 -> 0.974
+`locations.SVK.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.SVK.techs.lignite.constraints.energy_cap_max`:0.24028 applied from override as new configuration
+`locations.SVK.techs.nuclear.constraints.energy_cap_max`:2.89 applied from override as new configuration
+`locations.SVK.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.SVK.techs.pumped_hydro.constraints.energy_cap_equals: 1.02128 -> 1.486
+Override applied to locations.SVK.techs.pumped_hydro.constraints.storage_cap_equals: 7.853318423781542 -> 6.828075949367088
+`locations.SVK.techs.roof_mounted_pv.constraints.energy_cap_min`:0.716 applied from override as new configuration
+`locations.SVK.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.SVK.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.2645 applied from override as new configuration
+`locations.SVN.techs.biomass.constraints.energy_cap_equals`:0.05736301369863014 applied from override as new configuration
+`locations.SVN.techs.ccgt.constraints.energy_cap_max`:0.554 applied from override as new configuration
+`locations.SVN.techs.coal.constraints.energy_cap_max`:0.05 applied from override as new configuration
+Override applied to locations.SVN.techs.hydro_reservoir.constraints.energy_cap_equals: 0.22279000000000002 -> 0.0
+Override applied to locations.SVN.techs.hydro_run_of_river.constraints.energy_cap_equals: 0.829685 -> 1.5
+`locations.SVN.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.SVN.techs.lignite.constraints.energy_cap_max`:0.539 applied from override as new configuration
+`locations.SVN.techs.nuclear.constraints.energy_cap_max`:0.6960000000000001 applied from override as new configuration
+`locations.SVN.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.SVN.techs.pumped_hydro.constraints.energy_cap_equals: 0.185 -> 0.6
+Override applied to locations.SVN.techs.pumped_hydro.constraints.storage_cap_equals: 1.4225911683373664 -> 1.6666666666666665
+`locations.SVN.techs.roof_mounted_pv.constraints.energy_cap_min`:0.32 applied from override as new configuration
+`locations.SVN.techs.wind_offshore.constraints.energy_cap_min`:0.0 applied from override as new configuration
+`locations.SVN.techs.wind_onshore_monopoly.constraints.energy_cap_min`:0.08 applied from override as new configuration
+`locations.SWE.techs.biomass.constraints.energy_cap_equals`:3.880993150684932 applied from override as new configuration
+`locations.SWE.techs.ccgt.constraints.energy_cap_max`:0.39 applied from override as new configuration
+`locations.SWE.techs.coal.constraints.energy_cap_max`:0.08 applied from override as new configuration
+Override applied to locations.SWE.techs.hydro_reservoir.constraints.energy_cap_equals: 11.454063516863034 -> 16.184
+Override applied to locations.SWE.techs.hydro_run_of_river.constraints.energy_cap_equals: 1.8938601244908198 -> 0.0
+`locations.SWE.techs.hydrogen.exists`:False applied from override as new configuration
+`locations.SWE.techs.lignite.constraints.energy_cap_max`:0.0 applied from override as new configuration
+`locations.SWE.techs.nuclear.constraints.energy_cap_max`:6.852 applied from override as new configuration
+`locations.SWE.techs.oils.constraints.energy_cap_max`:0.0 applied from override as new configuration
+Override applied to locations.SWE.techs.pumped_hydro.constraints.energy_cap_equals: 0.426 -> 0.0
+Override applied to locations.SWE.techs.pumped_hydro.constraints.storage_cap_equals: 31.88622754491018 -> 0.0
+`locations.SWE.techs.roof_mounted_pv.constraints.energy_cap_min`:1.74 applied from override as new configuration
+`locations.SWE.techs.wind_offshore.constraints.energy_cap_min`:0.19 applied from override as new configuration
+`locations.SWE.techs.wind_onshore_monopoly.constraints.energy_cap_min`:10.78 applied from override as new configuration
+`tech_groups.conversion.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+`tech_groups.conversion_plus.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+Override applied to tech_groups.pv.costs.monetary.energy_cap: 1401.49 -> 640.0
+Override applied to tech_groups.pv.costs.monetary.om_annual: 12.66 -> 10.88
+`tech_groups.storage.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+`tech_groups.supply.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+`tech_groups.supply_plus.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+`tech_groups.transmission.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+Override applied to tech_groups.wind_onshore.costs.monetary.energy_cap: 1316.28 -> 1300.0
+Override applied to tech_groups.wind_onshore.costs.monetary.om_annual: 49.72 -> 28.6
+Override applied to techs.battery.constraints.energy_eff: 0.95 -> 0.9591663046625439
+Override applied to techs.battery.constraints.lifetime: 20 -> 12
+Override applied to techs.battery.costs.monetary.energy_cap: 713.47 -> 135.14000000000001
+`techs.battery.costs.monetary.interest_rate`:0.04 applied from override as new configuration
+Override applied to techs.battery.costs.monetary.om_annual: 12.48 -> 0
+Override applied to techs.battery.costs.monetary.om_prod: 0.0028 -> 0
+Override applied to techs.battery.costs.monetary.storage_cap: 322.73 -> 315.32
+Override applied to techs.ccgt.costs.monetary.om_con: 0.03761 -> 0.03168
+Override applied to techs.ccgt.costs.monetary.om_prod: 0.000132 -> 0.014832000000000001
+Override applied to techs.coal.costs.monetary.om_con: 0.010920000000000001 -> 0.009720000000000001
+Override applied to techs.coal.costs.monetary.om_prod: 0.001315 -> 0.025915
+Override applied to techs.lignite.costs.monetary.om_con: 0.010920000000000001 -> 0.00396
+Override applied to techs.lignite.costs.monetary.om_prod: 0.001315 -> 0.028614999999999998
+Override applied to techs.nuclear.costs.monetary.om_con: 0.0064 -> 0.0016899999999999999
+Override applied to techs.nuclear.costs.monetary.om_prod: 0.0006580000000000001 -> 0.001018
+Override applied to techs.wind_offshore.costs.monetary.energy_cap: 4246.25 -> 2580.0
+Override applied to techs.wind_offshore.costs.monetary.om_annual: 113.0 -> 77.4
+[2020-06-11 09:17:43] WARNING  Warning: Possible issues found during model processing:
+ * Model configuration specifies calliope_version=0.6.4, but you are running 0.6.5. Proceed with caution!
+ * Unrecognised top-level configuration item: scale
+
+[2020-06-11 09:17:44] INFO     `battery` at `ALB` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `ALB` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `ALB` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `AUT` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `AUT` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `AUT` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `BEL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `BEL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `BEL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `BGR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `BGR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `BGR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `BIH` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `BIH` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `BIH` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `CHE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `CHE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `CHE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `CYP` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `CYP` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `CYP` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `CZE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `CZE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `CZE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `DEU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `DEU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `DEU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `DNK` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `DNK` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `DNK` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `ESP` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `ESP` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `ESP` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `EST` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `EST` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `EST` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `FIN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `FIN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `FIN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `FRA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `FRA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `FRA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `GBR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `GBR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `GBR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `GRC` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `GRC` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `GRC` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `HRV` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `HRV` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `HRV` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `HUN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `HUN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `HUN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `IRL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `IRL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `IRL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `ITA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `ITA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `ITA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `LTU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `LTU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `LTU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `LUX` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `LUX` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `LUX` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `LVA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `LVA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `LVA` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `MKD` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `MKD` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `MKD` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `MNE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `MNE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `MNE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `NLD` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `NLD` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `NLD` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `NOR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `NOR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `NOR` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `POL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `POL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `POL` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `PRT` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `PRT` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `PRT` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `ROU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `ROU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `ROU` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `SRB` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `SRB` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `SRB` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `SVK` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `SVK` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `SVK` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `SVN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `SVN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `SVN` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `battery` at `SWE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `hydro_reservoir` at `SWE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] INFO     `pumped_hydro` at `SWE` has no constraint to explicitly connect `energy_cap` to `storage_cap`, consider defining a `energy_cap_per_storage_cap_min/max/equals` constraint
+[2020-06-11 09:17:44] WARNING  Warning: Possible issues found during model processing:
+ * All technologies were requested for inclusion in group constraint `co2_cap_AUT`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_BEL`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_BGR`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_CYP`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_CZE`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_DEU`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_DNK`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_ESP`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_EST`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_FIN`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_FRA`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_GBR`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_GRC`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_HRV`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_HUN`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_IRL`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_ITA`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_LTU`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_LUX`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_LVA`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_NLD`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_POL`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_PRT`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_ROU`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_SVK`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_SVN`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+ * All technologies were requested for inclusion in group constraint `co2_cap_SWE`, but those from tech group(s) `[]` have been ignored as one or more of the constraints cannot be applied to technologies in these groups
+
+[2020-06-11 09:17:44] INFO     Model: preprocessing stage 1 (model_run)
+START SCALING
+returning none for variable  resource
+returning none for  cost_depreciation_rate monetary
+returning none for  cost_depreciation_rate co2
+returning none for variable  group_demand_share_min
+energy min:  nan max:  nan
+area_per_power min:  0.0125 max:  0.125
+area min:  675.0647239461541 max:  223670.2421623543
+power min:  0.0 max:  2388978.434220347
+monetary_per_energy min:  0.0 max:  315320.0
+co2_per_energy min:  nan max:  nan
+monetary_per_power min:  0.0 max:  3983840.0
+co2_per_power min:  nan max:  nan
+distance min:  140274.0 max:  1501955.0
+monetary min:  nan max:  nan
+co2 min:  1.2658880960000003 max:  184.0
+resource min:  -86044.80000000002 max:  44519.53281768646
+SCALING DONE
+[2020-06-11 09:18:09] INFO     Model: preprocessing stage 2 (model_data)
+[2020-06-11 09:18:31] INFO     Model: preprocessing complete
+Model name:   Open Source Modelling -- Euro Calliope model
+Model size:   34 locations, 20 technologies, 4344 timesteps
+
+Starting model run...
+[2020-06-11 09:18:31] INFO     Backend: starting model run
+[2020-06-11 09:19:09] INFO     constraints are loaded in the following order: ['capacity', 'costs', 'dispatch', 'energy_balance', 'network', 'policy', 'conversion', 'conversion_plus', 'group', 'export', 'milp']
+[2020-06-11 09:34:00] INFO     Backend: model generated. Time since start of model run: 0:15:28.557230
+[2020-06-11 09:34:00] INFO     Backend: sending model to solver
+[2020-06-11 09:52:45] DEBUG    Parameter OutputFlag unchanged
+[2020-06-11 09:52:45] DEBUG    Value: 1  Min: 0  Max: 1  Default: 1
+[2020-06-11 09:52:45] DEBUG    Changed value of parameter LogFile to /scratch/124306219.tmpdir/tmpjc64d9lp.log
+[2020-06-11 09:52:45] DEBUG    Prev: gurobi.log  Default:
+[2020-06-11 09:52:45] DEBUG    Parameter Crossover unchanged
+[2020-06-11 09:52:45] DEBUG    Value: -1  Min: -1  Max: 5  Default: -1
+[2020-06-11 09:52:45] DEBUG    Changed value of parameter FeasibilityTol to 1e-05
+[2020-06-11 09:52:45] DEBUG    Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+[2020-06-11 09:52:45] DEBUG    Changed value of parameter Method to 2
+[2020-06-11 09:52:45] DEBUG    Prev: -1  Min: -1  Max: 5  Default: -1
+[2020-06-11 09:52:45] DEBUG    Changed value of parameter OptimalityTol to 1e-05
+[2020-06-11 09:52:45] DEBUG    Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+[2020-06-11 09:52:45] DEBUG    Changed value of parameter ScaleFlag to 2
+[2020-06-11 09:52:45] DEBUG    Prev: -1  Min: -1  Max: 3  Default: -1
+[2020-06-11 09:52:45] DEBUG    Changed value of parameter Threads to 4
+[2020-06-11 09:52:45] DEBUG    Prev: 0  Min: 0  Max: 1024  Default: 0
+[2020-06-11 09:52:45] DEBUG    Optimize a model with 10845632 rows, 8413076 columns and 28359019 nonzeros
+[2020-06-11 09:52:45] DEBUG    Coefficient statistics:
+[2020-06-11 09:52:45] DEBUG    Matrix range     [1e-08, 2e+05]
+[2020-06-11 09:52:45] DEBUG    Objective range  [1e+00, 1e+00]
+[2020-06-11 09:52:45] DEBUG    Bounds range     [5e+01, 2e+06]
+[2020-06-11 09:52:45] DEBUG    RHS range        [2e-01, 4e+07]
+[2020-06-11 09:52:45] DEBUG    Warning: Model contains large matrix coefficient range
+[2020-06-11 09:52:45] DEBUG    Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+[2020-06-11 09:52:50] DEBUG    Presolve removed 7438998 rows and 4590000 columns (presolve time = 5s) ...
+[2020-06-11 09:52:56] DEBUG    Presolve removed 8431809 rows and 5582505 columns (presolve time = 10s) ...
+[2020-06-11 09:52:57] DEBUG    Presolve removed 8431809 rows and 5582505 columns
+[2020-06-11 09:52:57] DEBUG    Presolve time: 11.58s
+[2020-06-11 09:52:57] DEBUG    Presolved: 2413823 rows, 2830571 columns, 9098649 nonzeros
+[2020-06-11 09:53:37] DEBUG    Ordering time: 0.00s
+[2020-06-11 09:53:45] DEBUG    Barrier statistics:
+[2020-06-11 09:53:46] DEBUG    Dense cols : 316
+[2020-06-11 09:53:46] DEBUG    AA' NZ     : 7.114e+06
+[2020-06-11 09:53:46] DEBUG    Factor NZ  : 5.573e+07 (roughly 2.6 GBytes of memory)
+[2020-06-11 09:53:46] DEBUG    Factor Ops : 1.448e+10 (roughly 5 seconds per iteration)
+[2020-06-11 09:53:46] DEBUG    Threads    : 4
+[2020-06-11 09:53:54] DEBUG    Objective                Residual
+[2020-06-11 09:53:54] DEBUG    Iter       Primal          Dual         Primal    Dual     Compl     Time
+[2020-06-11 09:53:54] DEBUG    0   1.35076941e+14 -3.49719972e+16  9.93e+10 6.56e+01  6.38e+11    69s
+[2020-06-11 09:54:04] DEBUG    1   1.98836870e+14 -2.77390592e+16  8.91e+10 2.47e+04  5.09e+11    79s
+[2020-06-11 09:54:14] DEBUG    2   2.57135971e+14 -2.73034961e+16  7.71e+10 2.38e+04  4.56e+11    89s
+[2020-06-11 09:54:27] DEBUG    3   2.41540432e+14 -2.60181515e+16  6.65e+10 2.11e+04  4.03e+11   102s
+[2020-06-11 09:54:38] DEBUG    4   1.92016311e+14 -2.40108892e+16  5.92e+10 1.86e+04  3.58e+11   113s
+[2020-06-11 09:54:47] DEBUG    5   1.76911826e+14 -2.28910331e+16  5.28e+10 1.66e+04  3.21e+11   122s
+[2020-06-11 09:54:56] DEBUG    6   1.64501592e+14 -2.14172836e+16  4.74e+10 1.43e+04  2.88e+11   131s
+[2020-06-11 09:55:07] DEBUG    7   1.14694209e+14 -1.74083287e+16  2.27e+10 8.82e+03  1.47e+11   142s
+[2020-06-11 09:55:20] DEBUG    8   6.05985804e+13 -9.85708002e+15  4.97e+09 1.75e+03  3.36e+10   154s
+[2020-06-11 09:55:30] DEBUG    9   4.19288828e+13 -6.15389472e+15  1.86e+09 5.47e+02  1.27e+10   165s
+[2020-06-11 09:55:39] DEBUG    10   3.00144913e+13 -3.02219418e+15  4.83e+08 1.05e+02  3.30e+09   174s
+[2020-06-11 09:55:48] DEBUG    11   2.62206964e+13 -1.60036893e+15  1.23e+08 2.51e+01  9.18e+08   183s
+[2020-06-11 09:55:57] DEBUG    12   2.28530172e+13 -9.75498423e+14  2.67e+07 1.09e+01  2.99e+08   192s
+[2020-06-11 09:56:08] DEBUG    13   1.88692813e+13 -3.30295325e+14  6.09e+06 2.12e+00  7.86e+07   203s
+[2020-06-11 09:56:20] DEBUG    14   1.12023082e+13 -9.72691677e+13  6.43e+05 4.37e-01  1.91e+07   215s
+[2020-06-11 09:56:30] DEBUG    15   6.17718647e+12 -2.91459028e+13  1.09e+05 1.12e-01  5.85e+06   225s
+[2020-06-11 09:56:40] DEBUG    16   4.24844098e+12 -1.90441817e+13  4.62e+04 7.09e-02  3.81e+06   234s
+[2020-06-11 09:56:48] DEBUG    17   2.85945597e+12 -1.18851606e+13  1.09e+04 4.34e-02  2.40e+06   243s
+[2020-06-11 09:56:59] DEBUG    18   1.94882415e+12 -5.44869169e+12  1.08e+01 1.83e-02  1.20e+06   254s
+[2020-06-11 09:57:08] DEBUG    19   1.63438700e+12 -4.16852393e+12  7.80e+00 1.38e-02  9.39e+05   263s
+[2020-06-11 09:57:18] DEBUG    20   9.24947759e+11 -2.28662505e+12  3.54e+00 7.27e-03  5.19e+05   273s
+[2020-06-11 09:57:31] DEBUG    21   8.03146966e+11 -1.06744173e+12  3.00e+00 2.68e-03  3.02e+05   286s
+[2020-06-11 09:57:41] DEBUG    22   6.52758083e+11 -6.50537674e+11  2.34e+00 1.07e-03  2.10e+05   296s
+[2020-06-11 09:57:50] DEBUG    23   5.63668423e+11 -4.57864729e+11  1.94e+00 1.58e-04  1.65e+05   305s
+[2020-06-11 09:57:59] DEBUG    24   4.68584597e+11 -2.96405170e+11  1.52e+00 7.89e-06  1.23e+05   314s
+[2020-06-11 09:58:09] DEBUG    25   3.45312229e+11 -1.56442865e+11  9.86e-01 4.98e-06  8.09e+04   324s
+[2020-06-11 09:58:18] DEBUG    26   2.98835056e+11 -1.24434933e+11  7.87e-01 4.36e-06  6.83e+04   333s
+[2020-06-11 09:58:29] DEBUG    27   2.56069638e+11 -7.15509228e+10  6.12e-01 3.27e-06  5.28e+04   344s
+[2020-06-11 09:58:41] DEBUG    28   2.21929976e+11 -5.49107511e+09  4.77e-01 1.93e-06  3.67e+04   356s
+[2020-06-11 09:58:51] DEBUG    29   2.01699109e+11  2.10283457e+10  3.98e-01 1.42e-06  2.91e+04   366s
+[2020-06-11 09:59:00] DEBUG    30   1.83240911e+11  3.43540167e+10  3.24e-01 1.17e-06  2.40e+04   375s
+[2020-06-11 09:59:09] DEBUG    31   1.69515431e+11  4.98588204e+10  2.68e-01 8.60e-07  1.93e+04   384s
+[2020-06-11 09:59:20] DEBUG    32   1.57141206e+11  6.20222035e+10  2.20e-01 6.43e-07  1.53e+04   395s
+[2020-06-11 09:59:29] DEBUG    33   1.52435082e+11  6.57958958e+10  2.01e-01 5.78e-07  1.40e+04   403s
+[2020-06-11 09:59:39] DEBUG    34   1.48399850e+11  7.13268935e+10  1.84e-01 4.86e-07  1.24e+04   414s
+[2020-06-11 09:59:51] DEBUG    35   1.36883642e+11  7.62939341e+10  1.41e-01 4.04e-07  9.77e+03   426s
+[2020-06-11 10:00:02] DEBUG    36   1.33460191e+11  7.99061772e+10  1.27e-01 3.50e-07  8.64e+03   437s
+[2020-06-11 10:00:11] DEBUG    37   1.31718655e+11  8.13938587e+10  1.20e-01 3.26e-07  8.12e+03   446s
+[2020-06-11 10:00:20] DEBUG    38   1.28655364e+11  8.35498591e+10  1.07e-01 2.93e-07  7.27e+03   455s
+[2020-06-11 10:00:31] DEBUG    39   1.26436900e+11  8.61295871e+10  9.74e-02 2.52e-07  6.50e+03   465s
+[2020-06-11 10:00:40] DEBUG    40   1.24482198e+11  8.69059612e+10  8.93e-02 2.40e-07  6.06e+03   475s
+[2020-06-11 10:00:50] DEBUG    41   1.20498582e+11  8.85171713e+10  7.30e-02 2.14e-07  5.16e+03   485s
+[2020-06-11 10:01:02] DEBUG    42   1.19129325e+11  9.19729380e+10  6.74e-02 1.64e-07  4.38e+03   497s
+[2020-06-11 10:01:13] DEBUG    43   1.17035524e+11  9.27601112e+10  5.91e-02 1.52e-07  3.92e+03   508s
+[2020-06-11 10:01:22] DEBUG    44   1.15347466e+11  9.36250864e+10  5.14e-02 1.40e-07  3.50e+03   517s
+[2020-06-11 10:01:31] DEBUG    45   1.14725229e+11  9.47175834e+10  4.86e-02 1.24e-07  3.23e+03   526s
+[2020-06-11 10:01:42] DEBUG    46   1.13673670e+11  9.60775522e+10  4.40e-02 1.04e-07  2.84e+03   536s
+[2020-06-11 10:01:50] DEBUG    47   1.13003754e+11  9.63139489e+10  4.10e-02 1.01e-07  2.69e+03   545s
+[2020-06-11 10:02:01] DEBUG    48   1.12079521e+11  9.67222426e+10  3.71e-02 9.54e-08  2.48e+03   556s
+[2020-06-11 10:02:13] DEBUG    49   1.11561684e+11  9.82988670e+10  3.50e-02 7.38e-08  2.14e+03   568s
+[2020-06-11 10:02:24] DEBUG    50   1.10965930e+11  9.92886260e+10  3.21e-02 6.05e-08  1.88e+03   579s
+[2020-06-11 10:02:33] DEBUG    51   1.10384120e+11  9.96256774e+10  2.96e-02 5.56e-08  1.74e+03   588s
+[2020-06-11 10:02:42] DEBUG    52   1.10185356e+11  9.97798677e+10  2.87e-02 5.35e-08  1.68e+03   596s
+[2020-06-11 10:02:51] DEBUG    53   1.10046891e+11  9.98907479e+10  2.81e-02 5.20e-08  1.64e+03   606s
+[2020-06-11 10:03:02] DEBUG    54   1.09461071e+11  1.00055494e+11  2.57e-02 4.97e-08  1.52e+03   616s
+[2020-06-11 10:03:14] DEBUG    55   1.08409806e+11  1.00395499e+11  2.10e-02 4.50e-08  1.29e+03   629s
+[2020-06-11 10:03:25] DEBUG    56   1.07538999e+11  1.00599513e+11  1.72e-02 4.21e-08  1.12e+03   640s
+[2020-06-11 10:03:34] DEBUG    57   1.07428309e+11  1.01111364e+11  1.67e-02 3.55e-08  1.02e+03   648s
+[2020-06-11 10:03:43] DEBUG    58   1.07345233e+11  1.01243213e+11  1.63e-02 3.37e-08  9.84e+02   657s
+[2020-06-11 10:03:54] DEBUG    59   1.07128414e+11  1.01609860e+11  1.54e-02 2.87e-08  8.90e+02   668s
+[2020-06-11 10:04:02] DEBUG    60   1.06956193e+11  1.01702182e+11  1.45e-02 2.78e-08  8.47e+02   677s
+[2020-06-11 10:04:13] DEBUG    61   1.06902587e+11  1.01924108e+11  1.43e-02 3.20e-08  8.03e+02   688s
+[2020-06-11 10:04:25] DEBUG    62   1.06485107e+11  1.02350850e+11  1.24e-02 6.85e-08  6.67e+02   700s
+[2020-06-11 10:04:36] DEBUG    63   1.06190885e+11  1.02476778e+11  1.11e-02 8.59e-08  5.99e+02   711s
+[2020-06-11 10:04:45] DEBUG    64   1.06139631e+11  1.02509871e+11  1.09e-02 9.04e-08  5.85e+02   720s
+[2020-06-11 10:04:54] DEBUG    65   1.06072054e+11  1.02544478e+11  1.06e-02 9.51e-08  5.69e+02   728s
+[2020-06-11 10:05:04] DEBUG    66   1.05951884e+11  1.02630088e+11  1.00e-02 1.07e-07  5.36e+02   739s
+[2020-06-11 10:05:13] DEBUG    67   1.05892005e+11  1.02674017e+11  9.75e-03 1.14e-07  5.19e+02   748s
+[2020-06-11 10:05:23] DEBUG    68   1.05759560e+11  1.02712641e+11  9.15e-03 1.20e-07  4.91e+02   758s
+[2020-06-11 10:05:36] DEBUG    69   1.05661972e+11  1.02747127e+11  8.68e-03 1.26e-07  4.70e+02   770s
+[2020-06-11 10:05:47] DEBUG    70   1.05602043e+11  1.02923504e+11  8.40e-03 1.53e-07  4.32e+02   781s
+[2020-06-11 10:05:56] DEBUG    71   1.05566807e+11  1.02946346e+11  8.24e-03 1.58e-07  4.23e+02   791s
+[2020-06-11 10:06:05] DEBUG    72   1.05482937e+11  1.02983388e+11  7.82e-03 1.66e-07  4.03e+02   800s
+[2020-06-11 10:06:16] DEBUG    73   1.05377180e+11  1.03076622e+11  7.34e-03 1.94e-07  3.71e+02   810s
+[2020-06-11 10:06:25] DEBUG    74   1.05283214e+11  1.03122578e+11  6.88e-03 2.09e-07  3.48e+02   820s
+[2020-06-11 10:06:35] DEBUG    75   1.05089423e+11  1.03197298e+11  5.99e-03 2.25e-07  3.05e+02   830s
+[2020-06-11 10:06:48] DEBUG    76   1.05044207e+11  1.03274588e+11  5.77e-03 2.40e-07  2.85e+02   843s
+[2020-06-11 10:06:58] DEBUG    77   1.05021295e+11  1.03306518e+11  5.66e-03 2.46e-07  2.77e+02   853s
+[2020-06-11 10:07:08] DEBUG    78   1.04994425e+11  1.03313027e+11  5.53e-03 2.47e-07  2.71e+02   863s
+[2020-06-11 10:07:17] DEBUG    79   1.04971023e+11  1.03322300e+11  5.42e-03 2.49e-07  2.66e+02   872s
+[2020-06-11 10:07:27] DEBUG    80   1.04877962e+11  1.03359332e+11  4.99e-03 2.56e-07  2.45e+02   882s
+[2020-06-11 10:07:37] DEBUG    81   1.04849008e+11  1.03379940e+11  4.85e-03 2.60e-07  2.37e+02   891s
+[2020-06-11 10:07:47] DEBUG    82   1.04786043e+11  1.03431651e+11  4.53e-03 2.68e-07  2.18e+02   902s
+[2020-06-11 10:07:59] DEBUG    83   1.04665187e+11  1.03474817e+11  3.97e-03 2.75e-07  1.92e+02   914s
+[2020-06-11 10:08:10] DEBUG    84   1.04650832e+11  1.03488874e+11  3.90e-03 2.76e-07  1.87e+02   925s
+[2020-06-11 10:08:19] DEBUG    85   1.04581373e+11  1.03511153e+11  3.56e-03 2.79e-07  1.73e+02   934s
+[2020-06-11 10:08:28] DEBUG    86   1.04547519e+11  1.03523576e+11  3.39e-03 2.80e-07  1.65e+02   943s
+[2020-06-11 10:08:39] DEBUG    87   1.04527195e+11  1.03554018e+11  3.29e-03 2.82e-07  1.57e+02   954s
+[2020-06-11 10:08:48] DEBUG    88   1.04499984e+11  1.03563324e+11  3.15e-03 2.82e-07  1.51e+02   963s
+[2020-06-11 10:08:58] DEBUG    89   1.04444638e+11  1.03585160e+11  2.90e-03 2.86e-07  1.39e+02   973s
+[2020-06-11 10:09:13] DEBUG    90   1.04422625e+11  1.03632443e+11  5.13e-03 2.94e-07  1.27e+02   988s
+[2020-06-11 10:09:23] DEBUG    91   1.04364097e+11  1.03643036e+11  4.61e-03 2.99e-07  1.16e+02   998s
+[2020-06-11 10:09:34] DEBUG    92   1.04358733e+11  1.03649755e+11  1.91e-02 3.00e-07  1.14e+02  1009s
+[2020-06-11 10:09:43] DEBUG    93   1.04346073e+11  1.03655983e+11  1.86e-02 3.01e-07  1.11e+02  1018s
+[2020-06-11 10:09:52] DEBUG    94   1.04332825e+11  1.03663206e+11  1.81e-02 3.02e-07  1.08e+02  1027s
+[2020-06-11 10:10:01] DEBUG    95   1.04313647e+11  1.03677652e+11  1.72e-02 3.05e-07  1.03e+02  1036s
+[2020-06-11 10:10:12] DEBUG    96   1.04281176e+11  1.03701354e+11  1.59e-02 3.09e-07  9.35e+01  1047s
+[2020-06-11 10:10:25] DEBUG    97   1.04248333e+11  1.03711533e+11  1.46e-02 3.11e-07  8.66e+01  1059s
+[2020-06-11 10:10:35] DEBUG    98   1.04224813e+11  1.03723892e+11  1.38e-02 3.11e-07  8.08e+01  1070s
+[2020-06-11 10:10:44] DEBUG    99   1.04210673e+11  1.03732716e+11  1.32e-02 3.09e-07  7.71e+01  1079s
+[2020-06-11 10:10:53] DEBUG    100   1.04199823e+11  1.03746223e+11  1.27e-02 3.08e-07  7.32e+01  1088s
+[2020-06-11 10:11:04] DEBUG    101   1.04180856e+11  1.03754840e+11  1.20e-02 3.08e-07  6.87e+01  1099s
+[2020-06-11 10:11:14] DEBUG    102   1.04172266e+11  1.03757199e+11  1.16e-02 3.07e-07  6.70e+01  1109s
+[2020-06-11 10:11:24] DEBUG    103   1.04161573e+11  1.03776551e+11  1.12e-02 3.03e-07  6.21e+01  1119s
+[2020-06-11 10:11:37] DEBUG    104   1.04132965e+11  1.03787586e+11  1.01e-02 3.02e-07  5.57e+01  1132s
+[2020-06-11 10:11:48] DEBUG    105   1.04126194e+11  1.03791382e+11  9.85e-03 3.02e-07  5.40e+01  1143s
+[2020-06-11 10:11:59] DEBUG    106   1.04115752e+11  1.03794239e+11  6.10e-02 2.99e-07  5.19e+01  1154s
+[2020-06-11 10:12:08] DEBUG    107   1.04096873e+11  1.03796762e+11  5.61e-02 2.91e-07  4.84e+01  1163s
+[2020-06-11 10:12:21] DEBUG    108   1.04084233e+11  1.03803487e+11  5.27e-02 3.34e-07  4.79e+01  1176s
+[2020-06-11 10:12:30] DEBUG    109   1.04080899e+11  1.03807842e+11  5.18e-02 2.81e-07  4.67e+01  1185s
+[2020-06-11 10:12:41] DEBUG    110   1.04063106e+11  1.03812244e+11  4.71e-02 3.00e-07  4.28e+01  1195s
+[2020-06-11 10:12:53] DEBUG    111   1.04052748e+11  1.03818745e+11  4.46e-02 2.84e-07  4.00e+01  1208s
+[2020-06-11 10:13:04] DEBUG    112   1.04046226e+11  1.03821502e+11  4.30e-02 3.26e-07  3.84e+01  1219s
+[2020-06-11 10:13:13] DEBUG    113   1.04040917e+11  1.03823726e+11  4.16e-02 2.71e-07  3.71e+01  1228s
+[2020-06-11 10:13:21] DEBUG    114   1.04035160e+11  1.03829975e+11  4.01e-02 3.21e-07  3.51e+01  1236s
+[2020-06-11 10:13:31] DEBUG    115   1.04026567e+11  1.03830829e+11  3.79e-02 3.35e-07  3.35e+01  1245s
+[2020-06-11 10:13:41] DEBUG    116   1.04017317e+11  1.03831063e+11  3.56e-02 3.59e-07  3.18e+01  1256s
+[2020-06-11 10:13:55] DEBUG    117   1.04012926e+11  1.03834319e+11  3.44e-02 3.64e-07  3.06e+01  1270s
+[2020-06-11 10:14:08] DEBUG    118   1.04003955e+11  1.03837422e+11  9.19e-02 3.42e-07  2.85e+01  1283s
+[2020-06-11 10:14:17] DEBUG    119   1.04000974e+11  1.03839718e+11  8.97e-02 3.60e-07  2.76e+01  1292s
+[2020-06-11 10:14:26] DEBUG    120   1.03991781e+11  1.03840911e+11  8.28e-02 4.58e-07  2.58e+01  1301s
+[2020-06-11 10:14:35] DEBUG    121   1.03987779e+11  1.03843972e+11  7.98e-02 4.15e-07  2.46e+01  1310s
+[2020-06-11 10:14:44] DEBUG    122   1.03985305e+11  1.03845575e+11  7.79e-02 3.92e-07  2.39e+01  1319s
+[2020-06-11 10:14:55] DEBUG    123   1.03981433e+11  1.03846679e+11  7.50e-02 3.77e-07  2.31e+01  1330s
+[2020-06-11 10:15:04] DEBUG    124   1.03976795e+11  1.03849111e+11  7.15e-02 3.43e-07  2.19e+01  1339s
+[2020-06-11 10:15:15] DEBUG    125   1.03975369e+11  1.03850067e+11  7.03e-02 3.30e-07  2.15e+01  1350s
+[2020-06-11 10:15:26] DEBUG    126   1.03973650e+11  1.03852477e+11  6.90e-02 4.12e-07  2.08e+01  1361s
+[2020-06-11 10:15:36] DEBUG    127   1.03959049e+11  1.03854088e+11  5.84e-02 3.88e-07  1.80e+01  1371s
+[2020-06-11 10:15:45] DEBUG    128   1.03956349e+11  1.03855723e+11  5.63e-02 3.64e-07  1.72e+01  1380s
+[2020-06-11 10:15:56] DEBUG    129   1.03947784e+11  1.03856965e+11  5.03e-02 3.47e-07  1.55e+01  1391s
+[2020-06-11 10:16:08] DEBUG    130   1.03943025e+11  1.03861412e+11  4.66e-02 3.19e-07  1.40e+01  1403s
+[2020-06-11 10:16:19] DEBUG    131   1.03938694e+11  1.03863202e+11  4.34e-02 3.51e-07  1.29e+01  1414s
+[2020-06-11 10:16:28] DEBUG    132   1.03931935e+11  1.03863764e+11  3.81e-02 3.73e-07  1.17e+01  1423s
+[2020-06-11 10:16:37] DEBUG    133   1.03928835e+11  1.03864669e+11  3.57e-02 3.17e-07  1.10e+01  1432s
+[2020-06-11 10:16:46] DEBUG    134   1.03927071e+11  1.03865539e+11  3.44e-02 3.48e-07  1.05e+01  1440s
+[2020-06-11 10:16:56] DEBUG    135   1.03923638e+11  1.03867128e+11  3.19e-02 3.39e-07  9.68e+00  1451s
+[2020-06-11 10:17:09] DEBUG    136   1.03919812e+11  1.03868731e+11  2.92e-02 3.57e-07  8.76e+00  1463s
+[2020-06-11 10:17:19] DEBUG    137   1.03917804e+11  1.03869737e+11  2.76e-02 2.46e-07  8.25e+00  1474s
+[2020-06-11 10:17:30] DEBUG    138   1.03917208e+11  1.03870343e+11  2.71e-02 2.49e-07  8.04e+00  1484s
+[2020-06-11 10:17:40] DEBUG    139   1.03916283e+11  1.03870666e+11  2.64e-02 3.37e-07  7.83e+00  1494s
+[2020-06-11 10:17:50] DEBUG    140   1.03914975e+11  1.03871352e+11  2.55e-02 3.49e-07  7.49e+00  1505s
+[2020-06-11 10:18:05] DEBUG    141   1.03912654e+11  1.03872303e+11  2.38e-02 4.04e-07  6.93e+00  1520s
+[2020-06-11 10:18:16] DEBUG    142   1.03910349e+11  1.03873298e+11  2.20e-02 4.37e-07  6.37e+00  1530s
+[2020-06-11 10:18:25] DEBUG    143   1.03909595e+11  1.03873589e+11  2.14e-02 4.68e-07  6.19e+00  1539s
+[2020-06-11 10:18:34] DEBUG    144   1.03908752e+11  1.03873908e+11  2.08e-02 5.16e-07  5.99e+00  1549s
+[2020-06-11 10:18:43] DEBUG    145   1.03908185e+11  1.03874165e+11  2.03e-02 5.23e-07  5.85e+00  1558s
+[2020-06-11 10:18:52] DEBUG    146   1.03907658e+11  1.03874525e+11  1.99e-02 4.62e-07  5.70e+00  1567s
+[2020-06-11 10:19:05] DEBUG    147   1.03907079e+11  1.03874699e+11  1.95e-02 4.29e-07  5.57e+00  1580s
+[2020-06-11 10:19:14] DEBUG    148   1.03906072e+11  1.03874935e+11  1.87e-02 4.82e-07  5.36e+00  1589s
+[2020-06-11 10:19:23] DEBUG    149   1.03905090e+11  1.03875179e+11  1.79e-02 4.91e-07  5.14e+00  1598s
+[2020-06-11 10:19:34] DEBUG    150   1.03904096e+11  1.03875809e+11  1.72e-02 5.52e-07  4.87e+00  1609s
+[2020-06-11 10:19:47] DEBUG    151   1.03902439e+11  1.03876192e+11  1.60e-02 5.30e-07  4.52e+00  1622s
+[2020-06-11 10:19:57] DEBUG    152   1.03901422e+11  1.03876511e+11  1.53e-02 4.95e-07  4.29e+00  1632s
+[2020-06-11 10:20:07] DEBUG    153   1.03901200e+11  1.03876782e+11  1.51e-02 4.80e-07  4.21e+00  1641s
+[2020-06-11 10:20:16] DEBUG    154   1.03900296e+11  1.03876988e+11  1.44e-02 4.91e-07  4.02e+00  1650s
+[2020-06-11 10:20:26] DEBUG    155   1.03899663e+11  1.03877102e+11  1.39e-02 4.60e-07  3.89e+00  1661s
+[2020-06-11 10:20:37] DEBUG    156   1.03899144e+11  1.03877201e+11  1.35e-02 4.60e-07  3.78e+00  1671s
+[2020-06-11 10:20:58] DEBUG    157   1.03899003e+11  1.03877422e+11  1.33e-02 4.49e-07  3.72e+00  1693s
+[2020-06-11 10:21:08] DEBUG    158   1.03898080e+11  1.03877545e+11  1.26e-02 3.71e-07  3.54e+00  1703s
+[2020-06-11 10:21:17] DEBUG    159   1.03897794e+11  1.03877688e+11  1.24e-02 3.75e-07  3.46e+00  1712s
+[2020-06-11 10:21:28] DEBUG    160   1.03897225e+11  1.03877907e+11  1.19e-02 3.53e-07  3.33e+00  1723s
+[2020-06-11 10:21:37] DEBUG    161   1.03896773e+11  1.03878004e+11  1.16e-02 3.19e-07  3.23e+00  1732s
+[2020-06-11 10:21:48] DEBUG    162   1.03896038e+11  1.03878322e+11  1.10e-02 3.22e-07  3.05e+00  1743s
+[2020-06-11 10:22:01] DEBUG    163   1.03894871e+11  1.03878585e+11  1.02e-02 2.68e-07  2.81e+00  1756s
+[2020-06-11 10:22:12] DEBUG    164   1.03894079e+11  1.03878732e+11  9.57e-03 3.45e-07  2.65e+00  1766s
+[2020-06-11 10:22:23] DEBUG    165   1.03893670e+11  1.03878897e+11  9.25e-03 2.80e-07  2.55e+00  1778s
+[2020-06-11 10:22:32] DEBUG    166   1.03893383e+11  1.03878971e+11  9.02e-03 3.29e-07  2.49e+00  1787s
+[2020-06-11 10:22:43] DEBUG    167   1.03892695e+11  1.03879218e+11  8.52e-03 3.32e-07  2.33e+00  1798s
+[2020-06-11 10:22:55] DEBUG    168   1.03891928e+11  1.03879368e+11  7.93e-03 3.39e-07  2.17e+00  1810s
+[2020-06-11 10:23:06] DEBUG    169   1.03891595e+11  1.03879515e+11  7.65e-03 3.98e-07  2.08e+00  1821s
+[2020-06-11 10:23:15] DEBUG    170   1.03891458e+11  1.03879588e+11  7.54e-03 4.06e-07  2.05e+00  1830s
+[2020-06-11 10:23:25] DEBUG    171   1.03891257e+11  1.03879656e+11  7.38e-03 4.20e-07  2.00e+00  1839s
+[2020-06-11 10:23:33] DEBUG    172   1.03890960e+11  1.03879751e+11  7.14e-03 4.20e-07  1.94e+00  1848s
+[2020-06-11 10:23:44] DEBUG    173   1.03890481e+11  1.03879917e+11  6.76e-03 4.37e-07  1.82e+00  1859s
+[2020-06-11 10:23:57] DEBUG    174   1.03890042e+11  1.03880097e+11  6.43e-03 4.21e-07  1.72e+00  1872s
+[2020-06-11 10:24:09] DEBUG    175   1.03889701e+11  1.03880229e+11  6.16e-03 3.89e-07  1.64e+00  1884s
+[2020-06-11 10:24:18] DEBUG    176   1.03889497e+11  1.03880299e+11  5.99e-03 3.99e-07  1.59e+00  1893s
+[2020-06-11 10:24:27] DEBUG    177   1.03889253e+11  1.03880342e+11  5.79e-03 3.50e-07  1.54e+00  1902s
+[2020-06-11 10:24:40] DEBUG    178   1.03888964e+11  1.03880409e+11  5.56e-03 3.41e-07  1.48e+00  1914s
+[2020-06-11 10:24:49] DEBUG    179   1.03888707e+11  1.03880458e+11  5.35e-03 3.68e-07  1.43e+00  1923s
+[2020-06-11 10:25:00] DEBUG    180   1.03888398e+11  1.03880541e+11  5.10e-03 3.58e-07  1.36e+00  1935s
+[2020-06-11 10:25:16] DEBUG    181   1.03888083e+11  1.03880658e+11  4.85e-03 4.02e-07  1.28e+00  1950s
+[2020-06-11 10:25:26] DEBUG    182   1.03887790e+11  1.03880707e+11  4.62e-03 3.68e-07  1.22e+00  1961s
+[2020-06-11 10:25:38] DEBUG    183   1.03887629e+11  1.03880757e+11  4.49e-03 3.33e-07  1.19e+00  1973s
+[2020-06-11 10:25:47] DEBUG    184   1.03887327e+11  1.03880789e+11  4.24e-03 3.68e-07  1.13e+00  1982s
+[2020-06-11 10:25:56] DEBUG    185   1.03887281e+11  1.03880826e+11  4.20e-03 3.56e-07  1.12e+00  1991s
+[2020-06-11 10:26:07] DEBUG    186   1.03887162e+11  1.03880906e+11  4.10e-03 4.11e-07  1.08e+00  2002s
+[2020-06-11 10:26:19] DEBUG    187   1.03886849e+11  1.03880994e+11  3.84e-03 3.65e-07  1.01e+00  2014s
+[2020-06-11 10:26:30] DEBUG    188   1.03886623e+11  1.03881101e+11  3.67e-03 2.91e-07  9.56e-01  2025s
+[2020-06-11 10:26:40] DEBUG    189   1.03886441e+11  1.03881135e+11  3.52e-03 2.68e-07  9.19e-01  2034s
+[2020-06-11 10:26:49] DEBUG    190   1.03886228e+11  1.03881178e+11  3.34e-03 2.63e-07  8.74e-01  2043s
+[2020-06-11 10:26:57] DEBUG    191   1.03886039e+11  1.03881205e+11  3.18e-03 3.29e-07  8.36e-01  2052s
+[2020-06-11 10:27:08] DEBUG    192   1.03885850e+11  1.03881265e+11  3.03e-03 3.21e-07  7.94e-01  2063s
+[2020-06-11 10:27:21] DEBUG    193   1.03885541e+11  1.03881348e+11  2.80e-03 3.30e-07  7.26e-01  2076s
+[2020-06-11 10:27:31] DEBUG    194   1.03885455e+11  1.03881380e+11  2.73e-03 3.54e-07  7.06e-01  2086s
+[2020-06-11 10:27:40] DEBUG    195   1.03885356e+11  1.03881402e+11  2.65e-03 4.12e-07  6.85e-01  2095s
+[2020-06-11 10:27:49] DEBUG    196   1.03885217e+11  1.03881422e+11  2.53e-03 4.19e-07  6.57e-01  2104s
+[2020-06-11 10:27:59] DEBUG    197   1.03885134e+11  1.03881446e+11  2.46e-03 3.66e-07  6.39e-01  2114s
+[2020-06-11 10:28:11] DEBUG    198   1.03885028e+11  1.03881465e+11  2.37e-03 4.56e-07  6.17e-01  2126s
+[2020-06-11 10:28:23] DEBUG    199   1.03884693e+11  1.03881520e+11  2.11e-03 5.10e-07  5.49e-01  2138s
+[2020-06-11 10:28:34] DEBUG    200   1.03884470e+11  1.03881553e+11  1.93e-03 4.87e-07  5.05e-01  2149s
+[2020-06-11 10:28:43] DEBUG    201   1.03884442e+11  1.03881571e+11  1.91e-03 5.01e-07  4.97e-01  2158s
+[2020-06-11 10:28:52] DEBUG    202   1.03884399e+11  1.03881594e+11  1.87e-03 5.07e-07  4.86e-01  2167s
+[2020-06-11 10:29:03] DEBUG    203   1.03884336e+11  1.03881640e+11  1.82e-03 4.33e-07  4.67e-01  2178s
+[2020-06-11 10:29:16] DEBUG    204   1.03884160e+11  1.03881672e+11  1.68e-03 3.66e-07  4.31e-01  2191s
+[2020-06-11 10:29:26] DEBUG    205   1.03884103e+11  1.03881705e+11  1.63e-03 2.76e-07  4.16e-01  2201s
+[2020-06-11 10:29:37] DEBUG    206   1.03883986e+11  1.03881718e+11  1.53e-03 2.42e-07  3.93e-01  2212s
+[2020-06-11 10:29:46] DEBUG    207   1.03883969e+11  1.03881725e+11  1.51e-03 2.49e-07  3.89e-01  2221s
+[2020-06-11 10:29:55] DEBUG    208   1.03883909e+11  1.03881739e+11  1.46e-03 2.23e-07  3.76e-01  2230s
+[2020-06-11 10:30:05] DEBUG    209   1.03883828e+11  1.03881746e+11  1.39e-03 3.03e-07  3.61e-01  2240s
+[2020-06-11 10:30:17] DEBUG    210   1.03883776e+11  1.03881778e+11  1.35e-03 2.78e-07  3.46e-01  2252s
+[2020-06-11 10:30:28] DEBUG    211   1.03883630e+11  1.03881803e+11  1.23e-03 2.72e-07  3.17e-01  2263s
+[2020-06-11 10:30:37] DEBUG    212   1.03883596e+11  1.03881816e+11  1.20e-03 3.04e-07  3.09e-01  2272s
+[2020-06-11 10:30:47] DEBUG    213   1.03883563e+11  1.03881831e+11  1.18e-03 3.03e-07  3.00e-01  2281s
+[2020-06-11 10:30:57] DEBUG    214   1.03883490e+11  1.03881852e+11  1.12e-03 2.70e-07  2.84e-01  2292s
+[2020-06-11 10:31:10] DEBUG    215   1.03883433e+11  1.03881863e+11  1.07e-03 2.80e-07  2.72e-01  2305s
+[2020-06-11 10:31:27] DEBUG    216   1.03883354e+11  1.03881884e+11  4.43e-03 2.81e-07  2.55e-01  2322s
+[2020-06-11 10:31:36] DEBUG    217   1.03883338e+11  1.03881890e+11  4.37e-03 3.62e-07  2.51e-01  2331s
+[2020-06-11 10:31:45] DEBUG    218   1.03883301e+11  1.03881901e+11  4.23e-03 3.49e-07  2.43e-01  2340s
+[2020-06-11 10:31:56] DEBUG    219   1.03883256e+11  1.03881913e+11  4.06e-03 3.94e-07  2.33e-01  2351s
+[2020-06-11 10:32:05] DEBUG    220   1.03883230e+11  1.03881923e+11  3.96e-03 3.24e-07  2.27e-01  2359s
+[2020-06-11 10:32:15] DEBUG    221   1.03883191e+11  1.03881930e+11  3.82e-03 3.34e-07  2.19e-01  2369s
+[2020-06-11 10:32:26] DEBUG    222   1.03883155e+11  1.03881945e+11  3.68e-03 3.48e-07  2.10e-01  2381s
+[2020-06-11 10:32:35] DEBUG    223   1.03883128e+11  1.03881947e+11  3.58e-03 3.56e-07  2.05e-01  2389s
+[2020-06-11 10:32:45] DEBUG    224   1.03883088e+11  1.03881956e+11  3.44e-03 3.41e-07  1.96e-01  2400s
+[2020-06-11 10:32:57] DEBUG    225   1.03883064e+11  1.03881966e+11  3.35e-03 4.33e-07  1.91e-01  2412s
+[2020-06-11 10:33:09] DEBUG    226   1.03883010e+11  1.03881985e+11  3.14e-03 3.89e-07  1.78e-01  2424s
+[2020-06-11 10:33:18] DEBUG    227   1.03882986e+11  1.03881989e+11  3.05e-03 3.74e-07  1.73e-01  2433s
+[2020-06-11 10:33:26] DEBUG    228   1.03882962e+11  1.03881993e+11  2.96e-03 3.55e-07  1.68e-01  2441s
+[2020-06-11 10:33:37] DEBUG    229   1.03882925e+11  1.03882008e+11  2.82e-03 3.61e-07  1.59e-01  2452s
+[2020-06-11 10:33:49] DEBUG    230   1.03882886e+11  1.03882023e+11  2.68e-03 3.41e-07  1.50e-01  2464s
+[2020-06-11 10:34:00] DEBUG    231   1.03882845e+11  1.03882035e+11  2.53e-03 3.07e-07  1.41e-01  2475s
+[2020-06-11 10:34:09] DEBUG    232   1.03882814e+11  1.03882036e+11  2.42e-03 3.23e-07  1.35e-01  2484s
+[2020-06-11 10:34:18] DEBUG    233   1.03882793e+11  1.03882042e+11  2.34e-03 2.71e-07  1.31e-01  2493s
+[2020-06-11 10:34:26] DEBUG    234   1.03882782e+11  1.03882051e+11  2.30e-03 3.04e-07  1.27e-01  2501s
+[2020-06-11 10:34:37] DEBUG    235   1.03882755e+11  1.03882054e+11  2.19e-03 3.11e-07  1.22e-01  2511s
+[2020-06-11 10:34:47] DEBUG    236   1.03882746e+11  1.03882056e+11  2.16e-03 3.51e-07  1.20e-01  2522s
+[2020-06-11 10:35:03] DEBUG    237   1.03882712e+11  1.03882064e+11  2.03e-03 4.28e-07  1.13e-01  2538s
+[2020-06-11 10:35:15] DEBUG    238   1.03882701e+11  1.03882070e+11  1.99e-03 4.16e-07  1.10e-01  2550s
+[2020-06-11 10:35:25] DEBUG    239   1.03882693e+11  1.03882072e+11  1.96e-03 3.43e-07  1.08e-01  2560s
+[2020-06-11 10:35:34] DEBUG    240   1.03882676e+11  1.03882075e+11  1.89e-03 3.56e-07  1.05e-01  2569s
+[2020-06-11 10:35:42] DEBUG    241   1.03882660e+11  1.03882078e+11  1.83e-03 3.61e-07  1.01e-01  2577s
+[2020-06-11 10:35:54] DEBUG    242   1.03882622e+11  1.03882083e+11  1.69e-03 3.76e-07  9.37e-02  2589s
+[2020-06-11 10:36:07] DEBUG    243   1.03882588e+11  1.03882091e+11  1.57e-03 4.17e-07  8.65e-02  2601s
+[2020-06-11 10:36:18] DEBUG    244   1.03882581e+11  1.03882094e+11  1.55e-03 3.18e-06  8.49e-02  2613s
+[2020-06-11 10:36:27] DEBUG    245   1.03882569e+11  1.03882099e+11  1.50e-03 2.97e-06  8.19e-02  2622s
+[2020-06-11 10:36:38] DEBUG    246   1.03882551e+11  1.03882101e+11  1.43e-03 2.90e-06  7.83e-02  2633s
+[2020-06-11 10:36:51] DEBUG    247   1.03882530e+11  1.03882105e+11  1.36e-03 2.76e-06  7.42e-02  2646s
+[2020-06-11 10:37:06] DEBUG    248   1.03882524e+11  1.03882108e+11  1.34e-03 2.64e-06  7.25e-02  2661s
+[2020-06-11 10:37:18] DEBUG    249   1.03882501e+11  1.03882111e+11  1.25e-03 2.49e-06  6.79e-02  2673s
+[2020-06-11 10:37:28] DEBUG    250   1.03882478e+11  1.03882112e+11  1.16e-03 3.48e-06  6.36e-02  2683s
+[2020-06-11 10:37:41] DEBUG    251   1.03882462e+11  1.03882119e+11  1.10e-03 3.13e-06  5.98e-02  2696s
+[2020-06-11 10:37:55] DEBUG    252   1.03882443e+11  1.03882121e+11  1.02e-03 2.99e-06  5.61e-02  2710s
+[2020-06-11 10:38:03] DEBUG    253   1.03882435e+11  1.03882123e+11  9.92e-04 2.84e-06  5.43e-02  2718s
+[2020-06-11 10:38:15] DEBUG    254   1.03882415e+11  1.03882128e+11  9.15e-04 2.57e-06  5.00e-02  2730s
+[2020-06-11 10:38:28] DEBUG    255   1.03882399e+11  1.03882136e+11  8.53e-04 2.16e-06  4.59e-02  2743s
+[2020-06-11 10:38:41] DEBUG    256   1.03882377e+11  1.03882138e+11  7.65e-04 4.32e-05  4.16e-02  2756s
+[2020-06-11 10:38:53] DEBUG    257   1.03882367e+11  1.03882142e+11  7.29e-04 3.94e-05  3.94e-02  2768s
+[2020-06-11 10:39:08] DEBUG    258   1.03882355e+11  1.03882144e+11  6.85e-04 3.69e-05  3.68e-02  2783s
+[2020-06-11 10:39:08] DEBUG    Barrier solved model in 258 iterations and 2782.70 seconds
+[2020-06-11 10:39:08] DEBUG    Optimal objective 1.03882355e+11
+[2020-06-11 10:39:10] DEBUG    Crossover log...
+[2020-06-11 10:39:11] DEBUG    1103784 DPushes remaining with DInf 0.0000000e+00              2786s
+[2020-06-11 10:39:16] DEBUG    945937 DPushes remaining with DInf 0.0000000e+00              2790s
+[2020-06-11 10:39:20] DEBUG    942953 DPushes remaining with DInf 0.0000000e+00              2795s
+[2020-06-11 10:39:26] DEBUG    939969 DPushes remaining with DInf 0.0000000e+00              2800s
+[2020-06-11 10:39:32] DEBUG    936985 DPushes remaining with DInf 0.0000000e+00              2807s
+[2020-06-11 10:39:38] DEBUG    935493 DPushes remaining with DInf 0.0000000e+00              2813s
+[2020-06-11 10:39:41] DEBUG    934747 DPushes remaining with DInf 0.0000000e+00              2816s
+[2020-06-11 10:39:47] DEBUG    933255 DPushes remaining with DInf 0.0000000e+00              2822s
+[2020-06-11 10:39:51] DEBUG    931017 DPushes remaining with DInf 0.0000000e+00              2826s
+[2020-06-11 10:39:55] DEBUG    928779 DPushes remaining with DInf 0.0000000e+00              2830s
+[2020-06-11 10:40:02] DEBUG    925795 DPushes remaining with DInf 0.0000000e+00              2837s
+[2020-06-11 10:40:07] DEBUG    924303 DPushes remaining with DInf 0.0000000e+00              2842s
+[2020-06-11 10:40:11] DEBUG    922811 DPushes remaining with DInf 0.0000000e+00              2846s
+[2020-06-11 10:40:16] DEBUG    918335 DPushes remaining with DInf 0.0000000e+00              2851s
+[2020-06-11 10:40:21] DEBUG    916097 DPushes remaining with DInf 0.0000000e+00              2856s
+[2020-06-11 10:40:25] DEBUG    913113 DPushes remaining with DInf 0.0000000e+00              2860s
+[2020-06-11 10:40:31] DEBUG    907891 DPushes remaining with DInf 0.0000000e+00              2865s
+[2020-06-11 10:40:36] DEBUG    902669 DPushes remaining with DInf 0.0000000e+00              2871s
+[2020-06-11 10:40:42] DEBUG    898939 DPushes remaining with DInf 0.0000000e+00              2877s
+[2020-06-11 10:40:46] DEBUG    897447 DPushes remaining with DInf 0.0000000e+00              2881s
+[2020-06-11 10:40:52] DEBUG    895209 DPushes remaining with DInf 0.0000000e+00              2887s
+[2020-06-11 10:40:55] DEBUG    893717 DPushes remaining with DInf 0.0000000e+00              2890s
+[2020-06-11 10:41:01] DEBUG    888495 DPushes remaining with DInf 0.0000000e+00              2896s
+[2020-06-11 10:41:06] DEBUG    884765 DPushes remaining with DInf 0.0000000e+00              2901s
+[2020-06-11 10:41:11] DEBUG    881035 DPushes remaining with DInf 0.0000000e+00              2906s
+[2020-06-11 10:41:16] DEBUG    877305 DPushes remaining with DInf 0.0000000e+00              2911s
+[2020-06-11 10:41:20] DEBUG    873575 DPushes remaining with DInf 0.0000000e+00              2915s
+[2020-06-11 10:41:25] DEBUG    869099 DPushes remaining with DInf 0.0000000e+00              2920s
+[2020-06-11 10:41:31] DEBUG    865369 DPushes remaining with DInf 0.0000000e+00              2926s
+[2020-06-11 10:41:36] DEBUG    863131 DPushes remaining with DInf 0.0000000e+00              2931s
+[2020-06-11 10:41:41] DEBUG    860147 DPushes remaining with DInf 0.0000000e+00              2936s
+[2020-06-11 10:41:46] DEBUG    857163 DPushes remaining with DInf 0.0000000e+00              2941s
+[2020-06-11 10:41:51] DEBUG    854179 DPushes remaining with DInf 0.0000000e+00              2946s
+[2020-06-11 10:41:56] DEBUG    851941 DPushes remaining with DInf 0.0000000e+00              2950s
+[2020-06-11 10:42:01] DEBUG    848211 DPushes remaining with DInf 0.0000000e+00              2956s
+[2020-06-11 10:42:06] DEBUG    844481 DPushes remaining with DInf 0.0000000e+00              2960s
+[2020-06-11 10:42:11] DEBUG    840005 DPushes remaining with DInf 0.0000000e+00              2966s
+[2020-06-11 10:42:16] DEBUG    836275 DPushes remaining with DInf 0.0000000e+00              2970s
+[2020-06-11 10:42:21] DEBUG    831799 DPushes remaining with DInf 0.0000000e+00              2976s
+[2020-06-11 10:42:25] DEBUG    828069 DPushes remaining with DInf 0.0000000e+00              2980s
+[2020-06-11 10:42:30] DEBUG    824339 DPushes remaining with DInf 0.0000000e+00              2985s
+[2020-06-11 10:42:36] DEBUG    819863 DPushes remaining with DInf 0.0000000e+00              2991s
+[2020-06-11 10:42:40] DEBUG    816133 DPushes remaining with DInf 0.0000000e+00              2995s
+[2020-06-11 10:42:46] DEBUG    811657 DPushes remaining with DInf 0.0000000e+00              3000s
+[2020-06-11 10:42:51] DEBUG    807927 DPushes remaining with DInf 0.0000000e+00              3006s
+[2020-06-11 10:42:56] DEBUG    804943 DPushes remaining with DInf 0.0000000e+00              3011s
+[2020-06-11 10:43:01] DEBUG    802705 DPushes remaining with DInf 0.0000000e+00              3016s
+[2020-06-11 10:43:06] DEBUG    798975 DPushes remaining with DInf 0.0000000e+00              3020s
+[2020-06-11 10:43:11] DEBUG    793753 DPushes remaining with DInf 0.0000000e+00              3026s
+[2020-06-11 10:43:16] DEBUG    788531 DPushes remaining with DInf 0.0000000e+00              3031s
+[2020-06-11 10:43:20] DEBUG    783309 DPushes remaining with DInf 0.0000000e+00              3035s
+[2020-06-11 10:43:25] DEBUG    778087 DPushes remaining with DInf 0.0000000e+00              3040s
+[2020-06-11 10:43:31] DEBUG    772119 DPushes remaining with DInf 0.0000000e+00              3046s
+[2020-06-11 10:43:36] DEBUG    766897 DPushes remaining with DInf 0.0000000e+00              3050s
+[2020-06-11 10:43:41] DEBUG    760881 DPushes remaining with DInf 0.0000000e+00              3055s
+[2020-06-11 10:43:45] DEBUG    754913 DPushes remaining with DInf 0.0000000e+00              3060s
+[2020-06-11 10:43:51] DEBUG    748199 DPushes remaining with DInf 0.0000000e+00              3066s
+[2020-06-11 10:43:55] DEBUG    741458 DPushes remaining with DInf 0.0000000e+00              3070s
+[2020-06-11 10:44:00] DEBUG    735275 DPushes remaining with DInf 0.0000000e+00              3075s
+[2020-06-11 10:44:06] DEBUG    728260 DPushes remaining with DInf 0.0000000e+00              3080s
+[2020-06-11 10:44:12] DEBUG    723038 DPushes remaining with DInf 0.0000000e+00              3086s
+[2020-06-11 10:44:15] DEBUG    721546 DPushes remaining with DInf 0.0000000e+00              3090s
+[2020-06-11 10:44:22] DEBUG    719308 DPushes remaining with DInf 0.0000000e+00              3097s
+[2020-06-11 10:44:26] DEBUG    717816 DPushes remaining with DInf 0.0000000e+00              3101s
+[2020-06-11 10:44:31] DEBUG    715578 DPushes remaining with DInf 0.0000000e+00              3105s
+[2020-06-11 10:44:36] DEBUG    712594 DPushes remaining with DInf 0.0000000e+00              3111s
+[2020-06-11 10:44:41] DEBUG    710356 DPushes remaining with DInf 0.0000000e+00              3116s
+[2020-06-11 10:44:47] DEBUG    708118 DPushes remaining with DInf 0.0000000e+00              3121s
+[2020-06-11 10:44:50] DEBUG    706626 DPushes remaining with DInf 0.0000000e+00              3125s
+[2020-06-11 10:44:56] DEBUG    704388 DPushes remaining with DInf 0.0000000e+00              3131s
+[2020-06-11 10:45:00] DEBUG    702896 DPushes remaining with DInf 0.0000000e+00              3135s
+[2020-06-11 10:45:07] DEBUG    700658 DPushes remaining with DInf 0.0000000e+00              3141s
+[2020-06-11 10:45:12] DEBUG    698420 DPushes remaining with DInf 0.0000000e+00              3146s
+[2020-06-11 10:45:16] DEBUG    696182 DPushes remaining with DInf 0.0000000e+00              3150s
+[2020-06-11 10:45:21] DEBUG    693198 DPushes remaining with DInf 0.0000000e+00              3156s
+[2020-06-11 10:45:26] DEBUG    690214 DPushes remaining with DInf 0.0000000e+00              3161s
+[2020-06-11 10:45:31] DEBUG    687230 DPushes remaining with DInf 0.0000000e+00              3166s
+[2020-06-11 10:45:36] DEBUG    684246 DPushes remaining with DInf 0.0000000e+00              3171s
+[2020-06-11 10:45:41] DEBUG    681262 DPushes remaining with DInf 0.0000000e+00              3176s
+[2020-06-11 10:45:45] DEBUG    679024 DPushes remaining with DInf 0.0000000e+00              3180s
+[2020-06-11 10:45:51] DEBUG    676040 DPushes remaining with DInf 0.0000000e+00              3186s
+[2020-06-11 10:45:56] DEBUG    673056 DPushes remaining with DInf 0.0000000e+00              3191s
+[2020-06-11 10:46:00] DEBUG    670818 DPushes remaining with DInf 0.0000000e+00              3195s
+[2020-06-11 10:46:06] DEBUG    667834 DPushes remaining with DInf 0.0000000e+00              3200s
+[2020-06-11 10:46:10] DEBUG    664850 DPushes remaining with DInf 0.0000000e+00              3205s
+[2020-06-11 10:46:15] DEBUG    661866 DPushes remaining with DInf 0.0000000e+00              3210s
+[2020-06-11 10:46:21] DEBUG    658136 DPushes remaining with DInf 0.0000000e+00              3216s
+[2020-06-11 10:46:25] DEBUG    655898 DPushes remaining with DInf 0.0000000e+00              3220s
+[2020-06-11 10:46:31] DEBUG    652914 DPushes remaining with DInf 0.0000000e+00              3226s
+[2020-06-11 10:46:36] DEBUG    649930 DPushes remaining with DInf 0.0000000e+00              3231s
+[2020-06-11 10:46:41] DEBUG    646946 DPushes remaining with DInf 0.0000000e+00              3236s
+[2020-06-11 10:46:46] DEBUG    643962 DPushes remaining with DInf 0.0000000e+00              3241s
+[2020-06-11 10:46:51] DEBUG    640978 DPushes remaining with DInf 0.0000000e+00              3245s
+[2020-06-11 10:46:56] DEBUG    637994 DPushes remaining with DInf 0.0000000e+00              3251s
+[2020-06-11 10:47:01] DEBUG    635010 DPushes remaining with DInf 0.0000000e+00              3256s
+[2020-06-11 10:47:05] DEBUG    632772 DPushes remaining with DInf 0.0000000e+00              3260s
+[2020-06-11 10:47:11] DEBUG    629788 DPushes remaining with DInf 0.0000000e+00              3266s
+[2020-06-11 10:47:16] DEBUG    627550 DPushes remaining with DInf 0.0000000e+00              3271s
+[2020-06-11 10:47:22] DEBUG    625312 DPushes remaining with DInf 0.0000000e+00              3277s
+[2020-06-11 10:47:25] DEBUG    623820 DPushes remaining with DInf 0.0000000e+00              3280s
+[2020-06-11 10:47:30] DEBUG    621582 DPushes remaining with DInf 0.0000000e+00              3285s
+[2020-06-11 10:47:36] DEBUG    618598 DPushes remaining with DInf 0.0000000e+00              3291s
+[2020-06-11 10:47:41] DEBUG    615614 DPushes remaining with DInf 0.0000000e+00              3296s
+[2020-06-11 10:47:46] DEBUG    611884 DPushes remaining with DInf 0.0000000e+00              3301s
+[2020-06-11 10:47:50] DEBUG    608900 DPushes remaining with DInf 0.0000000e+00              3305s
+[2020-06-11 10:47:56] DEBUG    605170 DPushes remaining with DInf 0.0000000e+00              3311s
+[2020-06-11 10:48:01] DEBUG    601440 DPushes remaining with DInf 0.0000000e+00              3316s
+[2020-06-11 10:48:06] DEBUG    597710 DPushes remaining with DInf 0.0000000e+00              3320s
+[2020-06-11 10:48:10] DEBUG    593980 DPushes remaining with DInf 0.0000000e+00              3325s
+[2020-06-11 10:48:16] DEBUG    590250 DPushes remaining with DInf 0.0000000e+00              3330s
+[2020-06-11 10:48:20] DEBUG    587266 DPushes remaining with DInf 0.0000000e+00              3335s
+[2020-06-11 10:48:26] DEBUG    584282 DPushes remaining with DInf 0.0000000e+00              3340s
+[2020-06-11 10:48:31] DEBUG    581298 DPushes remaining with DInf 0.0000000e+00              3346s
+[2020-06-11 10:48:36] DEBUG    579060 DPushes remaining with DInf 0.0000000e+00              3350s
+[2020-06-11 10:48:41] DEBUG    576076 DPushes remaining with DInf 0.0000000e+00              3356s
+[2020-06-11 10:48:46] DEBUG    573838 DPushes remaining with DInf 0.0000000e+00              3361s
+[2020-06-11 10:48:50] DEBUG    570854 DPushes remaining with DInf 0.0000000e+00              3365s
+[2020-06-11 10:48:56] DEBUG    567870 DPushes remaining with DInf 0.0000000e+00              3371s
+[2020-06-11 10:49:01] DEBUG    565632 DPushes remaining with DInf 0.0000000e+00              3376s
+[2020-06-11 10:49:06] DEBUG    563394 DPushes remaining with DInf 0.0000000e+00              3381s
+[2020-06-11 10:49:10] DEBUG    561156 DPushes remaining with DInf 0.0000000e+00              3385s
+[2020-06-11 10:49:16] DEBUG    557426 DPushes remaining with DInf 0.0000000e+00              3391s
+[2020-06-11 10:49:21] DEBUG    554442 DPushes remaining with DInf 0.0000000e+00              3396s
+[2020-06-11 10:49:25] DEBUG    551458 DPushes remaining with DInf 0.0000000e+00              3400s
+[2020-06-11 10:49:31] DEBUG    546982 DPushes remaining with DInf 0.0000000e+00              3406s
+[2020-06-11 10:49:35] DEBUG    543252 DPushes remaining with DInf 0.0000000e+00              3410s
+[2020-06-11 10:49:41] DEBUG    538776 DPushes remaining with DInf 0.0000000e+00              3415s
+[2020-06-11 10:49:46] DEBUG    534300 DPushes remaining with DInf 0.0000000e+00              3421s
+[2020-06-11 10:49:50] DEBUG    529824 DPushes remaining with DInf 0.0000000e+00              3425s
+[2020-06-11 10:49:55] DEBUG    525348 DPushes remaining with DInf 0.0000000e+00              3430s
+[2020-06-11 10:50:00] DEBUG    520126 DPushes remaining with DInf 0.0000000e+00              3435s
+[2020-06-11 10:50:06] DEBUG    514904 DPushes remaining with DInf 0.0000000e+00              3441s
+[2020-06-11 10:50:10] DEBUG    510428 DPushes remaining with DInf 0.0000000e+00              3445s
+[2020-06-11 10:50:15] DEBUG    504460 DPushes remaining with DInf 0.0000000e+00              3450s
+[2020-06-11 10:50:20] DEBUG    499238 DPushes remaining with DInf 0.0000000e+00              3455s
+[2020-06-11 10:50:27] DEBUG    494668 DPushes remaining with DInf 0.0000000e+00              3462s
+[2020-06-11 10:50:30] DEBUG    491684 DPushes remaining with DInf 0.0000000e+00              3465s
+[2020-06-11 10:50:36] DEBUG    485618 DPushes remaining with DInf 0.0000000e+00              3470s
+[2020-06-11 10:50:40] DEBUG    480396 DPushes remaining with DInf 0.0000000e+00              3475s
+[2020-06-11 10:50:45] DEBUG    475920 DPushes remaining with DInf 0.0000000e+00              3480s
+[2020-06-11 10:50:50] DEBUG    471444 DPushes remaining with DInf 0.0000000e+00              3485s
+[2020-06-11 10:50:55] DEBUG    466968 DPushes remaining with DInf 0.0000000e+00              3490s
+[2020-06-11 10:51:01] DEBUG    461000 DPushes remaining with DInf 0.0000000e+00              3495s
+[2020-06-11 10:51:05] DEBUG    456524 DPushes remaining with DInf 0.0000000e+00              3500s
+[2020-06-11 10:51:10] DEBUG    450298 DPushes remaining with DInf 0.0000000e+00              3505s
+[2020-06-11 10:51:16] DEBUG    442878 DPushes remaining with DInf 0.0000000e+00              3511s
+[2020-06-11 10:51:20] DEBUG    436618 DPushes remaining with DInf 0.0000000e+00              3515s
+[2020-06-11 10:51:25] DEBUG    430049 DPushes remaining with DInf 0.0000000e+00              3520s
+[2020-06-11 10:51:30] DEBUG    423748 DPushes remaining with DInf 0.0000000e+00              3525s
+[2020-06-11 10:51:36] DEBUG    417780 DPushes remaining with DInf 0.0000000e+00              3531s
+[2020-06-11 10:51:40] DEBUG    412495 DPushes remaining with DInf 0.0000000e+00              3535s
+[2020-06-11 10:51:46] DEBUG    407273 DPushes remaining with DInf 0.0000000e+00              3540s
+[2020-06-11 10:51:50] DEBUG    402051 DPushes remaining with DInf 0.0000000e+00              3545s
+[2020-06-11 10:51:56] DEBUG    396813 DPushes remaining with DInf 0.0000000e+00              3551s
+[2020-06-11 10:52:00] DEBUG    392337 DPushes remaining with DInf 0.0000000e+00              3555s
+[2020-06-11 10:52:06] DEBUG    387115 DPushes remaining with DInf 0.0000000e+00              3561s
+[2020-06-11 10:52:10] DEBUG    383385 DPushes remaining with DInf 0.0000000e+00              3565s
+[2020-06-11 10:52:15] DEBUG    378909 DPushes remaining with DInf 0.0000000e+00              3570s
+[2020-06-11 10:52:21] DEBUG    373687 DPushes remaining with DInf 0.0000000e+00              3576s
+[2020-06-11 10:52:25] DEBUG    369211 DPushes remaining with DInf 0.0000000e+00              3580s
+[2020-06-11 10:52:30] DEBUG    363989 DPushes remaining with DInf 0.0000000e+00              3585s
+[2020-06-11 10:52:36] DEBUG    358767 DPushes remaining with DInf 0.0000000e+00              3590s
+[2020-06-11 10:52:40] DEBUG    354291 DPushes remaining with DInf 0.0000000e+00              3595s
+[2020-06-11 10:52:45] DEBUG    349815 DPushes remaining with DInf 0.0000000e+00              3600s
+[2020-06-11 10:52:50] DEBUG    345339 DPushes remaining with DInf 0.0000000e+00              3605s
+[2020-06-11 10:52:56] DEBUG    340117 DPushes remaining with DInf 0.0000000e+00              3611s
+[2020-06-11 10:53:00] DEBUG    334895 DPushes remaining with DInf 0.0000000e+00              3615s
+[2020-06-11 10:53:05] DEBUG    329673 DPushes remaining with DInf 0.0000000e+00              3620s
+[2020-06-11 10:53:10] DEBUG    323593 DPushes remaining with DInf 0.0000000e+00              3625s
+[2020-06-11 10:53:16] DEBUG    319117 DPushes remaining with DInf 0.0000000e+00              3630s
+[2020-06-11 10:53:21] DEBUG    314641 DPushes remaining with DInf 0.0000000e+00              3636s
+[2020-06-11 10:53:25] DEBUG    311657 DPushes remaining with DInf 0.0000000e+00              3640s
+[2020-06-11 10:53:31] DEBUG    307927 DPushes remaining with DInf 0.0000000e+00              3645s
+[2020-06-11 10:53:35] DEBUG    304197 DPushes remaining with DInf 0.0000000e+00              3650s
+[2020-06-11 10:53:41] DEBUG    299721 DPushes remaining with DInf 0.0000000e+00              3655s
+[2020-06-11 10:53:45] DEBUG    295991 DPushes remaining with DInf 0.0000000e+00              3660s
+[2020-06-11 10:53:50] DEBUG    292261 DPushes remaining with DInf 0.0000000e+00              3665s
+[2020-06-11 10:53:56] DEBUG    288531 DPushes remaining with DInf 0.0000000e+00              3671s
+[2020-06-11 10:54:00] DEBUG    284801 DPushes remaining with DInf 0.0000000e+00              3675s
+[2020-06-11 10:54:05] DEBUG    281071 DPushes remaining with DInf 0.0000000e+00              3680s
+[2020-06-11 10:54:11] DEBUG    277341 DPushes remaining with DInf 0.0000000e+00              3686s
+[2020-06-11 10:54:15] DEBUG    273611 DPushes remaining with DInf 0.0000000e+00              3690s
+[2020-06-11 10:54:21] DEBUG    269135 DPushes remaining with DInf 0.0000000e+00              3695s
+[2020-06-11 10:54:27] DEBUG    265405 DPushes remaining with DInf 0.0000000e+00              3701s
+[2020-06-11 10:54:31] DEBUG    263167 DPushes remaining with DInf 0.0000000e+00              3706s
+[2020-06-11 10:54:35] DEBUG    260183 DPushes remaining with DInf 0.0000000e+00              3710s
+[2020-06-11 10:54:41] DEBUG    257199 DPushes remaining with DInf 0.0000000e+00              3716s
+[2020-06-11 10:54:45] DEBUG    254961 DPushes remaining with DInf 0.0000000e+00              3720s
+[2020-06-11 10:54:51] DEBUG    251231 DPushes remaining with DInf 0.0000000e+00              3726s
+[2020-06-11 10:54:56] DEBUG    248247 DPushes remaining with DInf 0.0000000e+00              3731s
+[2020-06-11 10:55:01] DEBUG    245263 DPushes remaining with DInf 0.0000000e+00              3736s
+[2020-06-11 10:55:06] DEBUG    242279 DPushes remaining with DInf 0.0000000e+00              3741s
+[2020-06-11 10:55:10] DEBUG    240041 DPushes remaining with DInf 0.0000000e+00              3745s
+[2020-06-11 10:55:16] DEBUG    237057 DPushes remaining with DInf 0.0000000e+00              3751s
+[2020-06-11 10:55:21] DEBUG    234819 DPushes remaining with DInf 0.0000000e+00              3756s
+[2020-06-11 10:55:25] DEBUG    232581 DPushes remaining with DInf 0.0000000e+00              3760s
+[2020-06-11 10:55:32] DEBUG    229597 DPushes remaining with DInf 0.0000000e+00              3766s
+[2020-06-11 10:55:36] DEBUG    227359 DPushes remaining with DInf 0.0000000e+00              3771s
+[2020-06-11 10:55:41] DEBUG    225121 DPushes remaining with DInf 0.0000000e+00              3775s
+[2020-06-11 10:55:47] DEBUG    222137 DPushes remaining with DInf 0.0000000e+00              3781s
+[2020-06-11 10:55:52] DEBUG    219899 DPushes remaining with DInf 0.0000000e+00              3786s
+[2020-06-11 10:55:56] DEBUG    217661 DPushes remaining with DInf 0.0000000e+00              3791s
+[2020-06-11 10:56:01] DEBUG    215423 DPushes remaining with DInf 0.0000000e+00              3796s
+[2020-06-11 10:56:06] DEBUG    213185 DPushes remaining with DInf 0.0000000e+00              3801s
+[2020-06-11 10:56:11] DEBUG    210947 DPushes remaining with DInf 0.0000000e+00              3805s
+[2020-06-11 10:56:16] DEBUG    207963 DPushes remaining with DInf 0.0000000e+00              3811s
+[2020-06-11 10:56:21] DEBUG    205725 DPushes remaining with DInf 0.0000000e+00              3816s
+[2020-06-11 10:56:26] DEBUG    202741 DPushes remaining with DInf 0.0000000e+00              3821s
+[2020-06-11 10:56:31] DEBUG    200366 DPushes remaining with DInf 0.0000000e+00              3825s
+[2020-06-11 10:56:35] DEBUG    198128 DPushes remaining with DInf 0.0000000e+00              3830s
+[2020-06-11 10:56:41] DEBUG    195144 DPushes remaining with DInf 0.0000000e+00              3836s
+[2020-06-11 10:56:45] DEBUG    192906 DPushes remaining with DInf 0.0000000e+00              3840s
+[2020-06-11 10:56:50] DEBUG    190668 DPushes remaining with DInf 0.0000000e+00              3845s
+[2020-06-11 10:56:55] DEBUG    188430 DPushes remaining with DInf 0.0000000e+00              3850s
+[2020-06-11 10:57:02] DEBUG    185446 DPushes remaining with DInf 0.0000000e+00              3856s
+[2020-06-11 10:57:06] DEBUG    183208 DPushes remaining with DInf 0.0000000e+00              3861s
+[2020-06-11 10:57:12] DEBUG    180970 DPushes remaining with DInf 0.0000000e+00              3867s
+[2020-06-11 10:57:16] DEBUG    179478 DPushes remaining with DInf 0.0000000e+00              3871s
+[2020-06-11 10:57:22] DEBUG    177240 DPushes remaining with DInf 0.0000000e+00              3876s
+[2020-06-11 10:57:26] DEBUG    175002 DPushes remaining with DInf 0.0000000e+00              3881s
+[2020-06-11 10:57:32] DEBUG    172764 DPushes remaining with DInf 0.0000000e+00              3887s
+[2020-06-11 10:57:36] DEBUG    170526 DPushes remaining with DInf 0.0000000e+00              3890s
+[2020-06-11 10:57:41] DEBUG    168288 DPushes remaining with DInf 0.0000000e+00              3896s
+[2020-06-11 10:57:46] DEBUG    166050 DPushes remaining with DInf 0.0000000e+00              3901s
+[2020-06-11 10:57:50] DEBUG    164558 DPushes remaining with DInf 0.0000000e+00              3905s
+[2020-06-11 10:57:57] DEBUG    161525 DPushes remaining with DInf 0.0000000e+00              3912s
+[2020-06-11 10:58:01] DEBUG    159287 DPushes remaining with DInf 0.0000000e+00              3916s
+[2020-06-11 10:58:06] DEBUG    156303 DPushes remaining with DInf 0.0000000e+00              3921s
+[2020-06-11 10:58:12] DEBUG    151153 DPushes remaining with DInf 0.0000000e+00              3927s
+[2020-06-11 10:58:16] DEBUG    148915 DPushes remaining with DInf 0.0000000e+00              3931s
+[2020-06-11 10:58:21] DEBUG    146677 DPushes remaining with DInf 0.0000000e+00              3936s
+[2020-06-11 10:58:26] DEBUG    144439 DPushes remaining with DInf 0.0000000e+00              3941s
+[2020-06-11 10:58:32] DEBUG    142201 DPushes remaining with DInf 0.0000000e+00              3947s
+[2020-06-11 10:58:35] DEBUG    140709 DPushes remaining with DInf 0.0000000e+00              3950s
+[2020-06-11 10:58:40] DEBUG    138471 DPushes remaining with DInf 0.0000000e+00              3955s
+[2020-06-11 10:58:46] DEBUG    136233 DPushes remaining with DInf 0.0000000e+00              3961s
+[2020-06-11 10:58:50] DEBUG    133995 DPushes remaining with DInf 0.0000000e+00              3965s
+[2020-06-11 10:58:56] DEBUG    131757 DPushes remaining with DInf 0.0000000e+00              3971s
+[2020-06-11 10:59:02] DEBUG    129519 DPushes remaining with DInf 0.0000000e+00              3976s
+[2020-06-11 10:59:06] DEBUG    127281 DPushes remaining with DInf 0.0000000e+00              3980s
+[2020-06-11 10:59:11] DEBUG    125043 DPushes remaining with DInf 0.0000000e+00              3986s
+[2020-06-11 10:59:15] DEBUG    123551 DPushes remaining with DInf 0.0000000e+00              3990s
+[2020-06-11 10:59:21] DEBUG    121313 DPushes remaining with DInf 0.0000000e+00              3996s
+[2020-06-11 10:59:27] DEBUG    119075 DPushes remaining with DInf 0.0000000e+00              4001s
+[2020-06-11 10:59:30] DEBUG    117583 DPushes remaining with DInf 0.0000000e+00              4005s
+[2020-06-11 10:59:37] DEBUG    114599 DPushes remaining with DInf 0.0000000e+00              4012s
+[2020-06-11 10:59:42] DEBUG    112361 DPushes remaining with DInf 0.0000000e+00              4017s
+[2020-06-11 10:59:46] DEBUG    110123 DPushes remaining with DInf 0.0000000e+00              4021s
+[2020-06-11 10:59:50] DEBUG    107885 DPushes remaining with DInf 0.0000000e+00              4025s
+[2020-06-11 10:59:55] DEBUG    105647 DPushes remaining with DInf 0.0000000e+00              4030s
+[2020-06-11 11:00:01] DEBUG    101754 DPushes remaining with DInf 0.0000000e+00              4036s
+[2020-06-11 11:00:06] DEBUG    98770 DPushes remaining with DInf 0.0000000e+00              4041s
+[2020-06-11 11:00:12] DEBUG    96532 DPushes remaining with DInf 0.0000000e+00              4047s
+[2020-06-11 11:00:16] DEBUG    94294 DPushes remaining with DInf 0.0000000e+00              4051s
+[2020-06-11 11:00:21] DEBUG    92056 DPushes remaining with DInf 0.0000000e+00              4056s
+[2020-06-11 11:00:26] DEBUG    89072 DPushes remaining with DInf 0.0000000e+00              4061s
+[2020-06-11 11:00:31] DEBUG    86834 DPushes remaining with DInf 0.0000000e+00              4066s
+[2020-06-11 11:00:37] DEBUG    84596 DPushes remaining with DInf 0.0000000e+00              4072s
+[2020-06-11 11:00:41] DEBUG    83104 DPushes remaining with DInf 0.0000000e+00              4076s
+[2020-06-11 11:00:47] DEBUG    80866 DPushes remaining with DInf 0.0000000e+00              4082s
+[2020-06-11 11:00:52] DEBUG    79374 DPushes remaining with DInf 0.0000000e+00              4087s
+[2020-06-11 11:00:57] DEBUG    77882 DPushes remaining with DInf 0.0000000e+00              4092s
+[2020-06-11 11:01:01] DEBUG    76390 DPushes remaining with DInf 0.0000000e+00              4096s
+[2020-06-11 11:01:05] DEBUG    74898 DPushes remaining with DInf 0.0000000e+00              4100s
+[2020-06-11 11:01:11] DEBUG    72660 DPushes remaining with DInf 0.0000000e+00              4106s
+[2020-06-11 11:01:16] DEBUG    70422 DPushes remaining with DInf 0.0000000e+00              4111s
+[2020-06-11 11:01:20] DEBUG    68930 DPushes remaining with DInf 0.0000000e+00              4115s
+[2020-06-11 11:01:25] DEBUG    66692 DPushes remaining with DInf 0.0000000e+00              4120s
+[2020-06-11 11:01:30] DEBUG    64349 DPushes remaining with DInf 0.0000000e+00              4125s
+[2020-06-11 11:01:36] DEBUG    62111 DPushes remaining with DInf 0.0000000e+00              4131s
+[2020-06-11 11:01:41] DEBUG    59873 DPushes remaining with DInf 0.0000000e+00              4136s
+[2020-06-11 11:01:47] DEBUG    57635 DPushes remaining with DInf 0.0000000e+00              4142s
+[2020-06-11 11:01:51] DEBUG    56143 DPushes remaining with DInf 0.0000000e+00              4146s
+[2020-06-11 11:01:55] DEBUG    54651 DPushes remaining with DInf 0.0000000e+00              4150s
+[2020-06-11 11:02:01] DEBUG    52413 DPushes remaining with DInf 0.0000000e+00              4156s
+[2020-06-11 11:02:05] DEBUG    50175 DPushes remaining with DInf 0.0000000e+00              4160s
+[2020-06-11 11:02:11] DEBUG    47191 DPushes remaining with DInf 0.0000000e+00              4166s
+[2020-06-11 11:02:16] DEBUG    44953 DPushes remaining with DInf 0.0000000e+00              4171s
+[2020-06-11 11:02:20] DEBUG    42715 DPushes remaining with DInf 0.0000000e+00              4175s
+[2020-06-11 11:02:25] DEBUG    40477 DPushes remaining with DInf 0.0000000e+00              4180s
+[2020-06-11 11:02:31] DEBUG    38239 DPushes remaining with DInf 0.0000000e+00              4186s
+[2020-06-11 11:02:37] DEBUG    35625 DPushes remaining with DInf 0.0000000e+00              4192s
+[2020-06-11 11:02:42] DEBUG    34133 DPushes remaining with DInf 0.0000000e+00              4197s
+[2020-06-11 11:02:46] DEBUG    32641 DPushes remaining with DInf 0.0000000e+00              4201s
+[2020-06-11 11:02:50] DEBUG    31149 DPushes remaining with DInf 0.0000000e+00              4205s
+[2020-06-11 11:02:57] DEBUG    28911 DPushes remaining with DInf 0.0000000e+00              4212s
+[2020-06-11 11:03:01] DEBUG    27419 DPushes remaining with DInf 0.0000000e+00              4216s
+[2020-06-11 11:03:06] DEBUG    25927 DPushes remaining with DInf 0.0000000e+00              4221s
+[2020-06-11 11:03:10] DEBUG    24435 DPushes remaining with DInf 0.0000000e+00              4225s
+[2020-06-11 11:03:15] DEBUG    22197 DPushes remaining with DInf 0.0000000e+00              4230s
+[2020-06-11 11:03:21] DEBUG    19959 DPushes remaining with DInf 0.0000000e+00              4236s
+[2020-06-11 11:03:26] DEBUG    17693 DPushes remaining with DInf 0.0000000e+00              4241s
+[2020-06-11 11:03:32] DEBUG    16201 DPushes remaining with DInf 0.0000000e+00              4246s
+[2020-06-11 11:03:36] DEBUG    14709 DPushes remaining with DInf 0.0000000e+00              4251s
+[2020-06-11 11:03:41] DEBUG    13217 DPushes remaining with DInf 0.0000000e+00              4256s
+[2020-06-11 11:03:46] DEBUG    11725 DPushes remaining with DInf 0.0000000e+00              4261s
+[2020-06-11 11:03:51] DEBUG    10233 DPushes remaining with DInf 0.0000000e+00              4265s
+[2020-06-11 11:03:56] DEBUG    7995 DPushes remaining with DInf 0.0000000e+00              4271s
+[2020-06-11 11:04:00] DEBUG    6503 DPushes remaining with DInf 0.0000000e+00              4275s
+[2020-06-11 11:04:07] DEBUG    4265 DPushes remaining with DInf 0.0000000e+00              4282s
+[2020-06-11 11:04:10] DEBUG    3519 DPushes remaining with DInf 0.0000000e+00              4285s
+[2020-06-11 11:04:18] DEBUG    2027 DPushes remaining with DInf 0.0000000e+00              4293s
+[2020-06-11 11:04:21] DEBUG    1281 DPushes remaining with DInf 0.0000000e+00              4296s
+[2020-06-11 11:04:26] DEBUG    0 DPushes remaining with DInf 0.0000000e+00              4301s
+[2020-06-11 11:04:26] DEBUG    Warning: Markowitz tolerance tightened to 0.5
+[2020-06-11 11:04:26] DEBUG    2338014 PPushes remaining with PInf 3.3075758e-03              4301s
+[2020-06-11 11:04:47] DEBUG    1016130 PPushes remaining with PInf 4.6590894e+02              4322s
+[2020-06-11 11:04:51] DEBUG    960438 PPushes remaining with PInf 3.4741776e+02              4326s
+[2020-06-11 11:04:56] DEBUG    812562 PPushes remaining with PInf 2.5002195e+01              4331s
+[2020-06-11 11:05:05] DEBUG    771225 PPushes remaining with PInf 2.2558520e+01              4340s
+[2020-06-11 11:05:12] DEBUG    764461 PPushes remaining with PInf 2.2097093e+01              4347s
+[2020-06-11 11:05:18] DEBUG    757061 PPushes remaining with PInf 2.1811457e+01              4353s
+[2020-06-11 11:05:24] DEBUG    747905 PPushes remaining with PInf 2.1514675e+01              4359s
+[2020-06-11 11:05:29] DEBUG    739742 PPushes remaining with PInf 2.1477607e+01              4364s
+[2020-06-11 11:05:35] DEBUG    732421 PPushes remaining with PInf 2.1210970e+01              4370s
+[2020-06-11 11:05:41] DEBUG    725304 PPushes remaining with PInf 2.1210853e+01              4376s
+[2020-06-11 11:05:47] DEBUG    720933 PPushes remaining with PInf 2.1210839e+01              4382s
+[2020-06-11 11:05:53] DEBUG    716652 PPushes remaining with PInf 2.1205326e+01              4388s
+[2020-06-11 11:05:58] DEBUG    713049 PPushes remaining with PInf 2.1197333e+01              4392s
+[2020-06-11 11:06:02] DEBUG    709035 PPushes remaining with PInf 2.1196996e+01              4397s
+[2020-06-11 11:06:06] DEBUG    706769 PPushes remaining with PInf 2.0950573e+01              4401s
+[2020-06-11 11:06:10] DEBUG    702322 PPushes remaining with PInf 2.0720640e+01              4405s
+[2020-06-11 11:06:17] DEBUG    679587 PPushes remaining with PInf 1.9500634e+01              4412s
+[2020-06-11 11:06:21] DEBUG    671107 PPushes remaining with PInf 1.8506522e+01              4416s
+[2020-06-11 11:06:29] DEBUG    663689 PPushes remaining with PInf 1.7716444e+01              4423s
+[2020-06-11 11:06:32] DEBUG    662471 PPushes remaining with PInf 1.7716254e+01              4427s
+[2020-06-11 11:09:13] DEBUG    622657 PPushes remaining with PInf 1.7665124e+01              4588s
+[2020-06-11 11:09:23] DEBUG    617270 PPushes remaining with PInf 1.7583489e+01              4598s
+[2020-06-11 11:09:31] DEBUG    601826 PPushes remaining with PInf 1.7509625e+01              4606s
+[2020-06-11 11:09:39] DEBUG    585953 PPushes remaining with PInf 1.7425471e+01              4614s
+[2020-06-11 11:09:40] DEBUG    577138 PPushes remaining with PInf 1.7348094e+01              4615s
+[2020-06-11 11:09:46] DEBUG    558043 PPushes remaining with PInf 1.3465804e+01              4621s
+[2020-06-11 11:09:50] DEBUG    552051 PPushes remaining with PInf 1.3214244e+01              4625s
+[2020-06-11 11:10:59] DEBUG    487906 PPushes remaining with PInf 6.0281871e+00              4694s
+[2020-06-11 11:11:27] DEBUG    414602 PPushes remaining with PInf 5.7748990e+00              4722s
+[2020-06-11 11:11:54] DEBUG    369771 PPushes remaining with PInf 5.7748990e+00              4749s
+[2020-06-11 11:12:19] DEBUG    336268 PPushes remaining with PInf 5.7748990e+00              4774s
+[2020-06-11 11:12:57] DEBUG    300011 PPushes remaining with PInf 5.7748990e+00              4812s
+[2020-06-11 11:13:32] DEBUG    263054 PPushes remaining with PInf 5.7748990e+00              4847s
+[2020-06-11 11:14:33] DEBUG    213120 PPushes remaining with PInf 5.7748990e+00              4908s
+[2020-06-11 11:15:23] DEBUG    182436 PPushes remaining with PInf 5.7748990e+00              4958s
+[2020-06-11 11:15:40] DEBUG    169354 PPushes remaining with PInf 5.7748990e+00              4975s
+[2020-06-11 11:15:45] DEBUG    159075 PPushes remaining with PInf 5.7748990e+00              4980s
+[2020-06-11 11:17:17] DEBUG    125388 PPushes remaining with PInf 5.7747796e+00              5072s
+[2020-06-11 11:18:06] DEBUG    113413 PPushes remaining with PInf 8.7351009e-01              5121s
+[2020-06-11 11:19:08] DEBUG    107753 PPushes remaining with PInf 5.6641325e-01              5183s
+[2020-06-11 11:20:02] DEBUG    101950 PPushes remaining with PInf 5.6418651e-01              5237s
+[2020-06-11 11:20:29] DEBUG    97935 PPushes remaining with PInf 5.6418651e-01              5264s
+[2020-06-11 11:21:02] DEBUG    94088 PPushes remaining with PInf 5.6418651e-01              5296s
+[2020-06-11 11:21:19] DEBUG    90804 PPushes remaining with PInf 5.6418651e-01              5314s
+[2020-06-11 11:21:30] DEBUG    88037 PPushes remaining with PInf 5.6418651e-01              5325s
+[2020-06-11 11:21:41] DEBUG    85330 PPushes remaining with PInf 5.6412656e-01              5336s
+[2020-06-11 11:21:54] DEBUG    82920 PPushes remaining with PInf 5.6226425e-01              5349s
+[2020-06-11 11:22:06] DEBUG    80692 PPushes remaining with PInf 5.0947901e-01              5361s
+[2020-06-11 11:22:13] DEBUG    78862 PPushes remaining with PInf 5.0947901e-01              5368s
+[2020-06-11 11:22:32] DEBUG    76842 PPushes remaining with PInf 5.0947901e-01              5387s
+[2020-06-11 11:22:50] DEBUG    74651 PPushes remaining with PInf 5.0947901e-01              5405s
+[2020-06-11 11:23:02] DEBUG    72178 PPushes remaining with PInf 5.0947901e-01              5417s
+[2020-06-11 11:23:29] DEBUG    69745 PPushes remaining with PInf 4.0465469e-01              5444s
+[2020-06-11 11:23:42] DEBUG    66994 PPushes remaining with PInf 4.0465469e-01              5457s
+[2020-06-11 11:23:57] DEBUG    63974 PPushes remaining with PInf 4.0465469e-01              5472s
+[2020-06-11 11:24:13] DEBUG    61480 PPushes remaining with PInf 4.0465469e-01              5487s
+[2020-06-11 11:24:22] DEBUG    59165 PPushes remaining with PInf 4.0452222e-01              5497s
+[2020-06-11 11:24:36] DEBUG    56521 PPushes remaining with PInf 4.0452222e-01              5511s
+[2020-06-11 11:24:52] DEBUG    53871 PPushes remaining with PInf 4.0452222e-01              5527s
+[2020-06-11 11:25:06] DEBUG    51089 PPushes remaining with PInf 4.0452222e-01              5541s
+[2020-06-11 11:25:19] DEBUG    48394 PPushes remaining with PInf 4.0452222e-01              5554s
+[2020-06-11 11:25:36] DEBUG    46017 PPushes remaining with PInf 4.0452222e-01              5571s
+[2020-06-11 11:25:52] DEBUG    43426 PPushes remaining with PInf 4.0452222e-01              5587s
+[2020-06-11 11:26:00] DEBUG    40461 PPushes remaining with PInf 4.0452222e-01              5595s
+[2020-06-11 11:26:06] DEBUG    37807 PPushes remaining with PInf 4.0452222e-01              5600s
+[2020-06-11 11:26:12] DEBUG    35145 PPushes remaining with PInf 4.0452222e-01              5607s
+[2020-06-11 11:26:19] DEBUG    32119 PPushes remaining with PInf 4.0452222e-01              5614s
+[2020-06-11 11:26:31] DEBUG    28773 PPushes remaining with PInf 4.0452222e-01              5626s
+[2020-06-11 11:26:41] DEBUG    25171 PPushes remaining with PInf 4.0452222e-01              5636s
+[2020-06-11 11:26:46] DEBUG    21665 PPushes remaining with PInf 4.0452222e-01              5641s
+[2020-06-11 11:27:01] DEBUG    18278 PPushes remaining with PInf 4.0452222e-01              5656s
+[2020-06-11 11:27:07] DEBUG    14688 PPushes remaining with PInf 4.0452222e-01              5661s
+[2020-06-11 11:27:16] DEBUG    11910 PPushes remaining with PInf 4.0452222e-01              5671s
+[2020-06-11 11:27:21] DEBUG    7035 PPushes remaining with PInf 3.9687859e-01              5676s
+[2020-06-11 11:27:28] DEBUG    922 PPushes remaining with PInf 1.4639500e-02              5683s
+[2020-06-11 11:27:34] DEBUG    0 PPushes remaining with PInf 0.0000000e+00              5689s
+[2020-06-11 11:27:34] DEBUG    Push phase complete: Pinf 0.0000000e+00, Dinf 3.3370102e+07   5689s
+[2020-06-11 11:27:35] DEBUG    Iteration    Objective       Primal Inf.    Dual Inf.      Time
+[2020-06-11 11:27:35] DEBUG    3441599    1.0388219e+11   0.000000e+00   3.337010e+07   5690s
+[2020-06-11 11:27:47] DEBUG    3441759    1.0388219e+11   0.000000e+00   6.417239e+05   5702s
+[2020-06-11 11:27:59] DEBUG    3441949    1.0388219e+11   0.000000e+00   7.599154e+05   5714s
+[2020-06-11 11:28:11] DEBUG    3442149    1.0388219e+11   0.000000e+00   7.667373e+05   5726s
+[2020-06-11 11:28:25] DEBUG    3442379    1.0388219e+11   0.000000e+00   5.905547e+05   5740s
+[2020-06-11 11:28:37] DEBUG    3442649    1.0388219e+11   0.000000e+00   4.297727e+05   5752s
+[2020-06-11 11:28:50] DEBUG    3442859    1.0388218e+11   0.000000e+00   1.838784e+06   5765s
+[2020-06-11 11:29:04] DEBUG    3443069    1.0388218e+11   0.000000e+00   2.779918e+06   5779s
+[2020-06-11 11:29:19] DEBUG    3443279    1.0388218e+11   0.000000e+00   1.798753e+06   5794s
+[2020-06-11 11:29:33] DEBUG    3443489    1.0388218e+11   0.000000e+00   3.481520e+06   5808s
+[2020-06-11 11:29:48] DEBUG    3443709    1.0388218e+11   0.000000e+00   1.631366e+05   5823s
+[2020-06-11 11:30:04] DEBUG    3443929    1.0388218e+11   0.000000e+00   1.347891e+05   5839s
+[2020-06-11 11:30:16] DEBUG    3444149    1.0388218e+11   0.000000e+00   9.956817e+04   5851s
+[2020-06-11 11:30:29] DEBUG    3444369    1.0388218e+11   0.000000e+00   1.054756e+06   5864s
+[2020-06-11 11:30:44] DEBUG    3444639    1.0388218e+11   0.000000e+00   1.354251e+06   5879s
+[2020-06-11 11:30:56] DEBUG    3445059    1.0388218e+11   0.000000e+00   6.170159e+05   5890s
+[2020-06-11 11:31:08] DEBUG    3445359    1.0388218e+11   0.000000e+00   1.361716e+05   5903s
+[2020-06-11 11:31:21] DEBUG    3445650    1.0388218e+11   0.000000e+00   1.347423e+07   5916s
+[2020-06-11 11:31:35] DEBUG    3445970    1.0388218e+11   0.000000e+00   8.201605e+05   5930s
+[2020-06-11 11:31:48] DEBUG    3446310    1.0388218e+11   0.000000e+00   8.169573e+05   5943s
+[2020-06-11 11:32:00] DEBUG    3446870    1.0388218e+11   0.000000e+00   1.843492e+07   5955s
+[2020-06-11 11:32:14] DEBUG    3447160    1.0388218e+11   0.000000e+00   1.746017e+07   5969s
+[2020-06-11 11:32:31] DEBUG    3447420    1.0388218e+11   0.000000e+00   7.012710e+05   5986s
+[2020-06-11 11:32:45] DEBUG    3448080    1.0388218e+11   0.000000e+00   5.695778e+04   6000s
+[2020-06-11 11:32:57] DEBUG    3448590    1.0388218e+11   0.000000e+00   1.103490e+05   6012s
+[2020-06-11 11:33:10] DEBUG    3448940    1.0388218e+11   0.000000e+00   4.280956e+04   6025s
+[2020-06-11 11:33:23] DEBUG    3449270    1.0388218e+11   0.000000e+00   1.045075e+05   6038s
+[2020-06-11 11:33:36] DEBUG    3449510    1.0388218e+11   0.000000e+00   1.037458e+05   6051s
+[2020-06-11 11:33:49] DEBUG    3449780    1.0388218e+11   0.000000e+00   3.903967e+04   6064s
+[2020-06-11 11:34:02] DEBUG    3450020    1.0388218e+11   0.000000e+00   3.838472e+04   6077s
+[2020-06-11 11:34:15] DEBUG    3450260    1.0388218e+11   0.000000e+00   3.770844e+04   6090s
+[2020-06-11 11:34:28] DEBUG    3450600    1.0388218e+11   0.000000e+00   3.649026e+04   6103s
+[2020-06-11 11:34:41] DEBUG    3451010    1.0388218e+11   0.000000e+00   3.525258e+04   6116s
+[2020-06-11 11:34:55] DEBUG    3451290    1.0388218e+11   0.000000e+00   3.511711e+04   6130s
+[2020-06-11 11:35:08] DEBUG    3451750    1.0388218e+11   0.000000e+00   3.401048e+04   6143s
+[2020-06-11 11:35:20] DEBUG    3452210    1.0388218e+11   0.000000e+00   3.109993e+04   6155s
+[2020-06-11 11:35:33] DEBUG    3452610    1.0388218e+11   0.000000e+00   2.816206e+04   6168s
+[2020-06-11 11:35:45] DEBUG    3453080    1.0388218e+11   0.000000e+00   2.676507e+04   6180s
+[2020-06-11 11:35:58] DEBUG    3453380    1.0388218e+11   0.000000e+00   2.584663e+04   6193s
+[2020-06-11 11:36:11] DEBUG    3453800    1.0388218e+11   0.000000e+00   2.452292e+04   6206s
+[2020-06-11 11:36:26] DEBUG    3454120    1.0388218e+11   0.000000e+00   2.375140e+04   6220s
+[2020-06-11 11:36:39] DEBUG    3454600    1.0388218e+11   0.000000e+00   2.263832e+04   6234s
+[2020-06-11 11:36:52] DEBUG    3454860    1.0388218e+11   0.000000e+00   2.147488e+04   6247s
+[2020-06-11 11:37:05] DEBUG    3455160    1.0388218e+11   0.000000e+00   2.064636e+04   6260s
+[2020-06-11 11:37:18] DEBUG    3455520    1.0388218e+11   0.000000e+00   1.980049e+04   6272s
+[2020-06-11 11:37:31] DEBUG    3455890    1.0388218e+11   0.000000e+00   1.890095e+04   6286s
+[2020-06-11 11:37:44] DEBUG    3456230    1.0388218e+11   0.000000e+00   1.818109e+04   6299s
+[2020-06-11 11:37:57] DEBUG    3456580    1.0388218e+11   0.000000e+00   1.752374e+04   6312s
+[2020-06-11 11:38:12] DEBUG    3456910    1.0388218e+11   0.000000e+00   1.719767e+04   6326s
+[2020-06-11 11:38:24] DEBUG    3457320    1.0388218e+11   0.000000e+00   1.639850e+04   6339s
+[2020-06-11 11:38:38] DEBUG    3457720    1.0388218e+11   0.000000e+00   1.553382e+04   6352s
+[2020-06-11 11:38:53] DEBUG    3458010    1.0388218e+11   0.000000e+00   2.012568e+04   6367s
+[2020-06-11 11:39:07] DEBUG    3458260    1.0388218e+11   0.000000e+00   1.474045e+04   6382s
+[2020-06-11 11:39:21] DEBUG    3458600    1.0388218e+11   0.000000e+00   1.558284e+04   6396s
+[2020-06-11 11:39:35] DEBUG    3459020    1.0388218e+11   0.000000e+00   2.447669e+04   6410s
+[2020-06-11 11:39:48] DEBUG    3459350    1.0388218e+11   0.000000e+00   1.233510e+04   6423s
+[2020-06-11 11:40:02] DEBUG    3459640    1.0388218e+11   0.000000e+00   1.208575e+04   6437s
+[2020-06-11 11:40:15] DEBUG    3460010    1.0388218e+11   0.000000e+00   1.149594e+04   6450s
+[2020-06-11 11:40:28] DEBUG    3460350    1.0388218e+11   0.000000e+00   1.099956e+04   6463s
+[2020-06-11 11:40:41] DEBUG    3460660    1.0388218e+11   0.000000e+00   1.053260e+04   6475s
+[2020-06-11 11:40:53] DEBUG    3460920    1.0388218e+11   0.000000e+00   1.936179e+04   6488s
+[2020-06-11 11:41:06] DEBUG    3461250    1.0388218e+11   0.000000e+00   1.246203e+04   6501s
+[2020-06-11 11:41:18] DEBUG    3461590    1.0388218e+11   0.000000e+00   1.196266e+04   6513s
+[2020-06-11 11:41:31] DEBUG    3461910    1.0388218e+11   0.000000e+00   1.156888e+04   6526s
+[2020-06-11 11:41:43] DEBUG    3462250    1.0388218e+11   0.000000e+00   1.118931e+04   6538s
+[2020-06-11 11:41:56] DEBUG    3462590    1.0388218e+11   0.000000e+00   1.071862e+04   6551s
+[2020-06-11 11:42:08] DEBUG    3462920    1.0388218e+11   0.000000e+00   1.026700e+04   6563s
+[2020-06-11 11:42:20] DEBUG    3463210    1.0388218e+11   0.000000e+00   9.951048e+03   6575s
+[2020-06-11 11:42:32] DEBUG    3463540    1.0388218e+11   0.000000e+00   9.523838e+03   6587s
+[2020-06-11 11:42:44] DEBUG    3463790    1.0388218e+11   0.000000e+00   9.541256e+05   6599s
+[2020-06-11 11:42:58] DEBUG    3464010    1.0388218e+11   0.000000e+00   6.027545e+03   6613s
+[2020-06-11 11:43:11] DEBUG    3464250    1.0388218e+11   0.000000e+00   5.263904e+04   6626s
+[2020-06-11 11:43:22] DEBUG    3464600    1.0388218e+11   0.000000e+00   5.224440e+04   6637s
+[2020-06-11 11:43:34] DEBUG    3464940    1.0388218e+11   0.000000e+00   5.184897e+04   6648s
+[2020-06-11 11:43:45] DEBUG    3465290    1.0388218e+11   0.000000e+00   5.151792e+04   6660s
+[2020-06-11 11:43:56] DEBUG    3465650    1.0388218e+11   0.000000e+00   5.116023e+04   6671s
+[2020-06-11 11:44:07] DEBUG    3465960    1.0388218e+11   0.000000e+00   5.088902e+04   6682s
+[2020-06-11 11:44:18] DEBUG    3466270    1.0388218e+11   0.000000e+00   5.055759e+04   6693s
+[2020-06-11 11:44:30] DEBUG    3466590    1.0388218e+11   0.000000e+00   5.022317e+04   6705s
+[2020-06-11 11:44:45] DEBUG    3466920    1.0388218e+11   0.000000e+00   1.434356e+04   6720s
+[2020-06-11 11:44:57] DEBUG    3467270    1.0388218e+11   0.000000e+00   1.305075e+04   6732s
+[2020-06-11 11:45:09] DEBUG    3467610    1.0388218e+11   0.000000e+00   1.285924e+04   6744s
+[2020-06-11 11:45:20] DEBUG    3467920    1.0388218e+11   0.000000e+00   1.271225e+04   6755s
+[2020-06-11 11:45:33] DEBUG    3468190    1.0388218e+11   0.000000e+00   3.097026e+04   6768s
+[2020-06-11 11:45:45] DEBUG    3468530    1.0388218e+11   0.000000e+00   3.078590e+04   6779s
+[2020-06-11 11:45:57] DEBUG    3468830    1.0388218e+11   0.000000e+00   2.865079e+05   6792s
+[2020-06-11 11:46:08] DEBUG    3469160    1.0388218e+11   0.000000e+00   1.570494e+04   6803s
+[2020-06-11 11:46:21] DEBUG    3469490    1.0388218e+11   0.000000e+00   3.150888e+05   6815s
+[2020-06-11 11:46:32] DEBUG    3469780    1.0388218e+11   0.000000e+00   1.571330e+05   6827s
+[2020-06-11 11:46:45] DEBUG    3470050    1.0388218e+11   0.000000e+00   3.479913e+05   6840s
+[2020-06-11 11:47:09] DEBUG    3470260    1.0388218e+11   0.000000e+00   3.084186e+08   6864s
+[2020-06-11 11:47:21] DEBUG    3470650    1.0388218e+11   0.000000e+00   1.616293e+07   6876s
+[2020-06-11 11:47:32] DEBUG    3470890    1.0388218e+11   0.000000e+00   1.578036e+05   6887s
+[2020-06-11 11:47:44] DEBUG    3471180    1.0388218e+11   0.000000e+00   9.616495e+03   6898s
+[2020-06-11 11:47:56] DEBUG    3471560    1.0388218e+11   0.000000e+00   3.308521e+04   6911s
+[2020-06-11 11:48:07] DEBUG    3471890    1.0388218e+11   0.000000e+00   3.299030e+04   6922s
+[2020-06-11 11:48:19] DEBUG    3472210    1.0388218e+11   0.000000e+00   3.287474e+04   6934s
+[2020-06-11 11:48:31] DEBUG    3472580    1.0388218e+11   0.000000e+00   3.782357e+03   6946s
+[2020-06-11 11:48:46] DEBUG    3472870    1.0388218e+11   0.000000e+00   7.630697e+02   6961s
+[2020-06-11 11:49:02] DEBUG    3473160    1.0388218e+11   0.000000e+00   3.344891e+02   6977s
+[2020-06-11 11:49:14] DEBUG    3473500    1.0388218e+11   0.000000e+00   7.432183e+02   6989s
+[2020-06-11 11:49:27] DEBUG    3473820    1.0388218e+11   0.000000e+00   2.888498e+02   7002s
+[2020-06-11 11:49:40] DEBUG    3474100    1.0388218e+11   0.000000e+00   1.353553e+03   7015s
+[2020-06-11 11:49:52] DEBUG    3474390    1.0388218e+11   0.000000e+00   7.900716e+03   7027s
+[2020-06-11 11:50:03] DEBUG    3474660    1.0388218e+11   0.000000e+00   1.856990e+03   7038s
+[2020-06-11 11:50:15] DEBUG    3474980    1.0388218e+11   0.000000e+00   4.682472e+03   7050s
+[2020-06-11 11:50:31] DEBUG    3475240    1.0388218e+11   0.000000e+00   5.755554e+02   7066s
+[2020-06-11 11:50:43] DEBUG    3475500    1.0388218e+11   0.000000e+00   5.604142e+02   7078s
+[2020-06-11 11:50:58] DEBUG    3475740    1.0388218e+11   0.000000e+00   1.851524e+03   7093s
+[2020-06-11 11:51:22] DEBUG    3476260    1.0388218e+11   0.000000e+00   5.455530e+03   7117s
+[2020-06-11 11:51:40] DEBUG    3476830    1.0388218e+11   0.000000e+00   5.425453e+03   7135s
+[2020-06-11 11:51:54] DEBUG    3477270    1.0388218e+11   0.000000e+00   3.376610e+03   7149s
+[2020-06-11 11:52:10] DEBUG    3477520    1.0388218e+11   0.000000e+00   3.700540e+03   7164s
+[2020-06-11 11:52:23] DEBUG    3477760    1.0388218e+11   0.000000e+00   9.409922e+02   7178s
+[2020-06-11 11:52:39] DEBUG    3477970    1.0388218e+11   0.000000e+00   1.667919e+04   7194s
+[2020-06-11 11:52:55] DEBUG    3478240    1.0388218e+11   0.000000e+00   2.511226e+01   7209s
+[2020-06-11 11:53:12] DEBUG    3478450    1.0388218e+11   0.000000e+00   5.914422e+01   7227s
+[2020-06-11 11:53:27] DEBUG    3478541    1.0388218e+11   0.000000e+00   0.000000e+00   7242s
+[2020-06-11 11:53:27] DEBUG    Solved in 3478541 iterations and 7241.98 seconds
+[2020-06-11 11:53:27] DEBUG    Optimal objective  1.038821755e+11
+[2020-06-11 11:53:27] DEBUG    Warning: unscaled primal violation = 0.000488387 and residual = 0.000488387
+[2020-06-11 11:53:27] DEBUG    Changed value of parameter LogFile to
+[2020-06-11 11:53:27] DEBUG    Prev: /scratch/124306219.tmpdir/tmpjc64d9lp.log  Default:
+[2020-06-11 11:55:25] INFO     Backend: solver finished running. Time since start of model run: 2:36:53.696193
+[2020-06-11 11:55:28] INFO     Backend: loaded results
+[2020-06-11 11:56:16] INFO     Backend: generated solution array. Time since start of model run: 2:37:44.666493
+[2020-06-11 11:56:16] INFO     Postprocessing: started
+START SCALING
+returning none for variable  resource
+returning none for  cost_depreciation_rate monetary
+returning none for  cost_depreciation_rate co2
+returning none for variable  group_demand_share_min
+energy min:  nan max:  nan
+area_per_power min:  0.0125 max:  0.125
+area min:  0.6750647239461541 max:  223.6702421623543
+power min:  0.0 max:  2388.978434220347
+monetary_per_energy min:  0.0 max:  315.32
+co2_per_energy min:  nan max:  nan
+monetary_per_power min:  0.0 max:  3983.84
+co2_per_power min:  nan max:  nan
+distance min:  140274.0 max:  1501955.0
+monetary min:  nan max:  nan
+co2 min:  12.658880960000003 max:  1840.0
+resource min:  -86.04480000000002 max:  44.51953281768646
+SCALING DONE
+START SCALING
+power min:  0.0 max:  91.3
+energy min:  -86.04480000000002 max:  44671.639099999964
+co2 min:  0.0 max:  329.98805920042787
+monetary min:  0.0 max:  6666.437423167182
+area min:  0.0 max:  2.3216455902009105
+SCALING DONE
+[2020-06-11 11:56:34] INFO     Postprocessing: All values < 1e-10 set to 0 in carrier_con
+[2020-06-11 11:56:34] INFO     Postprocessing: ended. Time since start of model run: 2:38:03.284771
+Saving NetCDF results to file: results/10_6_20_crossover_halflong_gurobiscaled.nc
+
+Calliope run complete. Elapsed: 9552.4 seconds (time at exit: 2020-06-11 11:56:46)
