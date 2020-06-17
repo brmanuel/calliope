@@ -33,9 +33,11 @@ Caveat: what follows is derived from the log files and not directly visible in t
 - *scaled* is considerably faster at finding a basis than the other two models!
 - There is no model that is fastest in all parts of the algorithm.
 - *unscaled* loses a lot of time because it needs to restart the crossover after about 2500s
+- Both *scaled* and *unscaled* need to restart barrier method!
 - both *scaled* and *gurobi* need to tighten their Markowitz tolerance, *gurobi* to 0.5, *scaled* to 0.25
 
-My best guess is that the runtime of the Barrier and the Simplex method cannot be consistently improved by scaling the problem (c.f. also [this paper](https://link.springer.com/article/10.1007/s10589-011-9420-4)) although the literature does not agree on this. However, it seems that the basis recovery phase of crossover (DPushes and PPushes) crucially depend on how well scaled to problem is.
+My best guess is that the runtime of the Barrier and the Simplex method cannot be consistently improved by scaling the problem (c.f. also [this paper](https://link.springer.com/article/10.1007/s10589-011-9420-4)) although the literature does not agree on this. UPDATE: considering that barrier also needs to be restarted for the *unscaled* model we might need to reconsider this. It now seems that the largest part of the runtime difference is due to restarts. What are the exact conditions that barrier is restarted? 
+Moreover, it seems that the basis recovery phase of crossover (DPushes and PPushes) depend on how well scaled the problem is.
 
 Runtime plots of the DPushes phase of the algo.
 For *unscaled*, *scaled* and *gurobi*. We plot seconds on the x-axis (not amount of seconds but the n-th second in the whole model run, i.e. to get seconds since start of DPushes subtract the smallest x-value) and amount of variables that need to be pushed on the y-axis. For readability we only show a subset of datapoints.
