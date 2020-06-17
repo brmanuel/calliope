@@ -41,6 +41,6 @@ Runtime plots of the DPushes phase of the algo.
 For *unscaled*, *scaled* and *gurobi*
 
 
-![unscaled](./analysis/unscaled.png)
-![scaled](./analysis/scaled.png)
+![unscaled](./analysis/scaled.png)
+![scaled](./analysis/unscaled.png)
 ![gurobi](./analysis/gurobi.png)
