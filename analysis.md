@@ -40,6 +40,7 @@ My best guess is that the runtime of the Barrier and the Simplex method cannot b
 Runtime plots of the DPushes phase of the algo.
 For *unscaled*, *scaled* and *gurobi*
 
-<img src="./analysis/unscaled.pdf" width="300">
-<img src="./analysis/scaled.pdf" width="300">
-<img src="./analysis/gurobi.pdf" width="300">
+
+![unscaled](./analysis/unscaled.png)
+![scaled](./analysis/scaled.png)
+![gurobi](./analysis/gurobi.png)
