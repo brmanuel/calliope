@@ -38,9 +38,13 @@ Caveat: what follows is derived from the log files and not directly visible in t
 My best guess is that the runtime of the Barrier and the Simplex method cannot be consistently improved by scaling the problem (c.f. also [this paper](https://link.springer.com/article/10.1007/s10589-011-9420-4)) although the literature does not agree on this. However, it seems that the basis recovery phase of crossover (DPushes and PPushes) crucially depend on how well scaled to problem is.
 
 Runtime plots of the DPushes phase of the algo.
-For *unscaled*, *scaled* and *gurobi*
+For *unscaled*, *scaled* and *gurobi*. We plot seconds on the x-axis (not amount of seconds but the n-th second in the whole model run, i.e. to get seconds since start of DPushes subtract the smallest x-value) and amount of variables that need to be pushed on the y-axis. For readability we only show a subset of datapoints.
 
 
 ![unscaled](./analysis/scaled.png)
 ![scaled](./analysis/unscaled.png)
 ![gurobi](./analysis/gurobi.png)
+
+Most interesting points:
+- *unscaled* needs to restart the DPushes phase, probably due to numerical issues. Hypothesis: in order to push variables to their bounds the algo described by [Bixby](https://scholarship.rice.edu/bitstream/handle/1911/101733/TR91-32.pdf?sequence=1&isAllowed=y). This proceeds in phases (as visible in the log files). In each phase a set of desirable variables are chosen (desirable w.r.t. how close to their bounds they already are) and pushed if possible. Whether or not a variable can be pushed depends on condition number of the to-be-constructed basis (this is where Markowitz tolerance comes into play). If no basis can be constructed because too many variables are discarded, the process needs to be retried with a tightened (higher) tolerance.
+- At least in the case of *unscaled* (but I conjecture this is the case in general) the first Dpushes are much faster than the last ones. This might be due to the fact that in the beginning it is simple to choose a large set of desirable variables to push but it gets continuously harder when there are already many variables in the basis (new variables / columns need to be sufficiently independent).
