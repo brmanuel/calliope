@@ -160,13 +160,16 @@ def scale(data, transform=lambda x: x):
     # will hold max and min value information for each unit 
     data_ranges_per_unit = {}
     def update_ranges(tag, val):
-        v = val.where(xr.ufuncs.isfinite(val))
-        minval = xr.ufuncs.fabs(v).min().values
-        maxval = xr.ufuncs.fabs(v).max().values
-        if tag in data_ranges_per_unit:
-            minval = min(minval, data_ranges_per_unit[tag]["min"])
-            maxval = max(maxval, data_ranges_per_unit[tag]["max"])
-        data_ranges_per_unit[tag] = {"min": minval, "max": maxval}
+        valabs = xr.ufuncs.fabs(val) # absolute value
+        valfin = valabs.where(xr.ufuncs.isfinite(valabs), drop=True) # finite values (drops nan and inf)
+        valpos = valfin.where(valfin > 0.0, drop=True) # drop zeros
+        if valpos.size > 0:
+            minval = valpos.min().values
+            maxval = valpos.max().values
+            if tag in data_ranges_per_unit:
+                minval = min(minval, data_ranges_per_unit[tag]["min"])
+                maxval = max(maxval, data_ranges_per_unit[tag]["max"])
+            data_ranges_per_unit[tag] = {"min": minval, "max": maxval}
             
 
     # extract scaling factors from data for easier accessing
