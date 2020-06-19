@@ -6,7 +6,7 @@ We run the [Calliope Euro Model](https://github.com/timtroendle/euro-calliope) w
 
 ## Results
 
-The log outputs are separately linked for [*unscaled*](./analysis/unscaled.log), [*scaled*](./analysis/scaled.log) and [*gurobi*](./analysis/gurobiscaled.log). What follows is essentially an analysis of these files.
+The log outputs are separately linked for [*scaled*](./analysis/unscaled.log), [*unscaled*](./analysis/scaled.log) and [*gurobi*](./analysis/gurobiscaled.log). What follows is essentially an analysis of these files.
 
 ## Quick summary
 
@@ -21,7 +21,7 @@ It follows a summary of how much time was spent in which part of the optimizatio
 |Simplex | 2020 | 870 | 1552 |
 |||||
 |total| 13847 | 5462 | 7241 |
-|lost in restarts| 4650 | 0 | 700 |
+|lost in restarts| 4650 | 700 | 0 |
 
 All times are given in seconds. 
 - Preprocess entails everything Gurobi does before starting barrier, in particular removing redundant rows and cols in the constraint matrix (c.f. [seminal paper about lp preprocessing](https://link.springer.com/article/10.1007/BF01580428).
