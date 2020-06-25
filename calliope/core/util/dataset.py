@@ -153,15 +153,70 @@ def split_loc_techs(data_var, return_as="DataArray"):
         )
 
 
-def best_effort_factors(data_ranges_per_unit):
-    factors = {'const': 1} # cannot scale const
+def push_unit_factors(ranges):
+    def update(r, unit, fac):
+        if r['num'] == unit:
+            r['min'] *= fac
+            r['max'] *= fac
+        elif r['den'] == unit:
+            r['min'] /= fac
+            r['max'] /= fac
+        return r
 
-    unscaled = {k: v for k,v in data_ranges_per_unit.items() if v['num'] not in factors or v['den'] not in factors}
-    
-    #while len(unscaled):
-     #   pass        
-    
-    return factors
+    def improves_global(rng, unit, fac):
+        new_rng = [update(r.copy(), unit, fac) for r in rng]
+        oldcost = cost(rng)
+        newcost = cost(new_rng)
+        return newcost < oldcost
+
+    def update_unit(rng, unit, fac):
+        for r in rng:
+            update(r, unit, fac)
+        facs[unit] *= fac
+        return rng
+
+    def print_minmax(r):
+        print('{:20.8f} {:20.8f}'.format(r['min'], r['max']))
+
+    def cost(rng):
+        return max([r['max'] for r in rng]) / min([r['min'] for r in rng])
+
+    # Create variables
+    unitvarnames = [unit for unit in filter(
+        lambda u: u != 'const',
+        list(set(
+            list(map(lambda r: r['num'], ranges)) +
+            list(map(lambda r: r['den'], ranges))
+        )))
+    ]
+
+    facs = {v: 1 for v in unitvarnames}
+
+    rng = [r.copy() for r in ranges]
+    newcost = cost(rng)
+    while True:
+        for unit in unitvarnames:
+            fac = 1.01
+            while improves_global(rng, unit, fac):
+                rng = update_unit(rng, unit, fac)
+            fac = 0.99
+            while improves_global(rng, unit, fac):
+                rng = update_unit(rng, unit, fac)
+        oldcost = newcost
+        newcost = cost(rng)
+        if (oldcost <= newcost):
+            break
+        #print('impr: {}'.format(oldcost/newcost)) 
+
+    #pprint(facs)
+    #print('new ranges: cost {}'.format(cost(rng)))
+    #for r in rng:
+    #    print_minmax(r)
+    #print('old ranges: cost {}'.format(cost(ranges)))
+    #for r in ranges:
+    #    print_minmax(r)
+    return facs
+
     
     
 
@@ -241,7 +296,7 @@ def scale(data, transform=lambda x: x):
     for k,v in data_ranges_per_unit_scaled.items():
         print('{:20} {:<12.8f} {:<12.8f}'.format(k, v["min"], v["max"]))
 
-    factors = best_effort_factors(data_ranges_per_unit)
+    factors = push_unit_factors(list(data_ranges_per_unit.values()))
     print('\nSuggesting the following factors')
     for k,v in factors.items():
         print('{:12} {:<12.8f}'.format(k, v))
