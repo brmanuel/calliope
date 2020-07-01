@@ -6,6 +6,7 @@ import:  # Import other files from paths relative to this file, or absolute path
 
 model:
     name: Urban-scale example model
+    scale_type: 2 # 0 -> no scaling, 1 -> from file scale.yaml, 2 -> autoscale
 
     # What version of Calliope this model is intended for
     calliope_version: 0.6.5

@@ -23,7 +23,7 @@ from calliope.preprocess import checks
 from calliope.preprocess.util import split_loc_techs_transmission, concat_iterable
 from calliope.preprocess.time import add_time_dimension
 from calliope.preprocess.lookup import add_lookup_arrays
-from calliope.core.util.dataset import scale
+from calliope.core.util.dataset import scale, get_scale
 
 
 def build_model_data(model_run, debug=False):
@@ -78,13 +78,27 @@ def build_model_data(model_run, debug=False):
 
     # apply predefined scaling to all variables with a unit with specified scalin
 
-    # add scaling-relevant attributes to data 
-    if 'scale' in model_run:
+    # add scaling-relevant attributes to data
+    # add this option here. in order to specify it in .yaml file we need to add it to defaults as well...
+    # for the moment simply specify it here to change between ways of scaling
+    model_run['scale_type'] = 2
+    if 'scale_type' in model_run and model_run['scale_type'] == 1:
+        print('scale')
         data.attrs['scale'] = True
         #import pdb; pdb.set_trace()
         data['scale'] = xr.DataArray([v for k,v in model_run['scale'].items()], [('unit', [k for k,v in model_run['scale'].items()])])
         scale(data)
+    elif 'scale_type' in model_run and model_run['scale_type'] == 2:
+        print('autoscale')
+        data.attrs['scale'] = True
+        #import pdb; pdb.set_trace()
+        scaling_factors = get_scale(data, model_run['run']['solver'])
+        print('factors', scaling_factors)
+        data['scale'] = xr.DataArray([v for k,v in scaling_factors.items()], [('unit', [k for k,v in scaling_factors.items()])])
+        scale(data)
+        print('scaled')
     else:
+        print('unscaled')
         data.attrs['scale'] = False
                     
     
