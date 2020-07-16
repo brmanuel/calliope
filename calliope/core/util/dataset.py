@@ -234,7 +234,7 @@ def lp_unit_factors(ranges, solver):
     (b) And one variable r to be minimized 
     '''
     unitvars = [unit for unit in filter(
-        lambda u: u != '',
+        lambda u: u != 'const',
         list(set(
             list(map(lambda r: r['num'], ranges)) +
             list(map(lambda r: r['den'], ranges))
@@ -257,10 +257,10 @@ def lp_unit_factors(ranges, solver):
     '''
     model.bounds = ConstraintList()
     for r1, r2 in [(r1, r2) for r1 in ranges for r2 in ranges]:
-        num1 = model.x[r1['num']] if r1['num'] != '' else 0
-        den1 = model.x[r1['den']] if r1['den'] != '' else 0
-        num2 = model.x[r2['num']] if r2['num'] != '' else 0
-        den2 = model.x[r2['den']] if r2['den'] != '' else 0
+        num1 = model.x[r1['num']] if r1['num'] != 'const' else 0
+        den1 = model.x[r1['den']] if r1['den'] != 'const' else 0
+        num2 = model.x[r2['num']] if r2['num'] != 'const' else 0
+        den2 = model.x[r2['den']] if r2['den'] != 'const' else 0
         model.bounds.add(
             num1 - den1 + math.log(r1['max'], 2) - num2 + den2 - math.log(r2['min'], 2) <= model.r)
     
@@ -310,7 +310,7 @@ def get_scale(data, solver):
                 update_ranges(data_ranges_per_unit, 'power', 'const', elems)
             elif resource_unit == 'energy_per_area':
                 update_ranges(data_ranges_per_unit, 'power', 'area', elems)
-            elif resource_unit == 'energy_per_power':
+            elif resource_unit == 'energy_per_cap':
                 update_ranges(data_ranges_per_unit, 'power', 'const', elems)
             else:
                 assert(False and 'there shouldnt be a resource of this type')
@@ -381,7 +381,7 @@ def scale(data, transform=lambda x: x):
                 update_ranges(data_ranges_per_unit_scaled, num, den, data["resource"].loc[dict(loc_techs_finite_resource=res)])
             else:
                 # don't need to scale kWh/kW = h
-                assert(resource_unit == 'energy_per_power' and 'sanity check on my naming')
+                assert(resource_unit == 'energy_per_cap' and 'sanity check on my naming')
 
                 
     # print data ranges for inspection purposes
