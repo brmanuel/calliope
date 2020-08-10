@@ -225,7 +225,7 @@ def push_unit_factors(ranges):
 
 
 def lp_unit_factors(ranges, solver):
-    # Create a new pyomo model     
+    # Create a new pyomo model
     model = po.ConcreteModel()
 
     '''
@@ -269,10 +269,14 @@ def lp_unit_factors(ranges, solver):
 
     facs = {k: 2**model.x[k]() for k in unitvars}
     return facs
-    
 
-def get_scale(data, solver):
-    
+
+'''
+Iterate over all the nested data
+Retrieve the unit of each variable in the data using 'get_unit' function
+And return a dictionary mapping each unit to its min and max abs value
+'''
+def compute_unit_ranges(data):
     # will hold max and min value information for each unit 
     data_ranges_per_unit = {}
     def update_ranges(ranges, num, denom, val):
@@ -302,6 +306,7 @@ def get_scale(data, solver):
             if not unit is None:
                 update_ranges(data_ranges_per_unit, unit[0], unit[1], data[key])
 
+    # special case of resources. here we need to use the mapping resource_unit to get the unit of a resource
     if 'loc_techs_finite_resource' in data:
         for res in data.loc_techs_finite_resource:
             resource_unit = data.resource_unit.sel(loc_techs_finite_resource=res).values.item(0)
@@ -315,50 +320,42 @@ def get_scale(data, solver):
             else:
                 assert(False and 'there shouldnt be a resource of this type')
 
+    return data_ranges_per_unit
+    
+
+
+'''
+compute an auxiliary LP to get optimal scaling factors given the ranges of each unit and an lp solver
+'''
+def get_scale(data_ranges_per_unit, solver):
     # compute factors now
+    print('debug')
+    print(data_ranges_per_unit)
     factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver)
     return factors
 
-
+'''
+apply a scaling to the data
+the scaling factors are assumed to be stored as part of the data at data.scale
+'''
 def scale(data, transform=lambda x: x):
-
-    # will hold max and min value information for each unit 
-    data_ranges_per_unit = {}
-    data_ranges_per_unit_scaled = {}
-    def update_ranges(ranges, num, denom, val):
-        tag = '{}/{}'.format(num, denom)
-        valabs = xr.ufuncs.fabs(val) # absolute value
-        valfin = valabs.where(xr.ufuncs.isfinite(valabs), drop=True) # finite values (drops nan and inf)
-        valpos = valfin.where(valfin > 0.0, drop=True) # drop zeros
-        if valpos.size > 0:
-            minval = valpos.min().values
-            maxval = valpos.max().values
-            if tag in ranges:
-                minval = min(minval, ranges[tag]["min"])
-                maxval = max(maxval, ranges[tag]["max"])
-            ranges[tag] = {"num": num, "den": denom, "min": minval, "max": maxval}
-            
-
     # extract scaling factors from data for easier accessing
     factors = {data.scale.unit.values[i] : data.scale.values[i] for i in range(0, len(data.scale))}
+    factors['const'] = 1
     
     # TODO: need a better way to distinguish between costs and non-costs!
     for key, val in data.data_vars.items():
         if 'cost' in key.split('_'): # scale cost in all cost classes (also group constraints with costs)
             for i in range(0, len(data.costs)):
                 costclass = data.costs[i].values.item(0)
-                factor = get_cost_scaling_factor(key, costclass, factors)
+                factor = get_scaling_factor(factors, key, costclass)
                 if not factor is None:
-                    update_ranges(data_ranges_per_unit, factor[1], factor[2], data[key].loc[dict(costs=costclass)])
                     data[key].loc[dict(costs=costclass)] *= transform(factor[0])
-                    update_ranges(data_ranges_per_unit_scaled, factor[1], factor[2], data[key].loc[dict(costs=costclass)])
 
         else: # scale constraint
-            factor = get_scaling_factor(key, factors)
+            factor = get_scaling_factor(factors, key)
             if not factor is None:
-                update_ranges(data_ranges_per_unit, factor[1], factor[2], data[key])
                 data[key] = transform(factor[0]) * val
-                update_ranges(data_ranges_per_unit_scaled, factor[1], factor[2], data[key])
 
     # scale all resources according to respective unit
     # resources need to be handled specially because they can have units in
@@ -376,254 +373,15 @@ def scale(data, transform=lambda x: x):
                 elif resource_unit == 'energy_per_area':
                     factor = factors.get('power', 1)/factors.get('area', 1)
                     den = 'area'
-                update_ranges(data_ranges_per_unit, num, den, data["resource"].loc[dict(loc_techs_finite_resource=res)])
                 data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor)
-                update_ranges(data_ranges_per_unit_scaled, num, den, data["resource"].loc[dict(loc_techs_finite_resource=res)])
             else:
                 # don't need to scale kWh/kW = h
                 assert(resource_unit == 'energy_per_cap' and 'sanity check on my naming')
 
-                
-    # print data ranges for inspection purposes
-
-    print('\nUnit ranges before scaling')
-    print('{:20} {:12} {:12}'.format("unit", "min", "max"))
-    for k,v in data_ranges_per_unit.items():
-        print('{:20} {:<12.8f} {:<12.8f}'.format(k, v["min"], v["max"]))
-        
-    print('\nUnit ranges after scaling')
-    print('{:20} {:12} {:12}'.format("unit", "min", "max"))    
-    for k,v in data_ranges_per_unit_scaled.items():
-        print('{:20} {:<12.8f} {:<12.8f}'.format(k, v["min"], v["max"]))
-
-    factors = push_unit_factors(list(data_ranges_per_unit.values()))
-    print('\nSuggesting the following factors')
-    for k,v in factors.items():
-        print('{:12} {:<12.8f}'.format(k, v))
-        
-
-    print('\n')
+    print('done')
     return data
 
-
-
-def get_cost_scaling_factor(cost_name, cost_class, scaling_factors):
-    per_power = [
-        "cost_energy_cap",
-        "cost_resource_cap",
-        "cost_om_annual",
-        "cost_export",
-        "cost_om_con",
-        "cost_om_prod",
-        "cost_storage_cap"
-    ]
-    per_power_distance = [
-        "cost_energy_cap_per_distance"
-    ]
-    per_area = [
-        "cost_resource_area"
-    ]
-    cost = [
-        "cost_purchase_unit",
-        "cost",
-        "cost_var",
-        "cost_investment",
-        "group_cost_max",
-        "group_cost_min",
-        "group_cost_equals",
-        "group_cost_var_max",
-        "group_cost_var_min",
-        "group_cost_var_equals",
-        "group_cost_investment_max",
-        "group_cost_investment_min",
-        "group_cost_investment_equals"
-    ]
-    per_cost = [
-        "cost_om_annual_investment_fraction"
-    ]
-
-    fac = scaling_factors.get(cost_class, 1)
-    if cost_name in per_power:
-        return (
-            fac/scaling_factors.get("power", 1),
-            cost_class, "power"
-        )
-    elif cost_name in per_power_distance:
-        return (
-            fac/(scaling_factors.get("power", 1) * scaling_factors.get("distance", 1)),
-            cost_class, "power_distance"
-        )
-    elif cost_name in per_area:
-        return (
-            fac/scaling_factors.get("area", 1),
-            cost_class, "area"
-        )
-    elif cost_name in cost: 
-        return (
-            fac,
-            cost_class, "const"
-        )
-    elif cost_name in per_cost:
-        return (
-            1/fac,
-            "const", cost_class
-        )
-    else:
-        print("returning none for ", cost_name, cost_class)
-        return None
     
-
-def get_scaling_factor(variable_name, scaling_factors):
-    """
-    - in order to scale time we also would need to modify the timeseries data
-
-    # hour^-1
-    if variable_name in ["charge_rate", "energy_cap_per_storage_cap_min", "energy_cap_per_storage_cap_max", "storage_loss"]:
-        return units["per_hour"]
-    # fraction/hour
-    elif variable_name in ["energy_ramping"]:
-        return units["fraction_per_hour"]
-    # years
-    elif variable_name in ["lifetime"]:
-        return units["time"]
-
-    - scaling integers, floats and fractions doesn't make sense 
-    - is energy_cap_min/max/equals really kWh?
-    """
-    power = [
-        "resource_cap_equals",
-        "resource_cap_max",
-        "resource_cap_min",
-        "energy_cap_equals",
-        "energy_cap_equals_systemwide",
-        "energy_cap_max",
-        "energy_cap_max_systemwide",
-        "energy_cap_min",
-        "energy_cap_per_unit",
-        "export_cap",
-        "units_max_systemwide",
-        "units_equals_systemwide",
-        "energy_cap",
-        "resource_cap",
-        "storage_cap_per_unit",
-        "storage_cap_equals",
-        "storage_cap_min",
-        "storage_cap_max",
-        "carrier_prod_min",
-        "carrier_prod_max",
-        "carrier_prod_equals",
-        "carrier_con",
-        "carrier_prod",
-        "carrier_export",
-        "storage_cap",
-        "storage",
-        "resource_con",
-        "unmet_demand",
-        "unused_supply",
-    ]
-    distance_inv = [
-        "energy_eff_per_distance"
-    ]
-    distance = [
-        "distance"
-    ]
-    area = [
-        "resource_area_equals",
-        "resource_area_max",
-        "resource_area_min",
-        "available_area",
-        "resource_area"
-    ]
-    area_per_power = [
-        "resource_area_per_energy_cap"
-    ]
-    non_scalable = [
-        "units_min", # integer
-        "units_equals", # integer
-        "units_max", # integer
-        "lifetime", # years
-        "carrier_ratios", # fraction
-        "parasitic_eff", # fraction
-        "energy_eff", # fraction
-        "energy_cap_min_use", # fraction
-        "resource_min_use", # fraction
-        "resource_eff", # fraction
-        "resource_scale", # fraction
-        "storage_discharge_depth", # fraction
-        "storage_initial", # fraction
-        "cost_depreciation_rate", # fraction
-        "interest_rate", # fraction
-        "energy_ramping", # fraction / hour
-        "storage_loss", # fraction/hour
-        "resource_cap_equals_energy_cap", # boolean
-        "force_asynchronous_prod_con", # boolean
-        "force_resource", # boolean
-        "one_way", # boolean 
-        "energy_con", # boolean
-        "energy_prod", # boolean
-        "energy_cap_scale", # float
-        "energy_cap_per_storage_cap_min", # hour -1
-        "energy_cap_per_storage_cap_max", # hour -1
-        "energy_cap_per_storage_cap_equals", # hour -1
-        "charge_rate", # hour -1
-        "purchased", # boolean
-        "units", #integer
-        "operating_units", # integer
-        "max_demand_timesteps", # timestamps
-        "resource_unit", # N/A
-        "objective_cost_class", # N/A
-        "lookup_loc_techs_export",# N/A
-        "lookup_loc_techs",# N/A
-        "lookup_loc_techs_conversion_plus",# N/A
-        "lookup_loc_techs_conversion",# N/A
-        "lookup_remotes",# N/A
-        "lookup_loc_carriers",# N/A
-        "lookup_loc_techs_area",# N/A
-        "lookup_primary_loc_tech_carriers_in",# N/A
-        "lookup_primary_loc_tech_carriers_out",# N/A
-        "resource_unit",# N/A
-        "inheritance",# N/A
-        "scale",# N/A
-        "timestep_resolution",# N/A
-        "timestep_weights",# N/A
-        "export_carrier",# N/A
-        "colors",# N/A
-        "names",# N/A
-        "loc_coordinates",# N/A
-    ]
-
-    #CONSTRAINTS
-    # kW
-    if variable_name in power:
-        return (
-            scaling_factors.get("power", 1),
-            "power", "const"
-        )
-    elif variable_name in distance_inv:
-        return (
-            1/scaling_factors.get("distance", 1),
-            "const", "distance"
-        )
-    elif variable_name in distance:
-        return (
-            scaling_factors.get("distance", 1),
-            "distance", "const"
-        )
-    elif variable_name in area:
-        return (
-            scaling_factors.get("area", 1),
-            "area", "const"
-        )
-    elif variable_name in area_per_power:
-        return (
-            scaling_factors.get("area", 1) / scaling_factors.get("power", 1),
-            "area", "power"
-        )
-    elif variable_name in non_scalable:
-        return None
-    else:
-        print("returning none for variable ", variable_name)
-        return None
 
 
 
@@ -765,6 +523,7 @@ cost = [
     "group_cost_investment_min",
     "group_cost_investment_equals"
 ]
+
 per_cost = [
     "cost_om_annual_investment_fraction"
 ]
@@ -780,12 +539,12 @@ def get_unit(variable_name, cost_class=''):
         return ("area", "const")
     elif variable_name in area_per_power:
         return ("area", "power")
-    elif variable_name in non_scalable:
-        return ("const", "const")
+    #elif variable_name in non_scalable:
+    #    return ("const", "const")
     elif variable_name in cost_per_power:
         return (cost_class, "power")
     elif variable_name in cost_per_power_distance:
-        return (cost_cost_class, "power_distance")
+        return (cost_class, "power_distance")
     elif variable_name in cost_per_area:
         return (cost_class, "area")
     elif variable_name in cost: 
@@ -796,3 +555,16 @@ def get_unit(variable_name, cost_class=''):
         print("returning none for variable ", variable_name)
         return None
 
+
+    
+def get_scaling_factor(scaling_factors, variable_name, cost_class=''):
+
+    unit = get_unit(variable_name, cost_class)
+    if unit is None:
+        return None
+    else:
+        assert(unit[0] in scaling_factors and unit[1] in scaling_factors and 'wot the heck')
+        return (
+            scaling_factors[unit[0]]/scaling_factors[unit[1]],
+            unit[0], unit[1]
+        )

@@ -21,6 +21,7 @@ run:
         horizon: null
         use_cap_results: false
     save_logs: null  # Directory into which to save logs and temporary files. Also turns on symbolic solver labels in the Pyomo backend
+    scale: 0 # the type of scaling applied to the input data. (0) = no scaling, (1) = apply scaling as defined in scale.yaml, (2) = apply automatic scaling
     solver_io: null  # What method the Pyomo backend should use to communicate with the solver
     solver_options: null  # A list of options, which are passed on to the chosen solver, and are therefore solver-dependent
     solver: cbc  # Which solver to use

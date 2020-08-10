@@ -23,7 +23,7 @@ from calliope.preprocess import checks
 from calliope.preprocess.util import split_loc_techs_transmission, concat_iterable
 from calliope.preprocess.time import add_time_dimension
 from calliope.preprocess.lookup import add_lookup_arrays
-from calliope.core.util.dataset import scale, get_scale
+from calliope.core.util.dataset import scale, get_scale, compute_unit_ranges
 
 
 def build_model_data(model_run, debug=False):
@@ -75,32 +75,66 @@ def build_model_data(model_run, debug=False):
 
     data = add_time_dimension(data, model_run)
 
-
-    # apply predefined scaling to all variables with a unit with specified scalin
-
-    # add scaling-relevant attributes to data
-    # add this option here. in order to specify it in .yaml file we need to add it to defaults as well...
-    # for the moment simply specify it here to change between ways of scaling
-    model_run['scale_type'] = 2
-    if 'scale_type' in model_run and model_run['scale_type'] == 1:
+    # apply scaling as specified in scale.yaml
+    ranges_start = compute_unit_ranges(data)
+    
+    if model_run['run']['scale'] == 1 and 'scale' in model_run:
         print('scale')
         data.attrs['scale'] = True
-        #import pdb; pdb.set_trace()
-        data['scale'] = xr.DataArray([v for k,v in model_run['scale'].items()], [('unit', [k for k,v in model_run['scale'].items()])])
+        data['scale'] = xr.DataArray(
+            [v for v in model_run['scale'].values()],
+            [('unit', [k for k in model_run['scale'].keys()])]
+        )
         scale(data)
-    elif 'scale_type' in model_run and model_run['scale_type'] == 2:
+    # apply autoscaling
+    elif model_run['run']['scale'] == 2:
         print('autoscale')
         data.attrs['scale'] = True
-        #import pdb; pdb.set_trace()
-        scaling_factors = get_scale(data, model_run['run']['solver'])
+        scaling_factors = get_scale(ranges_start, model_run['run']['solver'])
         print('factors', scaling_factors)
-        data['scale'] = xr.DataArray([v for k,v in scaling_factors.items()], [('unit', [k for k,v in scaling_factors.items()])])
+        data['scale'] = xr.DataArray(
+            [v for v in scaling_factors.values()],
+            [('unit', [k for k in scaling_factors.keys()])]
+        )
         scale(data)
-        print('scaled')
+    # don't do any scaling
     else:
         print('unscaled')
         data.attrs['scale'] = False
+
+    
+    ranges_end = compute_unit_ranges(data)
                     
+    # print data ranges for inspection purposes
+    for ranges, word in [(ranges_start, "before"), (ranges_end, "after")]:
+        print('\nUnit ranges {} scaling'.format(word))
+        print('{:20} {:12} {:12}'.format("unit", "min", "max"))
+        for k,v in ranges.items():
+            print('{:20} {:<12.8f} {:<12.8f}'.format(k, v["min"], v["max"]))
+
+        print('cost: {}'.format(
+            max(map(lambda x: x['max'], ranges.values()))/
+            min(map(lambda x: x['min'], ranges.values()))
+        ))    
+
+    if data.attrs['scale']:
+        f = {data.scale.unit.values[i] : data.scale.values[i] for i in range(0, len(data.scale))}
+        f['const'] = 1
+        print('\nScaled should be')
+        print('{:20} {:12} {:12}'.format("unit", "min", "max"))
+        for k,v in ranges_start.items():
+            print('{:20} {:<12.8f} {:<12.8f}'.format(k, v["min"]*f[v["num"]]/f[v["den"]], v["max"]*f[v["num"]]/f[v["den"]]))
+
+        print('cost: {}'.format(
+            max(map(lambda x: x['max']*f[x["num"]]/f[x["den"]], ranges_start.values()))/
+            min(map(lambda x: x['min']*f[x["num"]]/f[x["den"]], ranges_start.values()))
+        ))    
+
+    
+
+    print('\n')
+
+        
     
     # Carrier information uses DataArray indexing in the function, so we merge
     # these directly into the main xarray Dataset
