@@ -159,71 +159,20 @@ def split_loc_techs(data_var, return_as="DataArray"):
         )
 
 
-def push_unit_factors(ranges):
-    def update(r, unit, fac):
-        if r['num'] == unit:
-            r['min'] *= fac
-            r['max'] *= fac
-        elif r['den'] == unit:
-            r['min'] /= fac
-            r['max'] /= fac
-        return r
+'''
+Solve an auxiliary LP to find optimal scaling factors for given unit ranges:
+Given a set of units {u1, u2, ..., un}
+and the range of absolute values of each unit 
+{ u1 -> [l1, r1], ..., un -> [ln, rn]}
+we want to find scaling factors f1, ..., fn that minimize
+max(fi*ri)/min(fj*rj)
 
-    def improves_global(rng, unit, fac):
-        new_rng = [update(r.copy(), unit, fac) for r in rng]
-        oldcost = cost(rng)
-        newcost = cost(new_rng)
-        return newcost < oldcost
+A difficulty arises because each unit is a fraction of two base units: ui = bj/bk
+and we need to retain consistency between scaling factors. 
+Thus we optimize the scaling factors Fj of base units bj and compute factors of "composite" units, i.e.
 
-    def update_unit(rng, unit, fac):
-        for r in rng:
-            update(r, unit, fac)
-        facs[unit] *= fac
-        return rng
-
-    def print_minmax(r):
-        print('{:20.8f} {:20.8f}'.format(r['min'], r['max']))
-
-    def cost(rng):
-        return max([r['max'] for r in rng]) / min([r['min'] for r in rng])
-
-    # Create variables
-    unitvarnames = [unit for unit in filter(
-        lambda u: u != 'const',
-        list(set(
-            list(map(lambda r: r['num'], ranges)) +
-            list(map(lambda r: r['den'], ranges))
-        )))
-    ]
-
-    facs = {v: 1 for v in unitvarnames}
-
-    rng = [r.copy() for r in ranges]
-    newcost = cost(rng)
-    while True:
-        for unit in unitvarnames:
-            fac = 1.01
-            while improves_global(rng, unit, fac):
-                rng = update_unit(rng, unit, fac)
-            fac = 0.99
-            while improves_global(rng, unit, fac):
-                rng = update_unit(rng, unit, fac)
-        oldcost = newcost
-        newcost = cost(rng)
-        if (oldcost <= newcost):
-            break
-        #print('impr: {}'.format(oldcost/newcost)) 
-
-    #pprint(facs)
-    #print('new ranges: cost {}'.format(cost(rng)))
-    #for r in rng:
-    #    print_minmax(r)
-    #print('old ranges: cost {}'.format(cost(ranges)))
-    #for r in ranges:
-    #    print_minmax(r)
-    return facs
-
-
+ui = bj/bk --> fi = Fj/Fk
+'''
 def lp_unit_factors(ranges, solver):
     # Create a new pyomo model
     model = po.ConcreteModel()
