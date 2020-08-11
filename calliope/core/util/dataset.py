@@ -363,22 +363,34 @@ power = [
     "storage",
     "resource_con",
     "unmet_demand",
-    "unused_supply",
+    "unused_supply",    
+    "group_carrier_prod_min", 
+    "group_carrier_prod_max", 
+    "group_carrier_prod_equals",
+    "group_energy_cap_min", 
+    "group_energy_cap_max", 
+    "group_energy_cap_equals", 
 ]
 
 distance_inv = [
     "energy_eff_per_distance"
 ]
+
 distance = [
     "distance"
 ]
+
 area = [
     "resource_area_equals",
     "resource_area_max",
     "resource_area_min",
     "available_area",
     "resource_area"
+    "group_resource_area_min",
+    "group_resource_area_max",
+    "group_resource_area_equals",
 ]
+
 area_per_power = [
     "resource_area_per_energy_cap"
 ]
@@ -408,6 +420,25 @@ non_scalable = [
     "charge_rate", # hour -1
     "units", #integer
     "operating_units", # integer
+    "group_demand_share_min", # fraction
+    "group_demand_share_max", # fraction
+    "group_demand_share_equals", # fraction
+    "group_demand_share_per_timestep_min", # fraction
+    "group_demand_share_per_timestep_max", # fraction
+    "group_demand_share_per_timestep_equals", # fraction
+    "group_demand_share_per_timestep_decision", # fraction
+    "group_carrier_prod_share_min", # fraction
+    "group_carrier_prod_share_max", # fraction
+    "group_carrier_prod_share_equals", # fraction
+    "group_carrier_prod_share_per_timestep_min", # fraction
+    "group_carrier_prod_share_per_timestep_max", # fraction
+    "group_carrier_prod_share_per_timestep_equals", # fraction
+    "group_net_import_share_min", # fraction
+    "group_net_import_share_max", # fraction
+    "group_net_import_share_equals", # fraction
+    "group_energy_cap_share_min", # fraction
+    "group_energy_cap_share_max", # fraction
+    "group_energy_cap_share_equals", # fraction
 ]
 
 non_numeric = [
@@ -470,7 +501,16 @@ cost = [
     "group_cost_var_equals",
     "group_cost_investment_max",
     "group_cost_investment_min",
-    "group_cost_investment_equals"
+    "group_cost_investment_equals"    
+    "group_cost_max", 
+    "group_cost_min", 
+    "group_cost_equals", 
+    "group_cost_var_max",
+    "group_cost_var_min",
+    "group_cost_var_equals",
+    "group_cost_investment_max",
+    "group_cost_investment_min",
+    "group_cost_investment_equals",
 ]
 
 per_cost = [
@@ -488,8 +528,6 @@ def get_unit(variable_name, cost_class=''):
         return ("area", "const")
     elif variable_name in area_per_power:
         return ("area", "power")
-    #elif variable_name in non_scalable:
-    #    return ("const", "const")
     elif variable_name in cost_per_power:
         return (cost_class, "power")
     elif variable_name in cost_per_power_distance:
@@ -500,6 +538,8 @@ def get_unit(variable_name, cost_class=''):
         return (cost_class, "const")
     elif variable_name in per_cost:
         return ("const", cost_class)
+    elif variable_name in non_scalable or variable_name in non_numeric:
+        return None
     else:
         print("returning none for variable ", variable_name)
         return None

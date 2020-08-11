@@ -25,6 +25,7 @@ from calliope.preprocess.time import add_time_dimension
 from calliope.preprocess.lookup import add_lookup_arrays
 from calliope.core.util.dataset import scale, get_scale, compute_unit_ranges
 
+from pprint import pprint
 
 def build_model_data(model_run, debug=False):
     """
@@ -120,6 +121,7 @@ def build_model_data(model_run, debug=False):
     if data.attrs['scale']:
         f = {data.scale.unit.values[i] : data.scale.values[i] for i in range(0, len(data.scale))}
         f['const'] = 1
+        pprint(f)
         print('\nScaled should be')
         print('{:20} {:12} {:12}'.format("unit", "min", "max"))
         for k,v in ranges_start.items():
