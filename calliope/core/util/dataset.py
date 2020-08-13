@@ -248,12 +248,12 @@ def compute_unit_ranges(data):
                 costclass = data.costs[i].values.item(0)
                 unit = get_unit(key, costclass)
                 if not unit is None:
-                    update_ranges(data_ranges_per_unit, unit[0], unit[1], data[key].loc[dict(costs=costclass)])
+                    update_ranges(data_ranges_per_unit, unit[0], unit[1], val.loc[dict(costs=costclass)])
 
         else: 
             unit = get_unit(key)
             if not unit is None:
-                update_ranges(data_ranges_per_unit, unit[0], unit[1], data[key])
+                update_ranges(data_ranges_per_unit, unit[0], unit[1], val)
 
     # special case of resources. here we need to use the mapping resource_unit to get the unit of a resource
     if 'loc_techs_finite_resource' in data:
@@ -265,7 +265,8 @@ def compute_unit_ranges(data):
             elif resource_unit == 'energy_per_area':
                 update_ranges(data_ranges_per_unit, 'power', 'area', elems)
             elif resource_unit == 'energy_per_cap':
-                update_ranges(data_ranges_per_unit, 'power', 'const', elems)
+                # this has unit hours, which we don't report!
+                pass
             else:
                 assert(False and 'there shouldnt be a resource of this type')
 
@@ -278,8 +279,6 @@ compute an auxiliary LP to get optimal scaling factors given the ranges of each 
 '''
 def get_scale(data_ranges_per_unit, solver):
     # compute factors now
-    print('debug')
-    print(data_ranges_per_unit)
     factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver)
     return factors
 
@@ -299,12 +298,12 @@ def scale(data, transform=lambda x: x):
                 costclass = data.costs[i].values.item(0)
                 factor = get_scaling_factor(factors, key, costclass)
                 if not factor is None:
-                    data[key].loc[dict(costs=costclass)] *= transform(factor[0])
+                    data[key].loc[dict(costs=costclass)] *= transform(factor)
 
         else: # scale constraint
             factor = get_scaling_factor(factors, key)
             if not factor is None:
-                data[key] = transform(factor[0]) * val
+                data[key] = transform(factor) * val
 
     # scale all resources according to respective unit
     # resources need to be handled specially because they can have units in
@@ -315,13 +314,10 @@ def scale(data, transform=lambda x: x):
             factor = 1
             if resource_unit in ['energy', 'energy_per_area']:
                 # do some scaling
-                num = 'power'
                 if resource_unit == 'energy':
                     factor = factors.get('power', 1)
-                    den = 'const'
                 elif resource_unit == 'energy_per_area':
                     factor = factors.get('power', 1)/factors.get('area', 1)
-                    den = 'area'
                 data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor)
             else:
                 # don't need to scale kWh/kW = h
@@ -333,214 +329,220 @@ def scale(data, transform=lambda x: x):
     
 
 
+units_to_names = {
+    'power': [
+        "resource_cap_equals",
+        "resource_cap_max",
+        "resource_cap_min",
+        "energy_cap_equals",
+        "energy_cap_equals_systemwide",
+        "energy_cap_max",
+        "energy_cap_max_systemwide",
+        "energy_cap_min",
+        "energy_cap_per_unit",
+        "export_cap",
+        "units_max_systemwide",
+        "units_equals_systemwide",
+        "energy_cap",
+        "resource_cap",
+        "storage_cap_per_unit",
+        "storage_cap_equals",
+        "storage_cap_min",
+        "storage_cap_max",
+        "carrier_prod_min",
+        "carrier_prod_max",
+        "carrier_prod_equals",
+        "carrier_con",
+        "carrier_prod",
+        "carrier_export",
+        "storage_cap",
+        "storage",
+        "resource_con",
+        "unmet_demand",
+        "unused_supply",
+        "group_carrier_prod_min", 
+        "group_carrier_prod_max", 
+        "group_carrier_prod_equals",
+        "group_energy_cap_min", 
+        "group_energy_cap_max", 
+        "group_energy_cap_equals", 
+    ],
 
-power = [
-    "resource_cap_equals",
-    "resource_cap_max",
-    "resource_cap_min",
-    "energy_cap_equals",
-    "energy_cap_equals_systemwide",
-    "energy_cap_max",
-    "energy_cap_max_systemwide",
-    "energy_cap_min",
-    "energy_cap_per_unit",
-    "export_cap",
-    "units_max_systemwide",
-    "units_equals_systemwide",
-    "energy_cap",
-    "resource_cap",
-    "storage_cap_per_unit",
-    "storage_cap_equals",
-    "storage_cap_min",
-    "storage_cap_max",
-    "carrier_prod_min",
-    "carrier_prod_max",
-    "carrier_prod_equals",
-    "carrier_con",
-    "carrier_prod",
-    "carrier_export",
-    "storage_cap",
-    "storage",
-    "resource_con",
-    "unmet_demand",
-    "unused_supply",    
-    "group_carrier_prod_min", 
-    "group_carrier_prod_max", 
-    "group_carrier_prod_equals",
-    "group_energy_cap_min", 
-    "group_energy_cap_max", 
-    "group_energy_cap_equals", 
-]
+    'distance_inv': [
+        "energy_eff_per_distance"
+    ],
 
-distance_inv = [
-    "energy_eff_per_distance"
-]
+    'distance': [
+        "distance"
+    ],
 
-distance = [
-    "distance"
-]
+    'area': [
+        "resource_area_equals",
+        "resource_area_max",
+        "resource_area_min",
+        "available_area",
+        "resource_area",
+        "group_resource_area_min",
+        "group_resource_area_max",
+        "group_resource_area_equals",
+    ],
 
-area = [
-    "resource_area_equals",
-    "resource_area_max",
-    "resource_area_min",
-    "available_area",
-    "resource_area"
-    "group_resource_area_min",
-    "group_resource_area_max",
-    "group_resource_area_equals",
-]
+    'area_per_power': [
+        "resource_area_per_energy_cap"
+    ],
 
-area_per_power = [
-    "resource_area_per_energy_cap"
-]
+    'non_scalable': [
+        "units_min", # integer
+        "units_equals", # integer
+        "units_max", # integer
+        "lifetime", # years
+        "carrier_ratios", # fraction
+        "parasitic_eff", # fraction
+        "energy_eff", # fraction
+        "energy_cap_min_use", # fraction
+        "resource_min_use", # fraction
+        "resource_eff", # fraction
+        "resource_scale", # fraction
+        "storage_discharge_depth", # fraction
+        "storage_initial", # fraction
+        "cost_depreciation_rate", # fraction
+        "interest_rate", # fraction
+        "energy_ramping", # fraction / hour
+        "storage_loss", # fraction/hour
+        "energy_cap_scale", # float
+        "energy_cap_per_storage_cap_min", # hour -1
+        "energy_cap_per_storage_cap_max", # hour -1
+        "energy_cap_per_storage_cap_equals", # hour -1
+        "charge_rate", # hour -1
+        "units", #integer
+        "operating_units", # integer
+        "group_demand_share_min", # fraction
+        "group_demand_share_max", # fraction
+        "group_demand_share_equals", # fraction
+        "group_demand_share_per_timestep_min", # fraction
+        "group_demand_share_per_timestep_max", # fraction
+        "group_demand_share_per_timestep_equals", # fraction
+        "group_demand_share_per_timestep_decision", # fraction
+        "group_carrier_prod_share_min", # fraction
+        "group_carrier_prod_share_max", # fraction
+        "group_carrier_prod_share_equals", # fraction
+        "group_carrier_prod_share_per_timestep_min", # fraction
+        "group_carrier_prod_share_per_timestep_max", # fraction
+        "group_carrier_prod_share_per_timestep_equals", # fraction
+        "group_net_import_share_min", # fraction
+        "group_net_import_share_max", # fraction
+        "group_net_import_share_equals", # fraction
+        "group_energy_cap_share_min", # fraction
+        "group_energy_cap_share_max", # fraction
+        "group_energy_cap_share_equals", # fraction
+    ],
 
-non_scalable = [
-    "units_min", # integer
-    "units_equals", # integer
-    "units_max", # integer
-    "lifetime", # years
-    "carrier_ratios", # fraction
-    "parasitic_eff", # fraction
-    "energy_eff", # fraction
-    "energy_cap_min_use", # fraction
-    "resource_min_use", # fraction
-    "resource_eff", # fraction
-    "resource_scale", # fraction
-    "storage_discharge_depth", # fraction
-    "storage_initial", # fraction
-    "cost_depreciation_rate", # fraction
-    "interest_rate", # fraction
-    "energy_ramping", # fraction / hour
-    "storage_loss", # fraction/hour
-    "energy_cap_scale", # float
-    "energy_cap_per_storage_cap_min", # hour -1
-    "energy_cap_per_storage_cap_max", # hour -1
-    "energy_cap_per_storage_cap_equals", # hour -1
-    "charge_rate", # hour -1
-    "units", #integer
-    "operating_units", # integer
-    "group_demand_share_min", # fraction
-    "group_demand_share_max", # fraction
-    "group_demand_share_equals", # fraction
-    "group_demand_share_per_timestep_min", # fraction
-    "group_demand_share_per_timestep_max", # fraction
-    "group_demand_share_per_timestep_equals", # fraction
-    "group_demand_share_per_timestep_decision", # fraction
-    "group_carrier_prod_share_min", # fraction
-    "group_carrier_prod_share_max", # fraction
-    "group_carrier_prod_share_equals", # fraction
-    "group_carrier_prod_share_per_timestep_min", # fraction
-    "group_carrier_prod_share_per_timestep_max", # fraction
-    "group_carrier_prod_share_per_timestep_equals", # fraction
-    "group_net_import_share_min", # fraction
-    "group_net_import_share_max", # fraction
-    "group_net_import_share_equals", # fraction
-    "group_energy_cap_share_min", # fraction
-    "group_energy_cap_share_max", # fraction
-    "group_energy_cap_share_equals", # fraction
-]
+    'non_numeric': [
+        "resource_cap_equals_energy_cap", # boolean
+        "force_asynchronous_prod_con", # boolean
+        "force_resource", # boolean
+        "one_way", # boolean 
+        "energy_con", # boolean
+        "energy_prod", # boolean
+        "purchased", # boolean
+        "max_demand_timesteps", # timestamps
+        "resource_unit", # N/A
+        "objective_cost_class", # N/A
+        "lookup_loc_techs_export",# N/A
+        "lookup_loc_techs",# N/A
+        "lookup_loc_techs_conversion_plus",# N/A
+        "lookup_loc_techs_conversion",# N/A
+        "lookup_remotes",# N/A
+        "lookup_loc_carriers",# N/A
+        "lookup_loc_techs_area",# N/A
+        "lookup_primary_loc_tech_carriers_in",# N/A
+        "lookup_primary_loc_tech_carriers_out",# N/A
+        "resource_unit",# N/A
+        "inheritance",# N/A
+        "scale",# N/A
+        "timestep_resolution",# N/A
+        "timestep_weights",# N/A
+        "export_carrier",# N/A
+        "colors",# N/A
+        "names",# N/A
+        "loc_coordinates",# N/A
+    ],
+    
+    'cost_per_power': [
+        "cost_energy_cap",
+        "cost_resource_cap",
+        "cost_om_annual",
+        "cost_export",
+        "cost_om_con",
+        "cost_om_prod",
+        "cost_storage_cap"
+    ],
 
-non_numeric = [
-    "resource_cap_equals_energy_cap", # boolean
-    "force_asynchronous_prod_con", # boolean
-    "force_resource", # boolean
-    "one_way", # boolean 
-    "energy_con", # boolean
-    "energy_prod", # boolean
-    "purchased", # boolean
-    "max_demand_timesteps", # timestamps
-    "resource_unit", # N/A
-    "objective_cost_class", # N/A
-    "lookup_loc_techs_export",# N/A
-    "lookup_loc_techs",# N/A
-    "lookup_loc_techs_conversion_plus",# N/A
-    "lookup_loc_techs_conversion",# N/A
-    "lookup_remotes",# N/A
-    "lookup_loc_carriers",# N/A
-    "lookup_loc_techs_area",# N/A
-    "lookup_primary_loc_tech_carriers_in",# N/A
-    "lookup_primary_loc_tech_carriers_out",# N/A
-    "resource_unit",# N/A
-    "inheritance",# N/A
-    "scale",# N/A
-    "timestep_resolution",# N/A
-    "timestep_weights",# N/A
-    "export_carrier",# N/A
-    "colors",# N/A
-    "names",# N/A
-    "loc_coordinates",# N/A
-]
+    'cost_per_power_distance': [
+        "cost_energy_cap_per_distance"
+    ],
 
-cost_per_power = [
-    "cost_energy_cap",
-    "cost_resource_cap",
-    "cost_om_annual",
-    "cost_export",
-    "cost_om_con",
-    "cost_om_prod",
-    "cost_storage_cap"
-]
-cost_per_power_distance = [
-    "cost_energy_cap_per_distance"
-]
-cost_per_area = [
-    "cost_resource_area"
-]
+    'cost_per_area': [
+        "cost_resource_area"
+    ],
 
-cost = [
-    "cost_purchase_unit",
-    "cost",
-    "cost_var",
-    "cost_investment",
-    "group_cost_max",
-    "group_cost_min",
-    "group_cost_equals",
-    "group_cost_var_max",
-    "group_cost_var_min",
-    "group_cost_var_equals",
-    "group_cost_investment_max",
-    "group_cost_investment_min",
-    "group_cost_investment_equals"    
-    "group_cost_max", 
-    "group_cost_min", 
-    "group_cost_equals", 
-    "group_cost_var_max",
-    "group_cost_var_min",
-    "group_cost_var_equals",
-    "group_cost_investment_max",
-    "group_cost_investment_min",
-    "group_cost_investment_equals",
-]
+    'cost': [
+        "cost_purchase_unit",
+        "cost",
+        "cost_var",
+        "cost_investment",
+        "group_cost_max",
+        "group_cost_min",
+        "group_cost_equals",
+        "group_cost_var_max",
+        "group_cost_var_min",
+        "group_cost_var_equals",
+        "group_cost_investment_max",
+        "group_cost_investment_min",
+        "group_cost_investment_equals"
+        "group_cost_max", 
+        "group_cost_min", 
+        "group_cost_equals", 
+        "group_cost_var_max",
+        "group_cost_var_min",
+        "group_cost_var_equals",
+        "group_cost_investment_max",
+        "group_cost_investment_min",
+        "group_cost_investment_equals",
+    ],
 
-per_cost = [
-    "cost_om_annual_investment_fraction"
-]
+    'per_cost': [
+        "cost_om_annual_investment_fraction"
+    ]
+}
+
 
 def get_unit(variable_name, cost_class=''):    
-    if variable_name in power:
+    if variable_name in units_to_names['power']:
         return ("power", "const")
-    elif variable_name in distance_inv:
+    elif variable_name in units_to_names['distance_inv']:
         return ("const", "distance")
-    elif variable_name in distance:
+    elif variable_name in units_to_names['distance']:
         return ("distance", "const")
-    elif variable_name in area:
+    elif variable_name in units_to_names['area']:
         return ("area", "const")
-    elif variable_name in area_per_power:
+    elif variable_name in units_to_names['area_per_power']:
         return ("area", "power")
-    elif variable_name in cost_per_power:
+    elif variable_name in units_to_names['cost_per_power']:
         return (cost_class, "power")
-    elif variable_name in cost_per_power_distance:
+    elif variable_name in units_to_names['cost_per_power_distance']:
         return (cost_class, "power_distance")
-    elif variable_name in cost_per_area:
+    elif variable_name in units_to_names['cost_per_area']:
         return (cost_class, "area")
-    elif variable_name in cost: 
+    elif variable_name in units_to_names['cost']: 
         return (cost_class, "const")
-    elif variable_name in per_cost:
+    elif variable_name in units_to_names['per_cost']:
         return ("const", cost_class)
-    elif variable_name in non_scalable or variable_name in non_numeric:
+    elif variable_name in units_to_names['non_scalable'] or variable_name in units_to_names['non_numeric']:
         return None
     else:
+        # this is intended for "resource" but for any other variables this shouldn't happen
+        # if this happens for a variable other than resource, this variable needs to be added to the units_to_names dict
         print("returning none for variable ", variable_name)
         return None
 
@@ -553,7 +555,4 @@ def get_scaling_factor(scaling_factors, variable_name, cost_class=''):
         return None
     else:
         assert(unit[0] in scaling_factors and unit[1] in scaling_factors and 'wot the heck')
-        return (
-            scaling_factors[unit[0]]/scaling_factors[unit[1]],
-            unit[0], unit[1]
-        )
+        return scaling_factors[unit[0]]/scaling_factors[unit[1]]

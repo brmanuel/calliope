@@ -103,7 +103,6 @@ def build_model_data(model_run, debug=False):
         print('unscaled')
         data.attrs['scale'] = False
 
-    
     ranges_end = compute_unit_ranges(data)
                     
     # print data ranges for inspection purposes
@@ -118,6 +117,9 @@ def build_model_data(model_run, debug=False):
             min(map(lambda x: x['min'], ranges.values()))
         ))    
 
+    '''    
+    # check if computed ranges are correct.. for debugging only
+ 
     if data.attrs['scale']:
         f = {data.scale.unit.values[i] : data.scale.values[i] for i in range(0, len(data.scale))}
         f['const'] = 1
@@ -131,7 +133,7 @@ def build_model_data(model_run, debug=False):
             max(map(lambda x: x['max']*f[x["num"]]/f[x["den"]], ranges_start.values()))/
             min(map(lambda x: x['min']*f[x["num"]]/f[x["den"]], ranges_start.values()))
         ))    
-
+    '''
     
 
     print('\n')
