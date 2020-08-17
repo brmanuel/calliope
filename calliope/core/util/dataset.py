@@ -216,7 +216,11 @@ def lp_unit_factors(ranges, solver):
     solver = SolverFactory(solver)
     solver.solve(model)
 
-    facs = {k: 2**model.x[k]() for k in unitvars}
+    '''
+    we want all factors to be an exponent of 2 in order not to tamper with precision of user values (c.f. tomlin - on scaling linear programming problems)
+    we achieve this by rounding the optimal values we just computed to integers before exponentiating them
+    '''
+    facs = {k: 2**math.floor(model.x[k]()) for k in unitvars}
     return facs
 
 
@@ -500,7 +504,7 @@ units_to_names = {
         "group_cost_investment_max",
         "group_cost_investment_min",
         "group_cost_investment_equals"
-        "group_cost_max", 
+        "group_cost_max",
         "group_cost_min", 
         "group_cost_equals", 
         "group_cost_var_max",
