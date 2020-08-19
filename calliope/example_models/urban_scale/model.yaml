@@ -6,23 +6,16 @@ import:  # Import other files from paths relative to this file, or absolute path
 
 model:
     name: Urban-scale example model
-    scale_type: 2 # 0 -> no scaling, 1 -> from file scale.yaml, 2 -> autoscale
-
     # What version of Calliope this model is intended for
     calliope_version: 0.6.5
-
     # Time series data path - can either be a path relative to this file, or an absolute path
     timeseries_data_path: 'timeseries_data'
-
     subset_time: ['2005-07-01', '2005-07-02']  # Subset of timesteps
 
 run:
+    scale: 2 # 0 -> no scaling, 1 -> from file scale.yaml, 2 -> autoscale
     mode: plan  # Choices: plan, operate
-
     solver: cbc
-
     ensure_feasibility: true # Switching on unmet demand
-
     bigM: 1e6 # setting the scale of unmet demand, which cannot be too high, otherwise the optimisation will not converge
-
     objective_options.cost_class: {monetary: 1}

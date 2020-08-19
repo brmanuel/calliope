@@ -492,6 +492,7 @@ units_to_names = {
 
     'cost': [
         "cost_purchase_unit",
+        "cost_purchase"
         "cost",
         "cost_var",
         "cost_investment",

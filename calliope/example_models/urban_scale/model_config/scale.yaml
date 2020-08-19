@@ -1,7 +1,5 @@
 scale:
-    monetary: 0.000001
-    co2: 10
-    power: 0.001
-    energy: 0.001
-    distance: 1
-    area: 0.001
+    distance: 1.0
+    area: 0.125
+    power: 0.5
+    monetary: 1.0
