@@ -46,8 +46,7 @@ def postprocess_model_results(results, model_data, timings):
     log_time(logger, timings, "post_process_start", comment="Postprocessing: started")
 
 
-    
-    # TODO: this should be done before metrics are computed, maybe even in a different file...?
+
     if model_data.attrs['scale']:
         scale(model_data, lambda x: 1/x)
         results['scale'] = model_data['scale']
