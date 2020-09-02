@@ -481,7 +481,7 @@ units_to_names = {
         "cost_om_prod",
         "cost_storage_cap"
     ],
-
+    
     'cost_per_power_distance': [
         "cost_energy_cap_per_distance"
     ],
@@ -559,5 +559,9 @@ def get_scaling_factor(scaling_factors, variable_name, cost_class=''):
     if unit is None:
         return None
     else:
+        # FIXME: this assert will fail for cost_energy_cap_per_distance but so far we haven't encountered this
+        # the simple fix is treating it as a special case in the scaling
+        # but with the current implementation we cannot incorporate this variable in the optimization problem because the optimization assumes all units are a fraction of exactly 2 basic units u1/u2...
+        # cost_energy_cap_per_distance is cost/(energy*distance)...  
         assert(unit[0] in scaling_factors and unit[1] in scaling_factors and 'wot the heck')
         return scaling_factors[unit[0]]/scaling_factors[unit[1]]

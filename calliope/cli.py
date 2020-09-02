@@ -317,7 +317,7 @@ def run(
 
             print_end_time(start_time)
             if fail_when_infeasible and termination != "optimal":
-                raise BackendError("Problem is infeasible.")
+                raise BackendError('Problem is {}.'.format(termination))
 
 
 @cli.command(
