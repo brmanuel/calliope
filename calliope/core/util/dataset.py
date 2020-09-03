@@ -212,7 +212,24 @@ def lp_unit_factors(ranges, solver):
         den2 = model.x[r2['den']] if r2['den'] != 'const' else 0
         model.bounds.add(
             num1 - den1 + math.log(r1['max'], 2) - num2 + den2 - math.log(r2['min'], 2) <= model.r)
+
+
+    '''
+    ensure that absolute values in model are not scaled below a certain threshold.
+    this generally limits the objective function -> need to find good tradeoff.
+    maybe too large absolute values are similarly bad, but limiting from both sides may lead to an infeasible model. 
+    '''
+    lower_limit = 1e-4
+    model.lower_limits = ConstraintList()
+    for r in ranges:
+        num = model.x[r['num']] if r['num'] != 'const' else 0
+        den = model.x[r['den']] if r['den'] != 'const' else 0
+        model.lower_limits.add(
+            num - den >= math.log(lower_limit/r['min'], 2)
+        )
     
+
+        
     solver = SolverFactory(solver)
     solver.solve(model)
 
