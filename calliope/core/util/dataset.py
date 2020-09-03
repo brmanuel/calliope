@@ -219,7 +219,7 @@ def lp_unit_factors(ranges, solver):
     this generally limits the objective function -> need to find good tradeoff.
     maybe too large absolute values are similarly bad, but limiting from both sides may lead to an infeasible model. 
     '''
-    lower_limit = 1e-4
+    lower_limit = 1e-7
     model.lower_limits = ConstraintList()
     for r in ranges:
         num = model.x[r['num']] if r['num'] != 'const' else 0
