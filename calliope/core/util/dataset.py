@@ -214,12 +214,22 @@ def lp_unit_factors(ranges, solver):
             num1 - den1 + math.log(r1['max'], 2) - num2 + den2 - math.log(r2['min'], 2) <= model.r)
 
 
+    solver = SolverFactory(solver)
+    solver.solve(model)
+    temp_facs = {k: 2**model.x[k]() for k in unitvars}
+    maxs = [r['max'] * temp_facs.get(r['num'], 1) / temp_facs.get(r['den'], 1) for r in ranges]
+    mins = [r['min'] * temp_facs.get(r['num'], 1) / temp_facs.get(r['den'], 1) for r in ranges]
+    best_range = max(maxs)/min(mins)
+    print('best range: {}'.format(best_range))
+    limit = math.ceil(math.log10(best_range))/2
+
     '''
     ensure that absolute values in model are not scaled below a certain threshold.
     this generally limits the objective function -> need to find good tradeoff.
     maybe too large absolute values are similarly bad, but limiting from both sides may lead to an infeasible model. 
     '''
-    lower_limit = 1e-7
+    lower_limit = max(1e-6, 10**(-limit))
+    print('setting limit {}'.format(lower_limit))
     model.lower_limits = ConstraintList()
     for r in ranges:
         num = model.x[r['num']] if r['num'] != 'const' else 0
@@ -228,10 +238,7 @@ def lp_unit_factors(ranges, solver):
             num - den >= math.log(lower_limit/r['min'], 2)
         )
     
-
-        
-    solver = SolverFactory(solver)
-    solver.solve(model)
+    solver.solve(model)    
 
     '''
     we want all factors to be an exponent of 2 in order not to tamper with precision of user values (c.f. tomlin - on scaling linear programming problems)

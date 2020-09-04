@@ -87,6 +87,10 @@ def build_model_data(model_run, debug=False):
             [('unit', [k for k in model_run['scale'].keys()])]
         )
         scale(data)
+        # scale bigM, not sure if correct, thus commented out for discussion
+        #bigM_factor = model_run['scale']['monetary']/model_run['scale']['power']
+        #model_run['run']['bigM'] *= bigM_factor
+        #print('scaled bigM with {} to {}'.format(bigM_factor, model_run['run']['bigM']))
     # apply autoscaling
     elif model_run['run']['scale'] == 2:
         print('autoscale')
@@ -97,7 +101,10 @@ def build_model_data(model_run, debug=False):
             [v for v in scaling_factors.values()],
             [('unit', [k for k in scaling_factors.keys()])]
         )
-        scale(data)
+        # scale bigM, not sure if correct, thus commented out for discussion
+        #bigM_factor = scaling_factors['monetary']/scaling_factors['power']
+        #model_run['run']['bigM'] *= bigM_factor
+        #print('scaled bigM with {} to {}'.format(bigM_factor, model_run['run']['bigM']))
     # don't do any scaling
     else:
         print('unscaled')
