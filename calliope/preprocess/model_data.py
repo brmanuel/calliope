@@ -101,6 +101,7 @@ def build_model_data(model_run, debug=False):
             [v for v in scaling_factors.values()],
             [('unit', [k for k in scaling_factors.keys()])]
         )
+        scale(data)
         # scale bigM, not sure if correct, thus commented out for discussion
         #bigM_factor = scaling_factors['monetary']/scaling_factors['power']
         #model_run['run']['bigM'] *= bigM_factor
