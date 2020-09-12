@@ -95,7 +95,17 @@ def build_model_data(model_run, debug=False):
     elif model_run['run']['scale'] == 2:
         print('autoscale')
         data.attrs['scale'] = True
-        scaling_factors = get_scale(ranges_start, model_run['run']['solver'])
+        if 'solver_options' in model_run['run']:
+            feasibilityTol = model_run['run']['solver_options'].get(
+                'FeasibilityTol', 1e-6
+            )
+            optimalityTol = model_run['run']['solver_options'].get(
+                'OptimalityTol', 1e-6
+            )
+            tol = max(feasibilityTol, optimalityTol)
+        else:
+            tol = 1e-6
+        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], tol)
         print('factors', scaling_factors)
         data['scale'] = xr.DataArray(
             [v for v in scaling_factors.values()],

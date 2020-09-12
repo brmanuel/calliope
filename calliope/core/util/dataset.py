@@ -173,7 +173,7 @@ Thus we optimize the scaling factors Fj of base units bj and compute factors of 
 
 ui = bj/bk --> fi = Fj/Fk
 '''
-def lp_unit_factors(ranges, solver):
+def lp_unit_factors(ranges, solver, solver_tolerance):
     # Create a new pyomo model
     model = po.ConcreteModel()
 
@@ -226,9 +226,12 @@ def lp_unit_factors(ranges, solver):
     '''
     ensure that absolute values in model are not scaled below a certain threshold.
     this generally limits the objective function -> need to find good tradeoff.
-    maybe too large absolute values are similarly bad, but limiting from both sides may lead to an infeasible model. 
+
+    Practical Guidelines for Solving Difficult Linear Programs suggests we should ensure that user input consists of values larger than the solver tolerances tol, thus limit values to 10*tol.
+
+    note: our coefficient rounding below may lead to values 2 times smaller than the set limit, thus limit by c*tol for c >= 2 (10 might be exagerated) 
     '''
-    lower_limit = max(1e-6, 10**(-limit))
+    lower_limit = max(10*solver_tolerance, 10**(-limit))
     print('setting limit {}'.format(lower_limit))
     model.lower_limits = ConstraintList()
     for r in ranges:
