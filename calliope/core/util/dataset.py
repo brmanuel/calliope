@@ -308,9 +308,9 @@ def compute_unit_ranges(data):
 '''
 compute an auxiliary LP to get optimal scaling factors given the ranges of each unit and an lp solver
 '''
-def get_scale(data_ranges_per_unit, solver):
+def get_scale(data_ranges_per_unit, solver, tolerance):
     # compute factors now
-    factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver)
+    factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver, tolerance)
     return factors
 
 '''

@@ -95,7 +95,7 @@ def build_model_data(model_run, debug=False):
     elif model_run['run']['scale'] == 2:
         print('autoscale')
         data.attrs['scale'] = True
-        if 'solver_options' in model_run['run']:
+        if 'solver_options' in model_run['run'] and model_run['run']['solver_options'] is not None:
             feasibilityTol = model_run['run']['solver_options'].get(
                 'FeasibilityTol', 1e-6
             )
