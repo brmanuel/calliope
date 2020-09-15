@@ -174,7 +174,6 @@ Thus we optimize the scaling factors Fj of base units bj and compute factors of 
 ui = bj/bk --> fi = Fj/Fk
 '''
 def lp_unit_factors(ranges, solver, solver_tolerance):
-    # Create a new pyomo model
     model = po.ConcreteModel()
 
     '''
@@ -309,7 +308,6 @@ def compute_unit_ranges(data):
 compute an auxiliary LP to get optimal scaling factors given the ranges of each unit and an lp solver
 '''
 def get_scale(data_ranges_per_unit, solver, tolerance):
-    # compute factors now
     factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver, tolerance)
     return factors
 
