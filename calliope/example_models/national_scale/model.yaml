@@ -18,7 +18,8 @@ model:
 # Run configuration: all settings that affect how the built model is run
 run:
     solver: cbc
-
+    scale: 2
+    scaling_tolerance_threshold: 20
     ensure_feasibility: true  # Switches on the "unmet demand" constraint
 
     bigM: 1e6  # Sets the scale of unmet demand, which cannot be too high, otherwise the optimisation will not converge

@@ -105,7 +105,8 @@ def build_model_data(model_run, debug=False):
             tol = max(feasibilityTol, optimalityTol)
         else:
             tol = 1e-6
-        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], tol)
+        stt_factor = model_run['run']['scaling_tolerance_threshold']
+        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], stt_factor*tol)
         print('factors', scaling_factors)
         data['scale'] = xr.DataArray(
             [v for v in scaling_factors.values()],

@@ -226,11 +226,11 @@ def lp_unit_factors(ranges, solver, solver_tolerance):
     ensure that absolute values in model are not scaled below a certain threshold.
     this generally limits the objective function -> need to find good tradeoff.
 
-    Practical Guidelines for Solving Difficult Linear Programs suggests we should ensure that user input consists of values larger than the solver tolerances tol, thus limit values to 10*tol.
+    Practical Guidelines for Solving Difficult Linear Programs suggests we should ensure that user input consists of values larger than the solver tolerances tol, thus limit values to scaling_tolerance_threshold*tol. Or center the values around 0 if this gives an even higher threshold.
 
-    note: our coefficient rounding below may lead to values 2 times smaller than the set limit, thus limit by c*tol for c >= 2 (10 might be exagerated) 
+    note: our coefficient rounding below may lead to values 2 times smaller than the set limit, thus limit by 2*scaling_tolerance_threshold*tol 
     '''
-    lower_limit = max(10*solver_tolerance, 10**(-limit))
+    lower_limit = max(2*solver_tolerance, 2*10**(-limit))
     print('setting limit {}'.format(lower_limit))
     model.lower_limits = ConstraintList()
     for r in ranges:
