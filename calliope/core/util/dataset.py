@@ -12,7 +12,7 @@ import pandas as pd
 import math
 import pyomo.core as po
 from pyomo.opt import SolverFactory 
-from pyomo.environ import RangeSet, ConstraintList
+import pyomo.environ
 
 
 def get_loc_techs(loc_techs, tech=None, loc=None):
@@ -159,6 +159,20 @@ def split_loc_techs(data_var, return_as="DataArray"):
         )
 
 
+
+def bound_rule(model, num1, den1, v1, num2, den2, v2):
+    def g(acc):
+        return model.x[acc] if acc != 'const' else 0
+    
+    return g(num1) - g(den1) + v1 - g(num2) + g(den2) - v2 <= model.r
+
+def lower_limits_rule(model, num1, den1, v):
+    def g(acc):
+        return model.x[acc] if acc != 'const' else 0
+    
+    return g(num1) - g(den1) >= v
+
+
 '''
 Solve an auxiliary LP to find optimal scaling factors for given unit ranges:
 Given a set of units {u1, u2, ..., un}
@@ -173,7 +187,7 @@ Thus we optimize the scaling factors Fj of base units bj and compute factors of 
 
 ui = bj/bk --> fi = Fj/Fk
 '''
-def lp_unit_factors(ranges, solver, solver_tolerance):
+def lp_unit_factors(ranges, solver_name, solver_io, solver_tolerance):
     model = po.ConcreteModel()
 
     '''
@@ -203,19 +217,17 @@ def lp_unit_factors(ranges, solver, solver_tolerance):
     for all pairs of units u{i/j}, u{k/l}
     to find max_{{i/j}, {k/l} \in units}(si*sl/sj*sk (u_hi){i/j} / (u_lo){k/l})
     '''
-    model.bounds = ConstraintList()
-    for r1, r2 in [(r1, r2) for r1 in ranges for r2 in ranges]:
-        num1 = model.x[r1['num']] if r1['num'] != 'const' else 0
-        den1 = model.x[r1['den']] if r1['den'] != 'const' else 0
-        num2 = model.x[r2['num']] if r2['num'] != 'const' else 0
-        den2 = model.x[r2['den']] if r2['den'] != 'const' else 0
-        model.bounds.add(
-            num1 - den1 + math.log(r1['max'], 2) - num2 + den2 - math.log(r2['min'], 2) <= model.r)
+    ranges_wo_const = [rng for rng in ranges if rng['num'] != 'const' or rng['den'] != 'const']
+    boundvals = [
+        (r1['num'], r1['den'], math.log(r1['max'], 10), r2['num'], r2['den'], math.log(r2['min'], 10))
+        for r1 in ranges for r2 in ranges
+    ]
+    
+    model.bounds = po.Constraint(boundvals, rule=bound_rule)
 
-
-    solver = SolverFactory(solver)
+    solver = SolverFactory(solver_name, solver_io=solver_io)
     solver.solve(model)
-    temp_facs = {k: 2**model.x[k]() for k in unitvars}
+    temp_facs = {k: 10**model.x[k]() for k in unitvars}
     maxs = [r['max'] * temp_facs.get(r['num'], 1) / temp_facs.get(r['den'], 1) for r in ranges]
     mins = [r['min'] * temp_facs.get(r['num'], 1) / temp_facs.get(r['den'], 1) for r in ranges]
     best_range = max(maxs)/min(mins)
@@ -230,23 +242,45 @@ def lp_unit_factors(ranges, solver, solver_tolerance):
 
     note: our coefficient rounding below may lead to values 2 times smaller than the set limit, thus limit by 2*scaling_tolerance_threshold*tol 
     '''
-    lower_limit = max(2*solver_tolerance, 2*10**(-limit))
+    lower_limit = max(10*solver_tolerance, 10*10**(-limit))
     print('setting limit {}'.format(lower_limit))
-    model.lower_limits = ConstraintList()
-    for r in ranges:
-        num = model.x[r['num']] if r['num'] != 'const' else 0
-        den = model.x[r['den']] if r['den'] != 'const' else 0
-        model.lower_limits.add(
-            num - den >= math.log(lower_limit/r['min'], 2)
-        )
-    
-    solver.solve(model)    
+
+    '''
+    limit_vals = [
+        (r['num'], r['den'], math.log(lower_limit/r['min'], 2))
+        for r in ranges
+    ]
+    model.lower_limits = po.Constraint(limit_vals, rule=lower_limits_rule)
+    '''
+
+    violating_mins = set()
+    while True:
+        changed = False
+        factors = {k: 10**model.x[k]() for k in unitvars}
+        for rng in ranges_wo_const: 
+            num = factors[rng['num']] if rng['num'] != 'const' else 1
+            den = factors[rng['den']] if rng['den'] != 'const' else 1
+            if rng['min']*num/den < lower_limit/10:
+                print('violating {}/{}: {} -> add constr'.format(rng['num'], rng['den'], rng['min']*num/den))
+                violating_mins.add((rng['num'], rng['den'], math.log(lower_limit/rng['min'], 10)))
+                changed = True
+            
+        if not changed:
+            break
+                   
+        if not model.component('lower_limits') is None:
+            model.del_component(model.lower_limits)
+            model.del_component(model.lower_limits_index)
+                   
+        model.add_component('lower_limits', po.Constraint(list(violating_mins), rule=lower_limits_rule))
+
+        solver.solve(model)    
 
     '''
     we want all factors to be an exponent of 2 in order not to tamper with precision of user values (c.f. tomlin - on scaling linear programming problems)
     we achieve this by rounding the optimal values we just computed to integers before exponentiating them
     '''
-    facs = {k: 2**math.floor(model.x[k]()) for k in unitvars}
+    facs = {k: 10**math.floor(model.x[k]()) for k in unitvars}
     return facs
 
 
@@ -296,7 +330,8 @@ def compute_unit_ranges(data):
                 update_ranges(data_ranges_per_unit, 'power', 'area', elems)
             elif resource_unit == 'energy_per_cap':
                 # this has unit hours, which we don't report!
-                pass
+                # new: we report this as const because we cannot scale it and stay consistent but we still want to consider it in optimization
+                update_ranges(data_ranges_per_unit, 'const', 'const', elems)
             else:
                 assert(False and 'there shouldnt be a resource of this type')
 
@@ -307,8 +342,8 @@ def compute_unit_ranges(data):
 '''
 compute an auxiliary LP to get optimal scaling factors given the ranges of each unit and an lp solver
 '''
-def get_scale(data_ranges_per_unit, solver, tolerance):
-    factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver, tolerance)
+def get_scale(data_ranges_per_unit, solver, solver_io, tolerance):
+    factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver, solver_io, tolerance)
     return factors
 
 '''
@@ -568,7 +603,9 @@ def get_unit(variable_name, cost_class=''):
         return (cost_class, "const")
     elif variable_name in units_to_names['per_cost']:
         return ("const", cost_class)
-    elif variable_name in units_to_names['non_scalable'] or variable_name in units_to_names['non_numeric']:
+    elif variable_name in units_to_names['non_scalable']:
+        return ("const", "const")
+    elif variable_name in units_to_names['non_numeric']:
         return None
     else:
         # this is intended for "resource" but for any other variables this shouldn't happen

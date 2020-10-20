@@ -78,6 +78,19 @@ def build_model_data(model_run, debug=False):
 
     # apply scaling as specified in scale.yaml
     ranges_start = compute_unit_ranges(data)
+
+
+    
+    if 'solver_options' in model_run['run'] and model_run['run']['solver_options'] is not None:
+        feasibilityTol = model_run['run']['solver_options'].get(
+            'FeasibilityTol', 1e-6
+        )
+        optimalityTol = model_run['run']['solver_options'].get(
+            'OptimalityTol', 1e-6
+        )
+        tol = max(feasibilityTol, optimalityTol)
+    else:
+        tol = 1e-6
     
     if model_run['run']['scale'] == 1 and 'scale' in model_run:
         print('scale')
@@ -95,18 +108,8 @@ def build_model_data(model_run, debug=False):
     elif model_run['run']['scale'] == 2:
         print('autoscale')
         data.attrs['scale'] = True
-        if 'solver_options' in model_run['run'] and model_run['run']['solver_options'] is not None:
-            feasibilityTol = model_run['run']['solver_options'].get(
-                'FeasibilityTol', 1e-6
-            )
-            optimalityTol = model_run['run']['solver_options'].get(
-                'OptimalityTol', 1e-6
-            )
-            tol = max(feasibilityTol, optimalityTol)
-        else:
-            tol = 1e-6
         stt_factor = model_run['run']['scaling_tolerance_threshold']
-        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], stt_factor*tol)
+        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], model_run['run'].get('solver_io', None), stt_factor*tol)
         print('factors', scaling_factors)
         data['scale'] = xr.DataArray(
             [v for v in scaling_factors.values()],
@@ -135,6 +138,10 @@ def build_model_data(model_run, debug=False):
             max(map(lambda x: x['max'], ranges.values()))/
             min(map(lambda x: x['min'], ranges.values()))
         ))    
+
+    for rng in ranges_end.values():
+        if rng['min'] < tol:
+            print('Warning: unit {}/{} has min value {}.\nThis is below solver tolerance {} and may lead to numerical issues.\nConsider changing scaling strategy or solver tolerances.'.format(rng['num'], rng['den'], rng['min'], tol))
 
     '''    
     # check if computed ranges are correct.. for debugging only

@@ -17,7 +17,8 @@ model:
 
 # Run configuration: all settings that affect how the built model is run
 run:
-    solver: cbc
+    solver: gurobi
+    solver_io: python
     scale: 2
     scaling_tolerance_threshold: 20
     ensure_feasibility: true  # Switches on the "unmet demand" constraint
