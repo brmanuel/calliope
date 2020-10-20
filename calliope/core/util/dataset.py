@@ -284,6 +284,80 @@ def lp_unit_factors(ranges, solver_name, solver_io, solver_tolerance):
     return facs
 
 
+
+def bound_rule_lower(model, num, den, v):
+    def g(acc):
+        return model.x[acc] if acc != 'const' else 0
+    
+    return g(num) - g(den) + v >= 1-model.r
+
+
+def bound_rule_upper(model, num, den, v):
+    def g(acc):
+        return model.x[acc] if acc != 'const' else 0
+    
+    return g(num) - g(den) + v <= 1+model.r
+
+
+def lp_unit_factors_balanced(ranges, solver_name, solver_io, solver_tolerance):
+    model = po.ConcreteModel()
+
+    '''
+    variables
+    (a) We create one variable for the log of the scaling factor of each unit
+    (b) And one variable r to be minimized 
+    '''
+    unitvars = [unit for unit in filter(
+        lambda u: u != 'const',
+        list(set(
+            list(map(lambda r: r['num'], ranges)) +
+            list(map(lambda r: r['den'], ranges))
+        )))
+    ]
+
+    model.x = po.Var(unitvars, domain=po.Reals)
+    model.r = po.Var(domain=po.Reals)
+
+    '''
+    set objective to minimize r
+    '''
+    model.cost = po.Objective(expr = model.r)
+    
+    '''
+    Constraints:
+    limit si - sj + (u_hi){i/j} - sk + sl - (u_lo){k/l} <= r 
+    for all pairs of units u{i/j}, u{k/l}
+    to find max_{{i/j}, {k/l} \in units}(si*sl/sj*sk (u_hi){i/j} / (u_lo){k/l})
+    '''    
+    boundvals_lower = [
+        (r['num'], r['den'], math.log(r['min'], 2))
+        for r in ranges 
+    ]
+
+    boundvals_upper = [
+        (r['num'], r['den'], math.log(r['max'], 2))
+         for r in ranges
+    ]
+    
+    model.bounds_lower = po.Constraint(boundvals_lower, rule=bound_rule_lower)
+    model.bounds_upper = po.Constraint(boundvals_upper, rule=bound_rule_upper)
+
+    #model.pprint()
+
+    
+    solver = SolverFactory(solver_name, solver_io=solver_io)
+    solver.solve(model)
+    print('opt: {}'.format(model.cost()))
+
+    '''
+    we want all factors to be an exponent of 2 in order not to tamper with precision of user values (c.f. tomlin - on scaling linear programming problems)
+    we achieve this by rounding the optimal values we just computed to integers before exponentiating them
+    '''
+    facs = {k: 2**math.floor(model.x[k]()) for k in unitvars}
+    return facs
+
+
+
 '''
 Iterate over all the nested data
 Retrieve the unit of each variable in the data using 'get_unit' function
@@ -331,7 +405,7 @@ def compute_unit_ranges(data):
             elif resource_unit == 'energy_per_cap':
                 # this has unit hours, which we don't report!
                 # new: we report this as const because we cannot scale it and stay consistent but we still want to consider it in optimization
-                update_ranges(data_ranges_per_unit, 'const', 'const', elems)
+                update_ranges(data_ranges_per_unit, 'energy', 'power', elems)
             else:
                 assert(False and 'there shouldnt be a resource of this type')
 
@@ -343,7 +417,7 @@ def compute_unit_ranges(data):
 compute an auxiliary LP to get optimal scaling factors given the ranges of each unit and an lp solver
 '''
 def get_scale(data_ranges_per_unit, solver, solver_io, tolerance):
-    factors = lp_unit_factors(list(data_ranges_per_unit.values()), solver, solver_io, tolerance)
+    factors = lp_unit_factors_balanced(list(data_ranges_per_unit.values()), solver, solver_io, tolerance)
     return factors
 
 '''
@@ -376,16 +450,17 @@ def scale(data, transform=lambda x: x):
         for res in data.loc_techs_finite_resource:
             resource_unit = data.resource_unit.sel(loc_techs_finite_resource=res).values.item(0)
             factor = 1
-            if resource_unit in ['energy', 'energy_per_area']:
+            if resource_unit in ['energy', 'energy_per_area', 'energy_per_cap']:
                 # do some scaling
                 if resource_unit == 'energy':
                     factor = factors.get('power', 1)
                 elif resource_unit == 'energy_per_area':
                     factor = factors.get('power', 1)/factors.get('area', 1)
+                else:
+                    factor = factors.get('energy', 1)/factors.get('power', 1)
                 data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor)
             else:
-                # don't need to scale kWh/kW = h
-                assert(resource_unit == 'energy_per_cap' and 'sanity check on my naming')
+                assert(False and 'sanity check on my naming failed')
 
     print('done')
     return data
@@ -409,10 +484,6 @@ units_to_names = {
         "units_equals_systemwide",
         "energy_cap",
         "resource_cap",
-        "storage_cap_per_unit",
-        "storage_cap_equals",
-        "storage_cap_min",
-        "storage_cap_max",
         "carrier_prod_min",
         "carrier_prod_max",
         "carrier_prod_equals",
@@ -432,6 +503,13 @@ units_to_names = {
         "group_energy_cap_equals", 
     ],
 
+    'energy': [
+        "storage_cap_equals",
+        "storage_cap_min",
+        "storage_cap_max",
+        "storage_cap_per_unit",        
+    ],
+    
     'distance_inv': [
         "energy_eff_per_distance"
     ],
@@ -455,6 +533,15 @@ units_to_names = {
         "resource_area_per_energy_cap"
     ],
 
+    'power_per_energy': [
+        "energy_ramping", # fraction / hour
+        "storage_loss", # fraction/hour
+        "energy_cap_per_storage_cap_min", # hour -1
+        "energy_cap_per_storage_cap_max", # hour -1
+        "energy_cap_per_storage_cap_equals", # hour -1
+        "charge_rate", # hour -1
+    ],
+    
     'non_scalable': [
         "units_min", # integer
         "units_equals", # integer
@@ -471,13 +558,7 @@ units_to_names = {
         "storage_initial", # fraction
         "cost_depreciation_rate", # fraction
         "interest_rate", # fraction
-        "energy_ramping", # fraction / hour
-        "storage_loss", # fraction/hour
         "energy_cap_scale", # float
-        "energy_cap_per_storage_cap_min", # hour -1
-        "energy_cap_per_storage_cap_max", # hour -1
-        "energy_cap_per_storage_cap_equals", # hour -1
-        "charge_rate", # hour -1
         "units", #integer
         "operating_units", # integer
         "group_demand_share_min", # fraction
@@ -536,10 +617,13 @@ units_to_names = {
         "cost_energy_cap",
         "cost_resource_cap",
         "cost_om_annual",
+    ],
+
+    'cost_per_energy': [
         "cost_export",
         "cost_om_con",
         "cost_om_prod",
-        "cost_storage_cap"
+        "cost_storage_cap"        
     ],
     
     'cost_per_power_distance': [
@@ -585,6 +669,8 @@ units_to_names = {
 def get_unit(variable_name, cost_class=''):    
     if variable_name in units_to_names['power']:
         return ("power", "const")
+    elif variable_name in units_to_names['energy']:
+        return ("energy", "const")
     elif variable_name in units_to_names['distance_inv']:
         return ("const", "distance")
     elif variable_name in units_to_names['distance']:
@@ -593,8 +679,12 @@ def get_unit(variable_name, cost_class=''):
         return ("area", "const")
     elif variable_name in units_to_names['area_per_power']:
         return ("area", "power")
+    elif variable_name in units_to_names['power_per_energy']:
+        return ("power", "energy")
     elif variable_name in units_to_names['cost_per_power']:
         return (cost_class, "power")
+    elif variable_name in units_to_names['cost_per_energy']:
+        return (cost_class, "energy")
     elif variable_name in units_to_names['cost_per_power_distance']:
         return (cost_class, "power_distance")
     elif variable_name in units_to_names['cost_per_area']:
