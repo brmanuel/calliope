@@ -285,21 +285,28 @@ def lp_unit_factors(ranges, solver_name, solver_io, solver_tolerance):
 
 
 
-def bound_rule_lower(model, num, den, v):
+    
+
+
+def lp_unit_factors_balanced(ranges, solver_name, solver_io, center, r_bound):
+    
+
     def g(acc):
         return model.x[acc] if acc != 'const' else 0
-    
-    return g(num) - g(den) + v >= 1-model.r
 
+    def bound_rule_lower(model, num, den, v, center):        
+        return g(num) - g(den) + v >= center-model.r
 
-def bound_rule_upper(model, num, den, v):
-    def g(acc):
-        return model.x[acc] if acc != 'const' else 0
-    
-    return g(num) - g(den) + v <= 1+model.r
+    def bound_rule_upper(model, num, den, v, center):
+        return g(num) - g(den) + v <= center+model.r
 
+    # anti rules are for experimentation purposes only
+    def anti_lower(model, num, den, v, center):
+        return g(num) - g(den) + v <= -r_bound    
 
-def lp_unit_factors_balanced(ranges, solver_name, solver_io, solver_tolerance):
+    def anti_upper(model, num, den, v, center):
+        return g(num) - g(den) + v >= r_bound
+
     model = po.ConcreteModel()
 
     '''
@@ -322,32 +329,40 @@ def lp_unit_factors_balanced(ranges, solver_name, solver_io, solver_tolerance):
     set objective to minimize r
     '''
     model.cost = po.Objective(expr = model.r)
-    
+
     '''
     Constraints:
-    limit si - sj + (u_hi){i/j} - sk + sl - (u_lo){k/l} <= r 
-    for all pairs of units u{i/j}, u{k/l}
-    to find max_{{i/j}, {k/l} \in units}(si*sl/sj*sk (u_hi){i/j} / (u_lo){k/l})
+    limit si - sj + (u_hi){i/j} <= center + r
+          si - sj + (u_lo){i/j} >= center - r
+    for all units u{i/j}. Then u scaled with si/sj will be between 2^{center-r} and 2^{center+r} 
     '''    
+    ranges_wo_const = [rng for rng in ranges if rng['num'] != 'const' or rng['den'] != 'const']
+
     boundvals_lower = [
-        (r['num'], r['den'], math.log(r['min'], 2))
-        for r in ranges 
+        (r['num'], r['den'], math.log(r['min'], 2), center)
+        for r in ranges_wo_const 
     ]
 
     boundvals_upper = [
-        (r['num'], r['den'], math.log(r['max'], 2))
-         for r in ranges
+        (r['num'], r['den'], math.log(r['max'], 2), center)
+         for r in ranges_wo_const
     ]
     
     model.bounds_lower = po.Constraint(boundvals_lower, rule=bound_rule_lower)
     model.bounds_upper = po.Constraint(boundvals_upper, rule=bound_rule_upper)
 
-    #model.pprint()
+    model.anti_bounds_lower = po.Constraint(boundvals_lower, rule=anti_lower)
+    model.anti_bounds_upper = po.Constraint(boundvals_upper, rule=anti_upper)
 
+    #model.pprint()
+    print('Scaling into [2^({}-r), 2^({}+r)]\nr >= {}'.format(
+        center,center,r_bound
+    ))
     
     solver = SolverFactory(solver_name, solver_io=solver_io)
     solver.solve(model)
-    print('opt: {}'.format(model.cost()))
+
+    print('Achieved r = {}'.format(model.cost()))
 
     '''
     we want all factors to be an exponent of 2 in order not to tamper with precision of user values (c.f. tomlin - on scaling linear programming problems)
@@ -405,7 +420,7 @@ def compute_unit_ranges(data):
             elif resource_unit == 'energy_per_cap':
                 # this has unit hours, which we don't report!
                 # new: we report this as const because we cannot scale it and stay consistent but we still want to consider it in optimization
-                update_ranges(data_ranges_per_unit, 'energy', 'power', elems)
+                update_ranges(data_ranges_per_unit, 'const', 'const', elems)
             else:
                 assert(False and 'there shouldnt be a resource of this type')
 
@@ -416,8 +431,8 @@ def compute_unit_ranges(data):
 '''
 compute an auxiliary LP to get optimal scaling factors given the ranges of each unit and an lp solver
 '''
-def get_scale(data_ranges_per_unit, solver, solver_io, tolerance):
-    factors = lp_unit_factors_balanced(list(data_ranges_per_unit.values()), solver, solver_io, tolerance)
+def get_scale(data_ranges_per_unit, solver, solver_io, tolerance, center, r_bound):
+    factors = lp_unit_factors_balanced(list(data_ranges_per_unit.values()), solver, solver_io, center, r_bound)
     return factors
 
 '''
@@ -457,7 +472,8 @@ def scale(data, transform=lambda x: x):
                 elif resource_unit == 'energy_per_area':
                     factor = factors.get('power', 1)/factors.get('area', 1)
                 else:
-                    factor = factors.get('energy', 1)/factors.get('power', 1)
+                    #factor = factors.get('energy', 1)/factors.get('power', 1)
+                    pass
                 data["resource"].loc[dict(loc_techs_finite_resource=res)] *= transform(factor)
             else:
                 assert(False and 'sanity check on my naming failed')
@@ -670,7 +686,7 @@ def get_unit(variable_name, cost_class=''):
     if variable_name in units_to_names['power']:
         return ("power", "const")
     elif variable_name in units_to_names['energy']:
-        return ("energy", "const")
+        return ("power", "const") #return ("energy", "const")
     elif variable_name in units_to_names['distance_inv']:
         return ("const", "distance")
     elif variable_name in units_to_names['distance']:
@@ -680,11 +696,11 @@ def get_unit(variable_name, cost_class=''):
     elif variable_name in units_to_names['area_per_power']:
         return ("area", "power")
     elif variable_name in units_to_names['power_per_energy']:
-        return ("power", "energy")
+        return ("const", "const") # return ("power", "energy")
     elif variable_name in units_to_names['cost_per_power']:
         return (cost_class, "power")
     elif variable_name in units_to_names['cost_per_energy']:
-        return (cost_class, "energy")
+        return (cost_class, "power") # return (cost_class, "energy")
     elif variable_name in units_to_names['cost_per_power_distance']:
         return (cost_class, "power_distance")
     elif variable_name in units_to_names['cost_per_area']:

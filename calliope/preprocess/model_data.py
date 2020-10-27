@@ -109,7 +109,11 @@ def build_model_data(model_run, debug=False):
         print('autoscale')
         data.attrs['scale'] = True
         stt_factor = model_run['run']['scaling_tolerance_threshold']
-        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], model_run['run'].get('solver_io', None), stt_factor*tol)
+        # center and r_bound are dummy values
+        # once we decide on a scaling strat, this should be changed
+        scaling_center = 0
+        scaling_r_bound = 14
+        scaling_factors = get_scale(ranges_start, model_run['run']['solver'], model_run['run'].get('solver_io', None), stt_factor*tol, scaling_center, scaling_r_bound)
         print('factors', scaling_factors)
         data['scale'] = xr.DataArray(
             [v for v in scaling_factors.values()],
